@@ -8,9 +8,9 @@
 **Official Python SDK for [CardSight AI](https://cardsight.ai) REST API**
 
 The most comprehensive trading card identification and collection management platform.
-**2M+ Cards** • **AI-Powered Recognition** • **Free Tier Available**
+**6M+ Cards** • **Baseball, Football, Basketball** • **AI-Powered Recognition** • **Free Tier Available**
 
-**Quick Links:** [Getting Started](#getting-started) • [Installation](#installation) • [Examples](#usage-examples) • [API Documentation](https://api.cardsight.ai/documentation) • [Support](#support)
+**Quick Links:** [Getting Started](https://github.com/CardSightAI/cardsightai-sdk-python#getting-started) • [Installation](https://github.com/CardSightAI/cardsightai-sdk-python#installation) • [Examples](https://github.com/CardSightAI/cardsightai-sdk-python#usage-examples) • [API Documentation](https://cardsight.ai/documentation/api-reference) • [Support](https://cardsight.ai/support)
 
 ---
 
@@ -21,6 +21,7 @@ The most comprehensive trading card identification and collection management pla
 - **Async & Sync Support** - Use asyncio or traditional synchronous code
 - **Smart Error Handling** - Custom exception hierarchy with detailed error information
 - **Minimal Dependencies** - Only essential packages (httpx, attrs, python-dotenv)
+- **6M+ Cards** - Baseball, Football, and Basketball. Hockey and TCG (Pokemon, Magic: The Gathering, Yu-Gi-Oh!, One Piece) coming soon
 - **100% API Coverage** - All CardSight AI endpoints fully implemented
 - **Auto-Generated** - Always up-to-date with the latest API changes
 
@@ -30,7 +31,7 @@ The most comprehensive trading card identification and collection management pla
 |---------|-------------|-----------------|
 | **Card Identification** | Identify multiple cards from images using AI | `identify.identify()` |
 | **Card Detection** | Detect cards in images | `detect.detect()` |
-| **Catalog Search** | Search 2M+ trading cards database | `catalog.get_cards()`, `catalog.get_sets()` |
+| **Catalog Search** | Search 6M+ trading cards database | `catalog.get_cards()`, `catalog.get_sets()` |
 | **Random Catalog** | Pack opening simulations with parallel odds | `catalog.get_random_cards()`, `catalog.get_random_sets()` |
 | **Collections** | Manage owned card collections with analytics | `collections.create_collection()`, `collections.add_collection_cards()` |
 | **Collectors** | Manage collector profiles | `collectors.create_collector()`, `collectors.update_collector()` |
