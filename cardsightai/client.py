@@ -40,15 +40,18 @@ class APIModuleProxy:
         # Import the submodule (e.g., catalog.get_statistics)
         try:
             from importlib import import_module
+
             # Get the full module path (e.g., 'cardsightai.generated...api.catalog')
             module_path = self._module.__name__
             # Import the endpoint module (e.g., 'cardsightai.generated...api.catalog.get_statistics')
             endpoint_module = import_module(f".{name}", module_path)
 
             # If it has an asyncio function, wrap it
-            if hasattr(endpoint_module, 'asyncio'):
+            if hasattr(endpoint_module, "asyncio"):
+
                 async def wrapped(**kwargs):
                     return await endpoint_module.asyncio(client=self._client, **kwargs)
+
                 return wrapped
 
             return endpoint_module
@@ -251,12 +254,14 @@ class SyncWrapper:
 
         # If it's an async function, wrap it to run synchronously
         if inspect.iscoroutinefunction(attr):
+
             def sync_wrapper(*args, **kwargs):
                 return self._loop.run_until_complete(attr(*args, **kwargs))
+
             return sync_wrapper
 
         # If it's an object with async methods, recursively wrap it
-        if hasattr(attr, '__dict__') or hasattr(attr, '__getattr__'):
+        if hasattr(attr, "__dict__") or hasattr(attr, "__getattr__"):
             return SyncWrapper(attr, self._loop)
 
         return attr
