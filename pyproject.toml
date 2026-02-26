@@ -1,0 +1,95 @@
+[tool.poetry]
+name = "cardsightai"
+version = "1.0.0"
+description = "Official Python SDK for CardSight AI REST API"
+authors = ["CardSight AI"]
+license = "MIT"
+readme = "README.md"
+homepage = "https://github.com/CardSightAI/cardsightai-sdk-python"
+repository = "https://github.com/CardSightAI/cardsightai-sdk-python"
+documentation = "https://github.com/CardSightAI/cardsightai-sdk-python#readme"
+keywords = ["cardsight", "trading-cards", "api", "sdk", "ai", "identification", "baseball", "sports-cards"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+packages = [{include = "cardsightai"}]
+include = ["cardsightai/py.typed"]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+httpx = "^0.28.1"
+attrs = "^24.3.0"
+python-dateutil = "^2.9.0"
+python-dotenv = "^1.2.1"
+typing-extensions = "^4.15.0"
+
+[tool.poetry.group.dev.dependencies]
+openapi-python-client = "^0.26.2"
+pytest = "^8.4.2"
+pytest-asyncio = "^1.2.0"
+pytest-cov = "^7.0.0"
+respx = "^0.22.0"
+mypy = "^1.18.2"
+ruff = ">=0.2,<0.14"
+pre-commit = "^4.3.0"
+
+[tool.poetry.group.docs.dependencies]
+mkdocs = "^1.6.1"
+mkdocs-material = "^9.6.22"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.ruff]
+target-version = "py310"
+line-length = 120
+exclude = [
+    "cardsightai/generated/",
+]
+
+[tool.ruff.lint]
+select = [
+    "E",  # pycodestyle errors
+    "W",  # pycodestyle warnings
+    "F",  # pyflakes
+    "I",  # isort
+    "B",  # flake8-bugbear
+    "UP", # pyupgrade
+]
+ignore = [
+    "E501",  # line too long (handled by formatter)
+    "B008",  # do not perform function calls in argument defaults
+]
+
+[tool.mypy]
+python_version = "3.10"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = false
+ignore_missing_imports = true
+exclude = [
+    "cardsightai/generated/",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+asyncio_mode = "auto"
+
+[tool.coverage.run]
+source = ["cardsightai"]
+omit = [
+    "cardsightai/generated/*",
+    "tests/*",
+]

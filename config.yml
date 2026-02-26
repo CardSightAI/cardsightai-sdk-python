@@ -1,0 +1,7 @@
+project_name: "cardsightai"
+package_name: "cardsightai.generated"
+package_version: "from_openapi"
+client_name: "CardSightAI"
+async_client_name: "AsyncCardSightAI"
+use_path_prefixes_for_title_field: true
+use_operation_id_as_function_name: false
