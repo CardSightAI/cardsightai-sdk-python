@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.0] - 2026-03-09
+
+### Added
+- Global catalog search endpoint (`client.catalog.search_catalog(q="...")`) for fuzzy search across cards, sets, releases, and parallels
+- Grading company detection in card identification responses (`detection.grading`) with company name and confidence level
+- New models: `CatalogSearchResponse`, `SearchResult`, `SearchResultType`, `SearchCatalogType`, `SlabCompany`, `SlabGradingDetail`, `SlabGradingDetailConfidence`
+
 ## [1.0.0] - 2025-02-26
 
 ### Added

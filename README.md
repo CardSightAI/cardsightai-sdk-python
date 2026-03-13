@@ -31,6 +31,7 @@ The most comprehensive trading card identification and collection management pla
 |---------|-------------|-----------------|
 | **Card Identification** | Identify multiple cards from images using AI | `identify.identify()` |
 | **Card Detection** | Detect cards in images | `detect.detect()` |
+| **Global Search** | Fuzzy search across cards, sets, releases, parallels | `catalog.search_catalog(q="...")` |
 | **Catalog Search** | Search 6M+ trading cards database | `catalog.get_cards()`, `catalog.get_sets()` |
 | **Random Catalog** | Pack opening simulations with parallel odds | `catalog.get_random_cards()`, `catalog.get_random_sets()` |
 | **Collections** | Manage owned card collections with analytics | `collections.create_collection()`, `collections.add_collection_cards()` |
@@ -132,11 +133,24 @@ for detection in result.detections:
     print("---")
 ```
 
+#### Grading Detection
+
+When a card is inside a graded slab, the API automatically detects the grading company:
+
+```python
+result = client.identify.identify('graded_card.jpg')
+for detection in result.detections:
+    if hasattr(detection, 'grading') and detection.grading:
+        print(f"Graded by: {detection.grading.company.name}")
+        print(f"Grading confidence: {detection.grading.confidence}")
+```
+
 #### Response Structure
 
 Each detection includes:
 - `confidence`: "High", "Medium", or "Low"
 - `card`: Full card details including name, set, year, attributes, pricing
+- `grading`: (optional) Grading company and confidence when card is in a slab
 - `set`: Set information
 - `release`: Release information
 - `manufacturer`: Manufacturer details
@@ -197,6 +211,28 @@ card = client.catalog.get_card(id='card-uuid-here')
 print(f"Card: {card.name}")
 print(f"Raw price: ${card.prices.raw}")
 print(f"PSA 10 price: ${card.prices.psa_10}")
+```
+
+### Global Search
+
+Search across cards, sets, releases, and parallels with fuzzy matching:
+
+```python
+from cardsightai import CardSightAI
+
+client = CardSightAI()
+
+# Basic search
+results = client.catalog.search_catalog(q="Mike Trout", take=10)
+for result in results.results:
+    print(f"{result.type_}: {result.name} (relevance: {result.relevance})")
+
+# Filter by type
+from cardsightai.generated.card_sight_ai_api_client.models import SearchCatalogType
+results = client.catalog.search_catalog(q="Topps Chrome", type_=SearchCatalogType.SET)
+
+# Filter by year range
+results = client.catalog.search_catalog(q="rookie", min_year="2020", max_year="2024")
 ```
 
 ### Random Catalog (Pack Opening & Discovery)
@@ -517,6 +553,7 @@ The SDK provides complete coverage of all CardSight AI endpoints:
 |----------|-----------|--------|
 | Card Identification | `POST /v1/identify/card`, `POST /v1/identify/card/{segment}` | ✅ |
 | Card Detection | `POST /v1/detect/card` | ✅ |
+| Global Search | `GET /v1/catalog/search` - fuzzy search across all entities | ✅ |
 | Catalog | Statistics, Segments, Manufacturers, Releases, Sets, Cards | ✅ |
 | Random Catalog | Random cards, sets, releases | ✅ |
 | Collections | Full CRUD, analytics, cards | ✅ |

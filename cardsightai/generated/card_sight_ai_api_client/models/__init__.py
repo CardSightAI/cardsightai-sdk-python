@@ -68,6 +68,8 @@ from .catalog_release_stats import CatalogReleaseStats
 from .catalog_release_stats_input import CatalogReleaseStatsInput
 from .catalog_release_year_breakdown import CatalogReleaseYearBreakdown
 from .catalog_release_year_breakdown_input import CatalogReleaseYearBreakdownInput
+from .catalog_search_response import CatalogSearchResponse
+from .catalog_search_response_input import CatalogSearchResponseInput
 from .catalog_segment_breakdown_item import CatalogSegmentBreakdownItem
 from .catalog_segment_breakdown_item_input import CatalogSegmentBreakdownItemInput
 from .catalog_segment_stats import CatalogSegmentStats
@@ -284,6 +286,11 @@ from .release_summary import ReleaseSummary
 from .release_summary_input import ReleaseSummaryInput
 from .release_with_sets import ReleaseWithSets
 from .release_with_sets_input import ReleaseWithSetsInput
+from .search_catalog_type import SearchCatalogType
+from .search_result import SearchResult
+from .search_result_input import SearchResultInput
+from .search_result_input_type import SearchResultInputType
+from .search_result_type import SearchResultType
 from .segment import Segment
 from .segment_input import SegmentInput
 from .set_ import Set
@@ -296,6 +303,12 @@ from .set_progress_summary import SetProgressSummary
 from .set_progress_summary_input import SetProgressSummaryInput
 from .set_summary_with_counts import SetSummaryWithCounts
 from .set_summary_with_counts_input import SetSummaryWithCountsInput
+from .slab_company import SlabCompany
+from .slab_company_input import SlabCompanyInput
+from .slab_grading_detail import SlabGradingDetail
+from .slab_grading_detail_confidence import SlabGradingDetailConfidence
+from .slab_grading_detail_input import SlabGradingDetailInput
+from .slab_grading_detail_input_confidence import SlabGradingDetailInputConfidence
 from .subscription_info import SubscriptionInfo
 from .subscription_info_input import SubscriptionInfoInput
 from .top_card_in_group import TopCardInGroup
@@ -386,6 +399,8 @@ __all__ = (
     "CatalogReleaseStatsInput",
     "CatalogReleaseYearBreakdown",
     "CatalogReleaseYearBreakdownInput",
+    "CatalogSearchResponse",
+    "CatalogSearchResponseInput",
     "CatalogSegmentBreakdownItem",
     "CatalogSegmentBreakdownItemInput",
     "CatalogSegmentStats",
@@ -598,6 +613,11 @@ __all__ = (
     "ReleaseSummaryInput",
     "ReleaseWithSets",
     "ReleaseWithSetsInput",
+    "SearchCatalogType",
+    "SearchResult",
+    "SearchResultInput",
+    "SearchResultInputType",
+    "SearchResultType",
     "Segment",
     "SegmentInput",
     "Set",
@@ -610,6 +630,12 @@ __all__ = (
     "SetProgressSummaryInput",
     "SetSummaryWithCounts",
     "SetSummaryWithCountsInput",
+    "SlabCompany",
+    "SlabCompanyInput",
+    "SlabGradingDetail",
+    "SlabGradingDetailConfidence",
+    "SlabGradingDetailInput",
+    "SlabGradingDetailInputConfidence",
     "SubscriptionInfo",
     "SubscriptionInfoInput",
     "TopCardInGroup",

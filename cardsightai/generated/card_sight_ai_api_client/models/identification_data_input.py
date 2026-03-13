@@ -1,13 +1,15 @@
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar
+from typing import TYPE_CHECKING, Any, TypeVar, Union
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..models.identification_data_input_confidence import IdentificationDataInputConfidence
+from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
     from ..models.card_details_input import CardDetailsInput
+    from ..models.slab_grading_detail_input import SlabGradingDetailInput
 
 
 T = TypeVar("T", bound="IdentificationDataInput")
@@ -20,16 +22,22 @@ class IdentificationDataInput:
         confidence (IdentificationDataInputConfidence): AI confidence level for this detection (High: 90-100%, Medium:
             75-89%, Low: 50-74%)
         card (CardDetailsInput):
+        grading (Union[Unset, SlabGradingDetailInput]):
     """
 
     confidence: IdentificationDataInputConfidence
     card: "CardDetailsInput"
+    grading: Union[Unset, "SlabGradingDetailInput"] = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
         confidence = self.confidence.value
 
         card = self.card.to_dict()
+
+        grading: Union[Unset, dict[str, Any]] = UNSET
+        if not isinstance(self.grading, Unset):
+            grading = self.grading.to_dict()
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -39,21 +47,32 @@ class IdentificationDataInput:
                 "card": card,
             }
         )
+        if grading is not UNSET:
+            field_dict["grading"] = grading
 
         return field_dict
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.card_details_input import CardDetailsInput
+        from ..models.slab_grading_detail_input import SlabGradingDetailInput
 
         d = dict(src_dict)
         confidence = IdentificationDataInputConfidence(d.pop("confidence"))
 
         card = CardDetailsInput.from_dict(d.pop("card"))
 
+        _grading = d.pop("grading", UNSET)
+        grading: Union[Unset, SlabGradingDetailInput]
+        if isinstance(_grading, Unset):
+            grading = UNSET
+        else:
+            grading = SlabGradingDetailInput.from_dict(_grading)
+
         identification_data_input = cls(
             confidence=confidence,
             card=card,
+            grading=grading,
         )
 
         identification_data_input.additional_properties = d

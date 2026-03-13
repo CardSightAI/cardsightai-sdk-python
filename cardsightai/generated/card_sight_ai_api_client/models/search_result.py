@@ -1,0 +1,116 @@
+from collections.abc import Mapping
+from typing import Any, TypeVar, Union
+
+from attrs import define as _attrs_define
+
+from ..models.search_result_type import SearchResultType
+from ..types import UNSET, Unset
+
+T = TypeVar("T", bound="SearchResult")
+
+
+@_attrs_define
+class SearchResult:
+    """
+    Attributes:
+        type_ (SearchResultType): Entity type of this search result.
+        id (str): Unique identifier (UUID) for this entity. Use this ID to fetch full details from the corresponding
+            entity endpoint.
+        name (str): Primary name of the entity. Player/subject name for cards, set name for sets, release name for
+            releases.
+        relevance (float): Relevance score combining full-text search rank and fuzzy similarity. Higher values indicate
+            stronger matches. Results are sorted by this score descending.
+        year (Union[Unset, str]): Release year associated with this result.
+        set_name (Union[Unset, str]): Set name. Present for card and parallel results.
+        release_name (Union[Unset, str]): Release name. Present for card, set, and parallel results.
+        manufacturer_name (Union[Unset, str]): Manufacturer name.
+        parallel_name (Union[Unset, str]): Name of the matching parallel variant. Present when a parallel name
+            contributed to this result's relevance.
+    """
+
+    type_: SearchResultType
+    id: str
+    name: str
+    relevance: float
+    year: Union[Unset, str] = UNSET
+    set_name: Union[Unset, str] = UNSET
+    release_name: Union[Unset, str] = UNSET
+    manufacturer_name: Union[Unset, str] = UNSET
+    parallel_name: Union[Unset, str] = UNSET
+
+    def to_dict(self) -> dict[str, Any]:
+        type_ = self.type_.value
+
+        id = self.id
+
+        name = self.name
+
+        relevance = self.relevance
+
+        year = self.year
+
+        set_name = self.set_name
+
+        release_name = self.release_name
+
+        manufacturer_name = self.manufacturer_name
+
+        parallel_name = self.parallel_name
+
+        field_dict: dict[str, Any] = {}
+
+        field_dict.update(
+            {
+                "type": type_,
+                "id": id,
+                "name": name,
+                "relevance": relevance,
+            }
+        )
+        if year is not UNSET:
+            field_dict["year"] = year
+        if set_name is not UNSET:
+            field_dict["setName"] = set_name
+        if release_name is not UNSET:
+            field_dict["releaseName"] = release_name
+        if manufacturer_name is not UNSET:
+            field_dict["manufacturerName"] = manufacturer_name
+        if parallel_name is not UNSET:
+            field_dict["parallelName"] = parallel_name
+
+        return field_dict
+
+    @classmethod
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
+        type_ = SearchResultType(d.pop("type"))
+
+        id = d.pop("id")
+
+        name = d.pop("name")
+
+        relevance = d.pop("relevance")
+
+        year = d.pop("year", UNSET)
+
+        set_name = d.pop("setName", UNSET)
+
+        release_name = d.pop("releaseName", UNSET)
+
+        manufacturer_name = d.pop("manufacturerName", UNSET)
+
+        parallel_name = d.pop("parallelName", UNSET)
+
+        search_result = cls(
+            type_=type_,
+            id=id,
+            name=name,
+            relevance=relevance,
+            year=year,
+            set_name=set_name,
+            release_name=release_name,
+            manufacturer_name=manufacturer_name,
+            parallel_name=parallel_name,
+        )
+
+        return search_result

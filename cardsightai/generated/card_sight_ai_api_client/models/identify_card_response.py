@@ -19,7 +19,8 @@ class IdentifyCardResponse:
         success (bool): Whether the identification process completed successfully
         request_id (str): Unique identifier for tracking this identification request
         detections (Union[Unset, list['IdentificationData']]): Array of card detections from the image. Multiple cards
-            may be detected in a single image. Empty if no cards found.
+            may be detected in a single image. Each detection may include grading data if the card is inside a graded slab.
+            Empty if no cards found.
         processing_time (Union[Unset, float]): Total processing time in milliseconds for AI analysis and catalog
             matching
     """
