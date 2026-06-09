@@ -1,13 +1,9 @@
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar, Union, cast
+from typing import Any, TypeVar, Union, cast
 
 from attrs import define as _attrs_define
 
 from ..types import UNSET, Unset
-
-if TYPE_CHECKING:
-    from ..models.parallel_with_set_prices import ParallelWithSetPrices
-
 
 T = TypeVar("T", bound="ParallelWithSet")
 
@@ -31,8 +27,6 @@ class ParallelWithSet:
         is_partial (Union[Unset, bool]): Present and true only if this parallel applies to specific cards (e.g., cards
             1-400 of a 800-card set). Omitted if parallel applies to the entire set.
         numbered_to (Union[Unset, float]): Limited print run number for this parallel
-        prices (Union[Unset, ParallelWithSetPrices]): Average pricing data for this parallel variant. Only included when
-            price data is available.
         cards (Union[Unset, list[str]]): Card UUIDs that have this parallel. Only present when isPartial is true.
     """
 
@@ -47,7 +41,6 @@ class ParallelWithSet:
     description: Union[Unset, str] = UNSET
     is_partial: Union[Unset, bool] = UNSET
     numbered_to: Union[Unset, float] = UNSET
-    prices: Union[Unset, "ParallelWithSetPrices"] = UNSET
     cards: Union[Unset, list[str]] = UNSET
 
     def to_dict(self) -> dict[str, Any]:
@@ -73,10 +66,6 @@ class ParallelWithSet:
 
         numbered_to = self.numbered_to
 
-        prices: Union[Unset, dict[str, Any]] = UNSET
-        if not isinstance(self.prices, Unset):
-            prices = self.prices.to_dict()
-
         cards: Union[Unset, list[str]] = UNSET
         if not isinstance(self.cards, Unset):
             cards = self.cards
@@ -101,8 +90,6 @@ class ParallelWithSet:
             field_dict["isPartial"] = is_partial
         if numbered_to is not UNSET:
             field_dict["numberedTo"] = numbered_to
-        if prices is not UNSET:
-            field_dict["prices"] = prices
         if cards is not UNSET:
             field_dict["cards"] = cards
 
@@ -110,8 +97,6 @@ class ParallelWithSet:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.parallel_with_set_prices import ParallelWithSetPrices
-
         d = dict(src_dict)
         id = d.pop("id")
 
@@ -135,13 +120,6 @@ class ParallelWithSet:
 
         numbered_to = d.pop("numberedTo", UNSET)
 
-        _prices = d.pop("prices", UNSET)
-        prices: Union[Unset, ParallelWithSetPrices]
-        if isinstance(_prices, Unset):
-            prices = UNSET
-        else:
-            prices = ParallelWithSetPrices.from_dict(_prices)
-
         cards = cast(list[str], d.pop("cards", UNSET))
 
         parallel_with_set = cls(
@@ -156,7 +134,6 @@ class ParallelWithSet:
             description=description,
             is_partial=is_partial,
             numbered_to=numbered_to,
-            prices=prices,
             cards=cards,
         )
 

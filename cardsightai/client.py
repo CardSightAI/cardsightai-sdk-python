@@ -180,6 +180,12 @@ class AsyncCardSightAI:
         "collection_images": "collection_card_images",
         "card_detection": "card_detection",
         "card_identification": "card_identification",
+        "pricing": "pricing",
+        "marketplace": "marketplace",
+        "population": "population",
+        "release_calendar": "release_calendar",
+        # Node-SDK-style alias for card_detection (card_detection key retained)
+        "detect": "card_detection",
     }
 
     def __init__(

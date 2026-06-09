@@ -3,7 +3,6 @@ from enum import Enum
 
 class GetCollectionSetProgressSortBy(str, Enum):
     COMPLETION = "completion"
-    COST = "cost"
     DIFFICULTY = "difficulty"
     MISSING = "missing"
 

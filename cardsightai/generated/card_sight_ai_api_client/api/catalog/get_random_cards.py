@@ -26,6 +26,7 @@ def _get_kwargs(
     manufacturer: Union[Unset, str] = UNSET,
     attribute_id: Union[Unset, str] = UNSET,
     attribute_short_name: Union[Unset, str] = UNSET,
+    field: Union[Unset, list[str]] = UNSET,
     sort: Union[Unset, GetRandomCardsSort] = UNSET,
     order: Union[Unset, GetRandomCardsOrder] = GetRandomCardsOrder.ASC,
     count: Union[Unset, int] = 1,
@@ -56,6 +57,12 @@ def _get_kwargs(
     params["attributeId"] = attribute_id
 
     params["attributeShortName"] = attribute_short_name
+
+    json_field: Union[Unset, list[str]] = UNSET
+    if not isinstance(field, Unset):
+        json_field = field
+
+    params["field"] = json_field
 
     json_sort: Union[Unset, str] = UNSET
     if not isinstance(sort, Unset):
@@ -149,6 +156,7 @@ def sync_detailed(
     manufacturer: Union[Unset, str] = UNSET,
     attribute_id: Union[Unset, str] = UNSET,
     attribute_short_name: Union[Unset, str] = UNSET,
+    field: Union[Unset, list[str]] = UNSET,
     sort: Union[Unset, GetRandomCardsSort] = UNSET,
     order: Union[Unset, GetRandomCardsOrder] = GetRandomCardsOrder.ASC,
     count: Union[Unset, int] = 1,
@@ -177,6 +185,7 @@ def sync_detailed(
         manufacturer (Union[Unset, str]):
         attribute_id (Union[Unset, str]):
         attribute_short_name (Union[Unset, str]):
+        field (Union[Unset, list[str]]):
         sort (Union[Unset, GetRandomCardsSort]):
         order (Union[Unset, GetRandomCardsOrder]):  Default: GetRandomCardsOrder.ASC.
         count (Union[Unset, int]):  Default: 1.
@@ -203,6 +212,7 @@ def sync_detailed(
         manufacturer=manufacturer,
         attribute_id=attribute_id,
         attribute_short_name=attribute_short_name,
+        field=field,
         sort=sort,
         order=order,
         count=count,
@@ -231,6 +241,7 @@ def sync(
     manufacturer: Union[Unset, str] = UNSET,
     attribute_id: Union[Unset, str] = UNSET,
     attribute_short_name: Union[Unset, str] = UNSET,
+    field: Union[Unset, list[str]] = UNSET,
     sort: Union[Unset, GetRandomCardsSort] = UNSET,
     order: Union[Unset, GetRandomCardsOrder] = GetRandomCardsOrder.ASC,
     count: Union[Unset, int] = 1,
@@ -259,6 +270,7 @@ def sync(
         manufacturer (Union[Unset, str]):
         attribute_id (Union[Unset, str]):
         attribute_short_name (Union[Unset, str]):
+        field (Union[Unset, list[str]]):
         sort (Union[Unset, GetRandomCardsSort]):
         order (Union[Unset, GetRandomCardsOrder]):  Default: GetRandomCardsOrder.ASC.
         count (Union[Unset, int]):  Default: 1.
@@ -286,6 +298,7 @@ def sync(
         manufacturer=manufacturer,
         attribute_id=attribute_id,
         attribute_short_name=attribute_short_name,
+        field=field,
         sort=sort,
         order=order,
         count=count,
@@ -308,6 +321,7 @@ async def asyncio_detailed(
     manufacturer: Union[Unset, str] = UNSET,
     attribute_id: Union[Unset, str] = UNSET,
     attribute_short_name: Union[Unset, str] = UNSET,
+    field: Union[Unset, list[str]] = UNSET,
     sort: Union[Unset, GetRandomCardsSort] = UNSET,
     order: Union[Unset, GetRandomCardsOrder] = GetRandomCardsOrder.ASC,
     count: Union[Unset, int] = 1,
@@ -336,6 +350,7 @@ async def asyncio_detailed(
         manufacturer (Union[Unset, str]):
         attribute_id (Union[Unset, str]):
         attribute_short_name (Union[Unset, str]):
+        field (Union[Unset, list[str]]):
         sort (Union[Unset, GetRandomCardsSort]):
         order (Union[Unset, GetRandomCardsOrder]):  Default: GetRandomCardsOrder.ASC.
         count (Union[Unset, int]):  Default: 1.
@@ -362,6 +377,7 @@ async def asyncio_detailed(
         manufacturer=manufacturer,
         attribute_id=attribute_id,
         attribute_short_name=attribute_short_name,
+        field=field,
         sort=sort,
         order=order,
         count=count,
@@ -388,6 +404,7 @@ async def asyncio(
     manufacturer: Union[Unset, str] = UNSET,
     attribute_id: Union[Unset, str] = UNSET,
     attribute_short_name: Union[Unset, str] = UNSET,
+    field: Union[Unset, list[str]] = UNSET,
     sort: Union[Unset, GetRandomCardsSort] = UNSET,
     order: Union[Unset, GetRandomCardsOrder] = GetRandomCardsOrder.ASC,
     count: Union[Unset, int] = 1,
@@ -416,6 +433,7 @@ async def asyncio(
         manufacturer (Union[Unset, str]):
         attribute_id (Union[Unset, str]):
         attribute_short_name (Union[Unset, str]):
+        field (Union[Unset, list[str]]):
         sort (Union[Unset, GetRandomCardsSort]):
         order (Union[Unset, GetRandomCardsOrder]):  Default: GetRandomCardsOrder.ASC.
         count (Union[Unset, int]):  Default: 1.
@@ -444,6 +462,7 @@ async def asyncio(
             manufacturer=manufacturer,
             attribute_id=attribute_id,
             attribute_short_name=attribute_short_name,
+            field=field,
             sort=sort,
             order=order,
             count=count,

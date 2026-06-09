@@ -8,7 +8,6 @@ if TYPE_CHECKING:
     from ..models.collection_composition_input import CollectionCompositionInput
     from ..models.collection_financials_input import CollectionFinancialsInput
     from ..models.collection_overview_input import CollectionOverviewInput
-    from ..models.collection_performance_input import CollectionPerformanceInput
 
 
 T = TypeVar("T", bound="CollectionAnalyticsResponseInput")
@@ -21,13 +20,11 @@ class CollectionAnalyticsResponseInput:
         overview (CollectionOverviewInput):
         financials (CollectionFinancialsInput):
         composition (CollectionCompositionInput):
-        performance (CollectionPerformanceInput):
     """
 
     overview: "CollectionOverviewInput"
     financials: "CollectionFinancialsInput"
     composition: "CollectionCompositionInput"
-    performance: "CollectionPerformanceInput"
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -37,8 +34,6 @@ class CollectionAnalyticsResponseInput:
 
         composition = self.composition.to_dict()
 
-        performance = self.performance.to_dict()
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update(
@@ -46,7 +41,6 @@ class CollectionAnalyticsResponseInput:
                 "overview": overview,
                 "financials": financials,
                 "composition": composition,
-                "performance": performance,
             }
         )
 
@@ -57,7 +51,6 @@ class CollectionAnalyticsResponseInput:
         from ..models.collection_composition_input import CollectionCompositionInput
         from ..models.collection_financials_input import CollectionFinancialsInput
         from ..models.collection_overview_input import CollectionOverviewInput
-        from ..models.collection_performance_input import CollectionPerformanceInput
 
         d = dict(src_dict)
         overview = CollectionOverviewInput.from_dict(d.pop("overview"))
@@ -66,13 +59,10 @@ class CollectionAnalyticsResponseInput:
 
         composition = CollectionCompositionInput.from_dict(d.pop("composition"))
 
-        performance = CollectionPerformanceInput.from_dict(d.pop("performance"))
-
         collection_analytics_response_input = cls(
             overview=overview,
             financials=financials,
             composition=composition,
-            performance=performance,
         )
 
         collection_analytics_response_input.additional_properties = d

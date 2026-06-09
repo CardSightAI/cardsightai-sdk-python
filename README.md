@@ -22,6 +22,7 @@ The most comprehensive trading card identification and collection management pla
 - **Smart Error Handling** - Custom exception hierarchy with detailed error information
 - **Minimal Dependencies** - Only essential packages (httpx, attrs, python-dotenv)
 - **6M+ Cards** - Baseball, Football, and Basketball. Hockey and TCG (Pokemon, Magic: The Gathering, Yu-Gi-Oh!, One Piece) coming soon
+- **Market Data** - Completed-sales pricing (single + bulk), active marketplace listings, and graded population reports
 - **100% API Coverage** - All CardSight AI endpoints fully implemented
 - **Auto-Generated** - Always up-to-date with the latest API changes
 
@@ -30,10 +31,16 @@ The most comprehensive trading card identification and collection management pla
 | Feature | Description | Primary Methods |
 |---------|-------------|-----------------|
 | **Card Identification** | Identify multiple cards from images using AI | `identify.identify()` |
-| **Card Detection** | Detect cards in images | `detect.detect()` |
+| **Set Identifiability** | Free pre-flight check of which sets AI can identify | `card_identification.list_identifiable_sets()`, `card_identification.check_set_identifiable()` |
+| **Card Detection** | Detect cards in images | `detect.detect_card()` |
 | **Global Search** | Fuzzy search across cards, sets, releases, parallels | `catalog.search_catalog(q="...")` |
 | **Catalog Search** | Search 6M+ trading cards database | `catalog.get_cards()`, `catalog.get_sets()` |
+| **Flexible Metadata** | Browse flexible card fields (HP, Rarity, Artist, etc.) | `catalog.get_fields()`, `catalog.get_field_by_id()` |
 | **Random Catalog** | Pack opening simulations with parallel odds | `catalog.get_random_cards()`, `catalog.get_random_sets()` |
+| **Pricing** | Completed sales data, raw + graded, single & bulk | `pricing.get_card_pricing()`, `pricing.get_bulk_pricing()` |
+| **Marketplace** | Active marketplace listings by grade and type | `marketplace.get_card_marketplace()` |
+| **Population** | Graded population reports by card, set, release | `population.get_card_population()`, `population.get_set_population()`, `population.get_release_population()` |
+| **Release Calendar** | Upcoming & recent product releases | `release_calendar.get_release_calendar()` |
 | **Collections** | Manage owned card collections with analytics | `collections.create_collection()`, `collections.add_collection_cards()` |
 | **Collectors** | Manage collector profiles | `collectors.create_collector()`, `collectors.update_collector()` |
 | **Lists** | Track wanted cards (wishlists) | `lists.create_list()`, `lists.add_cards_to_list()` |
@@ -150,7 +157,10 @@ for detection in result.detections:
 Each detection includes:
 - `confidence`: "High", "Medium", or "Low"
 - `card`: Full card details including name, set, year, attributes, pricing
-- `grading`: (optional) Grading company and confidence when card is in a slab
+- `grading`: (optional) Slab grading info — company, grade and condition descriptor, qualifier (OC, MC, PD, ST), and autograph grade when card is in a graded slab
+- `fields`: (optional) Flexible metadata array (e.g., HP, Rarity, Artist, Mana Cost) for cards that expose it
+- `numbered_to`: (optional) Print run for numbered base cards
+- `suggestions`: (optional) Alternative reprint candidates when the match is ambiguous
 - `set`: Set information
 - `release`: Release information
 - `manufacturer`: Manufacturer details
@@ -430,6 +440,131 @@ client.feedback.submit_general_feedback(
 )
 ```
 
+### Set Identifiability (Pre-flight Checks)
+
+Before spending an identification call, check for free which sets the AI can identify:
+
+```python
+from cardsightai import CardSightAI
+
+client = CardSightAI()
+
+# List all AI-identifiable sets (free, paginated)
+sets = client.card_identification.list_identifiable_sets(take=20, skip=0)
+for s in sets.sets:
+    print(f"Identifiable: {s.year} {s.release_name} {s.set_name}")
+
+# Verify a specific set is identifiable
+check = client.card_identification.check_set_identifiable(set_id='set-uuid')
+print(f"Identifiable: {check.is_identifiable}")
+```
+
+### Flexible Metadata Fields
+
+Browse the flexible metadata fields used across trading card games (HP, Rarity, Artist, Mana Cost, etc.) with usage counts:
+
+```python
+from cardsightai import CardSightAI
+
+client = CardSightAI()
+
+# List flexible metadata fields with usage counts
+fields = client.catalog.get_fields(take=20, skip=0)
+for field in fields.fields:
+    print(f"{field.name} ({field.key}): used {field.usage_count} times")
+
+# Get details for a single field
+field = client.catalog.get_field_by_id(id='field-key')
+print(f"Field: {field.name}")
+```
+
+### Pricing (Completed Sales)
+
+Retrieve historical completed-sales data, grouped into raw (ungraded) and graded sections:
+
+```python
+from cardsightai import CardSightAI
+
+client = CardSightAI()
+
+# Pricing for a single card (filter by parallel, grade, period, listing type)
+pricing = client.pricing.get_card_pricing(
+    card_id='card-uuid',
+    period='1y',          # all, 30d, 90d, 1y, 5y
+    limit=50,
+)
+print(f"Raw sales: {len(pricing.raw.records)}")
+for company in pricing.graded:
+    print(f"Graded by {company.company_name}: {len(company.grades)} grade buckets")
+
+# Bulk pricing for up to 100 cards in one request
+from cardsightai.generated.card_sight_ai_api_client.models import BulkPricingRequestInput
+
+bulk = client.pricing.get_bulk_pricing(
+    body=BulkPricingRequestInput(card_ids=['card-1', 'card-2', 'card-3'])
+)
+for result in bulk.results:
+    print(result)
+```
+
+### Marketplace (Active Listings)
+
+Retrieve current active listings for a card, grouped by grading company and grade:
+
+```python
+from cardsightai import CardSightAI
+
+client = CardSightAI()
+
+listings = client.marketplace.get_card_marketplace(
+    card_id='card-uuid',
+    grade_id='grade-uuid',   # optional
+    limit=25,
+)
+print(f"Raw listings: {len(listings.raw.records)}")
+for company in listings.graded:
+    print(f"{company.company_name}: {len(company.grades)} grade groups")
+```
+
+### Population Reports (Graded Census)
+
+Get graded population counts for a single card, an entire set, or a release:
+
+```python
+from cardsightai import CardSightAI
+
+client = CardSightAI()
+
+# Population for a single card (optionally scope to one grading company)
+card_pop = client.population.get_card_population(card_id='card-uuid')
+print(f"{card_pop.card_name}: {card_pop.total_population} graded copies")
+
+# Population across an entire set
+set_pop = client.population.get_set_population(set_id='set-uuid')
+
+# Population across a release
+release_pop = client.population.get_release_population(release_id='release-uuid')
+```
+
+### Release Calendar
+
+Browse upcoming and recent product releases, filtered by segment, manufacturer, or year:
+
+```python
+from cardsightai import CardSightAI
+
+client = CardSightAI()
+
+calendar = client.release_calendar.get_release_calendar(
+    take=20,
+    skip=0,
+    year='2026',
+    segment='baseball',       # UUID or case-insensitive name
+)
+for entry in calendar.release_calendar:
+    print(f"{entry.release_date}: {entry.name}")
+```
+
 ## Async/Await Support
 
 The SDK provides full async support with `AsyncCardSightAI`:
@@ -475,6 +610,13 @@ client = CardSightAI()
 stats: GetV1CatalogStatisticsResponse200 = client.catalog.get_statistics()
 cards: GetV1CatalogCardsResponse200 = client.catalog.get_cards()
 ```
+
+Response models for the newer endpoints are available too, e.g. `PricingResponse`,
+`BulkPricingResponse`, `MarketplaceResponse`, `CardPopulationResponse`,
+`SetPopulationResponse`, `ReleasePopulationResponse`, `PaginatedReleaseCalendarResponse`,
+`PaginatedFieldsResponse`, `DetailedFieldResponse`, `IdentifiableSetsResponse`, and
+`SetIdentifiableResponse` — all importable from
+`cardsightai.generated.card_sight_ai_api_client.models`.
 
 ## Error Handling
 
@@ -551,22 +693,28 @@ The SDK provides complete coverage of all CardSight AI endpoints:
 
 | Category | Endpoints | Status |
 |----------|-----------|--------|
-| Card Identification | `POST /v1/identify/card`, `POST /v1/identify/card/{segment}` | ✅ |
-| Card Detection | `POST /v1/detect/card` | ✅ |
+| Card Identification | `POST /v1/identify/card/{set}`, `POST /v1/identify/card/segment/{segment}` | ✅ |
+| Set Identifiability | `GET /v1/identify/list/sets`, `GET /v1/identify/check/set/{set_id}` | ✅ |
+| Card Detection | `POST /v1/identify/card/detect` | ✅ |
 | Global Search | `GET /v1/catalog/search` - fuzzy search across all entities | ✅ |
-| Catalog | Statistics, Segments, Manufacturers, Releases, Sets, Cards | ✅ |
+| Catalog | Statistics, Segments, Manufacturers, Releases, Sets, Cards, Parallels, Attributes | ✅ |
+| Catalog Fields | `GET /v1/catalog/fields`, `GET /v1/catalog/fields/{id}` | ✅ |
 | Random Catalog | Random cards, sets, releases | ✅ |
-| Collections | Full CRUD, analytics, cards | ✅ |
+| Pricing | `GET /v1/pricing/{card_id}`, `POST /v1/pricing/` (bulk) | ✅ |
+| Marketplace | `GET /v1/marketplace/{card_id}` | ✅ |
+| Population | `GET /v1/population/card/{id}`, `/set/{id}`, `/release/{id}` | ✅ |
+| Release Calendar | `GET /v1/release-calendar/` | ✅ |
+| Collections | Full CRUD, analytics, breakdown, cards | ✅ |
 | Binders | Create, update, delete, cards | ✅ |
 | Lists | Create, update, delete, cards | ✅ |
 | Collectors | Create, update, delete | ✅ |
 | Grading | Companies, types, grades | ✅ |
 | AI Search | Natural language queries | ✅ |
-| Autocomplete | Cards, sets, releases, manufacturers, segments | ✅ |
+| Autocomplete | Cards, sets, releases, manufacturers, segments, years | ✅ |
 | Images | Card image retrieval | ✅ |
 | Feedback | Identification, general, entity feedback | ✅ |
 | Subscription | Subscription management | ✅ |
-| Health | API health check | ✅ |
+| Health | API health check (public + authenticated) | ✅ |
 
 ## Development
 

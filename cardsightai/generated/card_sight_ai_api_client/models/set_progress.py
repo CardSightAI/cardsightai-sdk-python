@@ -20,9 +20,7 @@ class SetProgress:
         owned_cards (float): Number of unique cards owned
         missing_cards (list[str]): Array of missing card UUIDs
         completion_percentage (float): Percentage complete (0-100)
-        estimated_cost_to_complete (Union[Unset, str]): Estimated cost to acquire missing cards
         difficulty_score (Union[Unset, float]): Difficulty score based on card availability (0-100)
-        average_card_value (Union[Unset, str]): Average value per card in set
     """
 
     set_id: str
@@ -33,9 +31,7 @@ class SetProgress:
     owned_cards: float
     missing_cards: list[str]
     completion_percentage: float
-    estimated_cost_to_complete: Union[Unset, str] = UNSET
     difficulty_score: Union[Unset, float] = UNSET
-    average_card_value: Union[Unset, str] = UNSET
 
     def to_dict(self) -> dict[str, Any]:
         set_id = self.set_id
@@ -54,11 +50,7 @@ class SetProgress:
 
         completion_percentage = self.completion_percentage
 
-        estimated_cost_to_complete = self.estimated_cost_to_complete
-
         difficulty_score = self.difficulty_score
-
-        average_card_value = self.average_card_value
 
         field_dict: dict[str, Any] = {}
 
@@ -74,12 +66,8 @@ class SetProgress:
                 "completionPercentage": completion_percentage,
             }
         )
-        if estimated_cost_to_complete is not UNSET:
-            field_dict["estimatedCostToComplete"] = estimated_cost_to_complete
         if difficulty_score is not UNSET:
             field_dict["difficultyScore"] = difficulty_score
-        if average_card_value is not UNSET:
-            field_dict["averageCardValue"] = average_card_value
 
         return field_dict
 
@@ -102,11 +90,7 @@ class SetProgress:
 
         completion_percentage = d.pop("completionPercentage")
 
-        estimated_cost_to_complete = d.pop("estimatedCostToComplete", UNSET)
-
         difficulty_score = d.pop("difficultyScore", UNSET)
-
-        average_card_value = d.pop("averageCardValue", UNSET)
 
         set_progress = cls(
             set_id=set_id,
@@ -117,9 +101,7 @@ class SetProgress:
             owned_cards=owned_cards,
             missing_cards=missing_cards,
             completion_percentage=completion_percentage,
-            estimated_cost_to_complete=estimated_cost_to_complete,
             difficulty_score=difficulty_score,
-            average_card_value=average_card_value,
         )
 
         return set_progress

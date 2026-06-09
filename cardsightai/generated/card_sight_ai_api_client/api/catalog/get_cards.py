@@ -28,6 +28,7 @@ def _get_kwargs(
     manufacturer: Union[Unset, str] = UNSET,
     attribute_id: Union[Unset, str] = UNSET,
     attribute_short_name: Union[Unset, str] = UNSET,
+    field: Union[Unset, list[str]] = UNSET,
     sort: Union[Unset, GetCardsSort] = UNSET,
     order: Union[Unset, GetCardsOrder] = GetCardsOrder.ASC,
 ) -> dict[str, Any]:
@@ -60,6 +61,12 @@ def _get_kwargs(
     params["attributeId"] = attribute_id
 
     params["attributeShortName"] = attribute_short_name
+
+    json_field: Union[Unset, list[str]] = UNSET
+    if not isinstance(field, Unset):
+        json_field = field
+
+    params["field"] = json_field
 
     json_sort: Union[Unset, str] = UNSET
     if not isinstance(sort, Unset):
@@ -151,6 +158,7 @@ def sync_detailed(
     manufacturer: Union[Unset, str] = UNSET,
     attribute_id: Union[Unset, str] = UNSET,
     attribute_short_name: Union[Unset, str] = UNSET,
+    field: Union[Unset, list[str]] = UNSET,
     sort: Union[Unset, GetCardsSort] = UNSET,
     order: Union[Unset, GetCardsOrder] = GetCardsOrder.ASC,
 ) -> Response[Union[ErrorResponse, PaginatedCardsResponse]]:
@@ -177,6 +185,7 @@ def sync_detailed(
         manufacturer (Union[Unset, str]):
         attribute_id (Union[Unset, str]):
         attribute_short_name (Union[Unset, str]):
+        field (Union[Unset, list[str]]):
         sort (Union[Unset, GetCardsSort]):
         order (Union[Unset, GetCardsOrder]):  Default: GetCardsOrder.ASC.
 
@@ -203,6 +212,7 @@ def sync_detailed(
         manufacturer=manufacturer,
         attribute_id=attribute_id,
         attribute_short_name=attribute_short_name,
+        field=field,
         sort=sort,
         order=order,
     )
@@ -231,6 +241,7 @@ def sync(
     manufacturer: Union[Unset, str] = UNSET,
     attribute_id: Union[Unset, str] = UNSET,
     attribute_short_name: Union[Unset, str] = UNSET,
+    field: Union[Unset, list[str]] = UNSET,
     sort: Union[Unset, GetCardsSort] = UNSET,
     order: Union[Unset, GetCardsOrder] = GetCardsOrder.ASC,
 ) -> Optional[Union[ErrorResponse, PaginatedCardsResponse]]:
@@ -257,6 +268,7 @@ def sync(
         manufacturer (Union[Unset, str]):
         attribute_id (Union[Unset, str]):
         attribute_short_name (Union[Unset, str]):
+        field (Union[Unset, list[str]]):
         sort (Union[Unset, GetCardsSort]):
         order (Union[Unset, GetCardsOrder]):  Default: GetCardsOrder.ASC.
 
@@ -284,6 +296,7 @@ def sync(
         manufacturer=manufacturer,
         attribute_id=attribute_id,
         attribute_short_name=attribute_short_name,
+        field=field,
         sort=sort,
         order=order,
     ).parsed
@@ -306,6 +319,7 @@ async def asyncio_detailed(
     manufacturer: Union[Unset, str] = UNSET,
     attribute_id: Union[Unset, str] = UNSET,
     attribute_short_name: Union[Unset, str] = UNSET,
+    field: Union[Unset, list[str]] = UNSET,
     sort: Union[Unset, GetCardsSort] = UNSET,
     order: Union[Unset, GetCardsOrder] = GetCardsOrder.ASC,
 ) -> Response[Union[ErrorResponse, PaginatedCardsResponse]]:
@@ -332,6 +346,7 @@ async def asyncio_detailed(
         manufacturer (Union[Unset, str]):
         attribute_id (Union[Unset, str]):
         attribute_short_name (Union[Unset, str]):
+        field (Union[Unset, list[str]]):
         sort (Union[Unset, GetCardsSort]):
         order (Union[Unset, GetCardsOrder]):  Default: GetCardsOrder.ASC.
 
@@ -358,6 +373,7 @@ async def asyncio_detailed(
         manufacturer=manufacturer,
         attribute_id=attribute_id,
         attribute_short_name=attribute_short_name,
+        field=field,
         sort=sort,
         order=order,
     )
@@ -384,6 +400,7 @@ async def asyncio(
     manufacturer: Union[Unset, str] = UNSET,
     attribute_id: Union[Unset, str] = UNSET,
     attribute_short_name: Union[Unset, str] = UNSET,
+    field: Union[Unset, list[str]] = UNSET,
     sort: Union[Unset, GetCardsSort] = UNSET,
     order: Union[Unset, GetCardsOrder] = GetCardsOrder.ASC,
 ) -> Optional[Union[ErrorResponse, PaginatedCardsResponse]]:
@@ -410,6 +427,7 @@ async def asyncio(
         manufacturer (Union[Unset, str]):
         attribute_id (Union[Unset, str]):
         attribute_short_name (Union[Unset, str]):
+        field (Union[Unset, list[str]]):
         sort (Union[Unset, GetCardsSort]):
         order (Union[Unset, GetCardsOrder]):  Default: GetCardsOrder.ASC.
 
@@ -438,6 +456,7 @@ async def asyncio(
             manufacturer=manufacturer,
             attribute_id=attribute_id,
             attribute_short_name=attribute_short_name,
+            field=field,
             sort=sort,
             order=order,
         )

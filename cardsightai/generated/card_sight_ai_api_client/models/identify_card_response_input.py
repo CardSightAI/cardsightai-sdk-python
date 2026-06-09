@@ -8,6 +8,7 @@ from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
     from ..models.identification_data_input import IdentificationDataInput
+    from ..models.server_message_input import ServerMessageInput
 
 
 T = TypeVar("T", bound="IdentifyCardResponseInput")
@@ -24,12 +25,14 @@ class IdentifyCardResponseInput:
             slab. Empty if no cards found.
         processing_time (Union[Unset, float]): Total processing time in milliseconds for AI analysis and catalog
             matching
+        messages (Union[Unset, list['ServerMessageInput']]): Server advisory messages (e.g., image quality warnings)
     """
 
     success: bool
     request_id: str
     detections: Union[Unset, list["IdentificationDataInput"]] = UNSET
     processing_time: Union[Unset, float] = UNSET
+    messages: Union[Unset, list["ServerMessageInput"]] = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -46,6 +49,13 @@ class IdentifyCardResponseInput:
 
         processing_time = self.processing_time
 
+        messages: Union[Unset, list[dict[str, Any]]] = UNSET
+        if not isinstance(self.messages, Unset):
+            messages = []
+            for messages_item_data in self.messages:
+                messages_item = messages_item_data.to_dict()
+                messages.append(messages_item)
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update(
@@ -58,12 +68,15 @@ class IdentifyCardResponseInput:
             field_dict["detections"] = detections
         if processing_time is not UNSET:
             field_dict["processingTime"] = processing_time
+        if messages is not UNSET:
+            field_dict["messages"] = messages
 
         return field_dict
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.identification_data_input import IdentificationDataInput
+        from ..models.server_message_input import ServerMessageInput
 
         d = dict(src_dict)
         success = d.pop("success")
@@ -79,11 +92,19 @@ class IdentifyCardResponseInput:
 
         processing_time = d.pop("processingTime", UNSET)
 
+        messages = []
+        _messages = d.pop("messages", UNSET)
+        for messages_item_data in _messages or []:
+            messages_item = ServerMessageInput.from_dict(messages_item_data)
+
+            messages.append(messages_item)
+
         identify_card_response_input = cls(
             success=success,
             request_id=request_id,
             detections=detections,
             processing_time=processing_time,
+            messages=messages,
         )
 
         identify_card_response_input.additional_properties = d

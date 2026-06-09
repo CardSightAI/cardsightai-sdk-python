@@ -22,6 +22,7 @@ def _get_kwargs(
     year: Union[Unset, str] = UNSET,
     min_year: Union[Unset, str] = UNSET,
     max_year: Union[Unset, str] = UNSET,
+    field: Union[Unset, list[str]] = UNSET,
 ) -> dict[str, Any]:
     params: dict[str, Any] = {}
 
@@ -46,6 +47,12 @@ def _get_kwargs(
     params["min_year"] = min_year
 
     params["max_year"] = max_year
+
+    json_field: Union[Unset, list[str]] = UNSET
+    if not isinstance(field, Unset):
+        json_field = field
+
+    params["field"] = json_field
 
     params = {k: v for k, v in params.items() if v is not UNSET and v is not None}
 
@@ -120,6 +127,7 @@ def sync_detailed(
     year: Union[Unset, str] = UNSET,
     min_year: Union[Unset, str] = UNSET,
     max_year: Union[Unset, str] = UNSET,
+    field: Union[Unset, list[str]] = UNSET,
 ) -> Response[Union[CatalogSearchResponse, ErrorResponse]]:
     r"""Search across cards, sets, releases, and parallels
 
@@ -141,6 +149,7 @@ def sync_detailed(
         year (Union[Unset, str]):
         min_year (Union[Unset, str]):
         max_year (Union[Unset, str]):
+        field (Union[Unset, list[str]]):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -160,6 +169,7 @@ def sync_detailed(
         year=year,
         min_year=min_year,
         max_year=max_year,
+        field=field,
     )
 
     response = client.get_httpx_client().request(
@@ -181,6 +191,7 @@ def sync(
     year: Union[Unset, str] = UNSET,
     min_year: Union[Unset, str] = UNSET,
     max_year: Union[Unset, str] = UNSET,
+    field: Union[Unset, list[str]] = UNSET,
 ) -> Optional[Union[CatalogSearchResponse, ErrorResponse]]:
     r"""Search across cards, sets, releases, and parallels
 
@@ -202,6 +213,7 @@ def sync(
         year (Union[Unset, str]):
         min_year (Union[Unset, str]):
         max_year (Union[Unset, str]):
+        field (Union[Unset, list[str]]):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -222,6 +234,7 @@ def sync(
         year=year,
         min_year=min_year,
         max_year=max_year,
+        field=field,
     ).parsed
 
 
@@ -237,6 +250,7 @@ async def asyncio_detailed(
     year: Union[Unset, str] = UNSET,
     min_year: Union[Unset, str] = UNSET,
     max_year: Union[Unset, str] = UNSET,
+    field: Union[Unset, list[str]] = UNSET,
 ) -> Response[Union[CatalogSearchResponse, ErrorResponse]]:
     r"""Search across cards, sets, releases, and parallels
 
@@ -258,6 +272,7 @@ async def asyncio_detailed(
         year (Union[Unset, str]):
         min_year (Union[Unset, str]):
         max_year (Union[Unset, str]):
+        field (Union[Unset, list[str]]):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -277,6 +292,7 @@ async def asyncio_detailed(
         year=year,
         min_year=min_year,
         max_year=max_year,
+        field=field,
     )
 
     response = await client.get_async_httpx_client().request(**kwargs)
@@ -296,6 +312,7 @@ async def asyncio(
     year: Union[Unset, str] = UNSET,
     min_year: Union[Unset, str] = UNSET,
     max_year: Union[Unset, str] = UNSET,
+    field: Union[Unset, list[str]] = UNSET,
 ) -> Optional[Union[CatalogSearchResponse, ErrorResponse]]:
     r"""Search across cards, sets, releases, and parallels
 
@@ -317,6 +334,7 @@ async def asyncio(
         year (Union[Unset, str]):
         min_year (Union[Unset, str]):
         max_year (Union[Unset, str]):
+        field (Union[Unset, list[str]]):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -338,5 +356,6 @@ async def asyncio(
             year=year,
             min_year=min_year,
             max_year=max_year,
+            field=field,
         )
     ).parsed

@@ -7,6 +7,7 @@ from attrs import field as _attrs_field
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
+    from ..models.field_value_input import FieldValueInput
     from ..models.set_summary_with_counts_input import SetSummaryWithCountsInput
 
 
@@ -31,6 +32,7 @@ class DetailedReleaseResponseInput:
         sets (list['SetSummaryWithCountsInput']): Sets within this release
         description (Union[Unset, str]): Additional details about the release, such as special features, number of
             cards, or notable inclusions. May be null.
+        fields (Union[Unset, list['FieldValueInput']]):
     """
 
     id: str
@@ -41,6 +43,7 @@ class DetailedReleaseResponseInput:
     is_identifiable: bool
     sets: list["SetSummaryWithCountsInput"]
     description: Union[Unset, str] = UNSET
+    fields: Union[Unset, list["FieldValueInput"]] = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -63,6 +66,13 @@ class DetailedReleaseResponseInput:
 
         description = self.description
 
+        fields: Union[Unset, list[dict[str, Any]]] = UNSET
+        if not isinstance(self.fields, Unset):
+            fields = []
+            for componentsschemas_field_values_input_item_data in self.fields:
+                componentsschemas_field_values_input_item = componentsschemas_field_values_input_item_data.to_dict()
+                fields.append(componentsschemas_field_values_input_item)
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update(
@@ -78,11 +88,14 @@ class DetailedReleaseResponseInput:
         )
         if description is not UNSET:
             field_dict["description"] = description
+        if fields is not UNSET:
+            field_dict["fields"] = fields
 
         return field_dict
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        from ..models.field_value_input import FieldValueInput
         from ..models.set_summary_with_counts_input import SetSummaryWithCountsInput
 
         d = dict(src_dict)
@@ -107,6 +120,15 @@ class DetailedReleaseResponseInput:
 
         description = d.pop("description", UNSET)
 
+        fields = []
+        _fields = d.pop("fields", UNSET)
+        for componentsschemas_field_values_input_item_data in _fields or []:
+            componentsschemas_field_values_input_item = FieldValueInput.from_dict(
+                componentsschemas_field_values_input_item_data
+            )
+
+            fields.append(componentsschemas_field_values_input_item)
+
         detailed_release_response_input = cls(
             id=id,
             segment_id=segment_id,
@@ -116,6 +138,7 @@ class DetailedReleaseResponseInput:
             is_identifiable=is_identifiable,
             sets=sets,
             description=description,
+            fields=fields,
         )
 
         detailed_release_response_input.additional_properties = d

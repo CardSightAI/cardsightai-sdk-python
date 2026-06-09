@@ -131,7 +131,6 @@ def sync_detailed(
     **Response includes:**
     - Binder metadata (name, type, description)
     - Card count per binder
-    - Total value estimates
     - Creation and update timestamps
     - Pagination metadata
 
@@ -201,7 +200,6 @@ def sync(
     **Response includes:**
     - Binder metadata (name, type, description)
     - Card count per binder
-    - Total value estimates
     - Creation and update timestamps
     - Pagination metadata
 
@@ -266,7 +264,6 @@ async def asyncio_detailed(
     **Response includes:**
     - Binder metadata (name, type, description)
     - Card count per binder
-    - Total value estimates
     - Creation and update timestamps
     - Pagination metadata
 
@@ -334,7 +331,6 @@ async def asyncio(
     **Response includes:**
     - Binder metadata (name, type, description)
     - Card count per binder
-    - Total value estimates
     - Creation and update timestamps
     - Pagination metadata
 

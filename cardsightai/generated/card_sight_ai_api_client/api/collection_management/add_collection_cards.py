@@ -124,7 +124,6 @@ def sync_detailed(
     - **purchasePrice**: What you paid for the card
     - **purchaseDate**: When you acquired it
     - **purchaseFrom**: Where/who you bought it from
-    - **currentValue**: Current market value estimate
     - **condition**: Raw condition if ungraded (Mint, Near Mint, etc.)
     - **notes**: Personal notes about the card
     - **isForSale**: Mark card as available for sale
@@ -140,7 +139,6 @@ def sync_detailed(
     - Import bulk collections
     - Record graded cards
     - Build want lists
-    - Track investment portfolio
 
     Args:
         collection_id (UUID):
@@ -187,7 +185,6 @@ def sync(
     - **purchasePrice**: What you paid for the card
     - **purchaseDate**: When you acquired it
     - **purchaseFrom**: Where/who you bought it from
-    - **currentValue**: Current market value estimate
     - **condition**: Raw condition if ungraded (Mint, Near Mint, etc.)
     - **notes**: Personal notes about the card
     - **isForSale**: Mark card as available for sale
@@ -203,7 +200,6 @@ def sync(
     - Import bulk collections
     - Record graded cards
     - Build want lists
-    - Track investment portfolio
 
     Args:
         collection_id (UUID):
@@ -245,7 +241,6 @@ async def asyncio_detailed(
     - **purchasePrice**: What you paid for the card
     - **purchaseDate**: When you acquired it
     - **purchaseFrom**: Where/who you bought it from
-    - **currentValue**: Current market value estimate
     - **condition**: Raw condition if ungraded (Mint, Near Mint, etc.)
     - **notes**: Personal notes about the card
     - **isForSale**: Mark card as available for sale
@@ -261,7 +256,6 @@ async def asyncio_detailed(
     - Import bulk collections
     - Record graded cards
     - Build want lists
-    - Track investment portfolio
 
     Args:
         collection_id (UUID):
@@ -306,7 +300,6 @@ async def asyncio(
     - **purchasePrice**: What you paid for the card
     - **purchaseDate**: When you acquired it
     - **purchaseFrom**: Where/who you bought it from
-    - **currentValue**: Current market value estimate
     - **condition**: Raw condition if ungraded (Mint, Near Mint, etc.)
     - **notes**: Personal notes about the card
     - **isForSale**: Mark card as available for sale
@@ -322,7 +315,6 @@ async def asyncio(
     - Import bulk collections
     - Record graded cards
     - Build want lists
-    - Track investment portfolio
 
     Args:
         collection_id (UUID):

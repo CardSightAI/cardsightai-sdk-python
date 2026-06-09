@@ -24,12 +24,9 @@ class BreakdownGroupInput:
         percentage_of_collection (float): Percentage this group represents of total collection
         group_id (Union[Unset, str]): The UUID of the group entity if applicable
         total_buy_price (Union[Unset, str]): Total purchase price for cards in group
-        total_current_value (Union[Unset, str]): Total current market value
         total_sold_price (Union[Unset, str]): Total sold price for sold cards
         average_buy_price (Union[Unset, str]): Average purchase price per card
-        average_current_value (Union[Unset, str]): Average current value per card
-        roi (Union[Unset, float]): Return on investment percentage
-        top_cards (Union[Unset, list['TopCardInGroupInput']]): Top 5 most valuable cards in this group
+        top_cards (Union[Unset, list['TopCardInGroupInput']]): Top cards in this group
     """
 
     group_key: str
@@ -39,11 +36,8 @@ class BreakdownGroupInput:
     percentage_of_collection: float
     group_id: Union[Unset, str] = UNSET
     total_buy_price: Union[Unset, str] = UNSET
-    total_current_value: Union[Unset, str] = UNSET
     total_sold_price: Union[Unset, str] = UNSET
     average_buy_price: Union[Unset, str] = UNSET
-    average_current_value: Union[Unset, str] = UNSET
-    roi: Union[Unset, float] = UNSET
     top_cards: Union[Unset, list["TopCardInGroupInput"]] = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
@@ -62,15 +56,9 @@ class BreakdownGroupInput:
 
         total_buy_price = self.total_buy_price
 
-        total_current_value = self.total_current_value
-
         total_sold_price = self.total_sold_price
 
         average_buy_price = self.average_buy_price
-
-        average_current_value = self.average_current_value
-
-        roi = self.roi
 
         top_cards: Union[Unset, list[dict[str, Any]]] = UNSET
         if not isinstance(self.top_cards, Unset):
@@ -94,16 +82,10 @@ class BreakdownGroupInput:
             field_dict["groupId"] = group_id
         if total_buy_price is not UNSET:
             field_dict["totalBuyPrice"] = total_buy_price
-        if total_current_value is not UNSET:
-            field_dict["totalCurrentValue"] = total_current_value
         if total_sold_price is not UNSET:
             field_dict["totalSoldPrice"] = total_sold_price
         if average_buy_price is not UNSET:
             field_dict["averageBuyPrice"] = average_buy_price
-        if average_current_value is not UNSET:
-            field_dict["averageCurrentValue"] = average_current_value
-        if roi is not UNSET:
-            field_dict["roi"] = roi
         if top_cards is not UNSET:
             field_dict["topCards"] = top_cards
 
@@ -128,15 +110,9 @@ class BreakdownGroupInput:
 
         total_buy_price = d.pop("totalBuyPrice", UNSET)
 
-        total_current_value = d.pop("totalCurrentValue", UNSET)
-
         total_sold_price = d.pop("totalSoldPrice", UNSET)
 
         average_buy_price = d.pop("averageBuyPrice", UNSET)
-
-        average_current_value = d.pop("averageCurrentValue", UNSET)
-
-        roi = d.pop("roi", UNSET)
 
         top_cards = []
         _top_cards = d.pop("topCards", UNSET)
@@ -153,11 +129,8 @@ class BreakdownGroupInput:
             percentage_of_collection=percentage_of_collection,
             group_id=group_id,
             total_buy_price=total_buy_price,
-            total_current_value=total_current_value,
             total_sold_price=total_sold_price,
             average_buy_price=average_buy_price,
-            average_current_value=average_current_value,
-            roi=roi,
             top_cards=top_cards,
         )
 

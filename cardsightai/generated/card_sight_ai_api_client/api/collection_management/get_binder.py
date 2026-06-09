@@ -90,7 +90,6 @@ def sync_detailed(
     **Response includes:**
     - Complete binder metadata
     - Card count and list preview
-    - Total value calculation
     - Type and visibility settings
     - Timestamps
 
@@ -145,7 +144,6 @@ def sync(
     **Response includes:**
     - Complete binder metadata
     - Card count and list preview
-    - Total value calculation
     - Type and visibility settings
     - Timestamps
 
@@ -195,7 +193,6 @@ async def asyncio_detailed(
     **Response includes:**
     - Complete binder metadata
     - Card count and list preview
-    - Total value calculation
     - Type and visibility settings
     - Timestamps
 
@@ -248,7 +245,6 @@ async def asyncio(
     **Response includes:**
     - Complete binder metadata
     - Card count and list preview
-    - Total value calculation
     - Type and visibility settings
     - Timestamps
 

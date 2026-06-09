@@ -6,6 +6,7 @@ from attrs import define as _attrs_define
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
+    from ..models.field_value import FieldValue
     from ..models.parallel_summary import ParallelSummary
 
 
@@ -30,6 +31,7 @@ class DetailedSetResponse:
         parallels (list['ParallelSummary']): List of parallel variants in this set
         description (Union[Unset, str]): Additional details about the set, such as card count, special features, or
             checklist highlights. May be null.
+        fields (Union[Unset, list['FieldValue']]):
     """
 
     id: str
@@ -42,6 +44,7 @@ class DetailedSetResponse:
     parallel_count: float
     parallels: list["ParallelSummary"]
     description: Union[Unset, str] = UNSET
+    fields: Union[Unset, list["FieldValue"]] = UNSET
 
     def to_dict(self) -> dict[str, Any]:
         id = self.id
@@ -67,6 +70,13 @@ class DetailedSetResponse:
 
         description = self.description
 
+        fields: Union[Unset, list[dict[str, Any]]] = UNSET
+        if not isinstance(self.fields, Unset):
+            fields = []
+            for componentsschemas_field_values_item_data in self.fields:
+                componentsschemas_field_values_item = componentsschemas_field_values_item_data.to_dict()
+                fields.append(componentsschemas_field_values_item)
+
         field_dict: dict[str, Any] = {}
 
         field_dict.update(
@@ -84,11 +94,14 @@ class DetailedSetResponse:
         )
         if description is not UNSET:
             field_dict["description"] = description
+        if fields is not UNSET:
+            field_dict["fields"] = fields
 
         return field_dict
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        from ..models.field_value import FieldValue
         from ..models.parallel_summary import ParallelSummary
 
         d = dict(src_dict)
@@ -117,6 +130,13 @@ class DetailedSetResponse:
 
         description = d.pop("description", UNSET)
 
+        fields = []
+        _fields = d.pop("fields", UNSET)
+        for componentsschemas_field_values_item_data in _fields or []:
+            componentsschemas_field_values_item = FieldValue.from_dict(componentsschemas_field_values_item_data)
+
+            fields.append(componentsschemas_field_values_item)
+
         detailed_set_response = cls(
             id=id,
             release_id=release_id,
@@ -128,6 +148,7 @@ class DetailedSetResponse:
             parallel_count=parallel_count,
             parallels=parallels,
             description=description,
+            fields=fields,
         )
 
         return detailed_set_response

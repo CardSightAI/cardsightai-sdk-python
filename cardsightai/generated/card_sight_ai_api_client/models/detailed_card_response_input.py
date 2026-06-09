@@ -7,7 +7,7 @@ from attrs import field as _attrs_field
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
-    from ..models.detailed_card_response_input_prices import DetailedCardResponseInputPrices
+    from ..models.field_value_input import FieldValueInput
     from ..models.parallel_summary_input import ParallelSummaryInput
 
 
@@ -40,10 +40,9 @@ class DetailedCardResponseInput:
         release_year (Union[Unset, str]): Year of the release
         numbered_to (Union[Unset, float]): Limited print run number for this specific card
         attributes (Union[Unset, list[str]]): Array of attribute short names
-        prices (Union[Unset, DetailedCardResponseInputPrices]): Average pricing data for the base card. Only included
-            when price data is available. Prices are averaged across all available sources.
         variation_of (Union[Unset, str]): UUID of the base card if this is a variation. Only present for variation
             cards, omitted for base cards.
+        fields (Union[Unset, list['FieldValueInput']]):
     """
 
     release_id: str
@@ -60,8 +59,8 @@ class DetailedCardResponseInput:
     release_year: Union[Unset, str] = UNSET
     numbered_to: Union[Unset, float] = UNSET
     attributes: Union[Unset, list[str]] = UNSET
-    prices: Union[Unset, "DetailedCardResponseInputPrices"] = UNSET
     variation_of: Union[Unset, str] = UNSET
+    fields: Union[Unset, list["FieldValueInput"]] = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -98,11 +97,14 @@ class DetailedCardResponseInput:
         if not isinstance(self.attributes, Unset):
             attributes = self.attributes
 
-        prices: Union[Unset, dict[str, Any]] = UNSET
-        if not isinstance(self.prices, Unset):
-            prices = self.prices.to_dict()
-
         variation_of = self.variation_of
+
+        fields: Union[Unset, list[dict[str, Any]]] = UNSET
+        if not isinstance(self.fields, Unset):
+            fields = []
+            for componentsschemas_field_values_input_item_data in self.fields:
+                componentsschemas_field_values_input_item = componentsschemas_field_values_input_item_data.to_dict()
+                fields.append(componentsschemas_field_values_input_item)
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -131,16 +133,16 @@ class DetailedCardResponseInput:
             field_dict["numberedTo"] = numbered_to
         if attributes is not UNSET:
             field_dict["attributes"] = attributes
-        if prices is not UNSET:
-            field_dict["prices"] = prices
         if variation_of is not UNSET:
             field_dict["variationOf"] = variation_of
+        if fields is not UNSET:
+            field_dict["fields"] = fields
 
         return field_dict
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.detailed_card_response_input_prices import DetailedCardResponseInputPrices
+        from ..models.field_value_input import FieldValueInput
         from ..models.parallel_summary_input import ParallelSummaryInput
 
         d = dict(src_dict)
@@ -177,14 +179,16 @@ class DetailedCardResponseInput:
 
         attributes = cast(list[str], d.pop("attributes", UNSET))
 
-        _prices = d.pop("prices", UNSET)
-        prices: Union[Unset, DetailedCardResponseInputPrices]
-        if isinstance(_prices, Unset):
-            prices = UNSET
-        else:
-            prices = DetailedCardResponseInputPrices.from_dict(_prices)
-
         variation_of = d.pop("variationOf", UNSET)
+
+        fields = []
+        _fields = d.pop("fields", UNSET)
+        for componentsschemas_field_values_input_item_data in _fields or []:
+            componentsschemas_field_values_input_item = FieldValueInput.from_dict(
+                componentsschemas_field_values_input_item_data
+            )
+
+            fields.append(componentsschemas_field_values_input_item)
 
         detailed_card_response_input = cls(
             release_id=release_id,
@@ -201,8 +205,8 @@ class DetailedCardResponseInput:
             release_year=release_year,
             numbered_to=numbered_to,
             attributes=attributes,
-            prices=prices,
             variation_of=variation_of,
+            fields=fields,
         )
 
         detailed_card_response_input.additional_properties = d

@@ -7,6 +7,7 @@ from attrs import field as _attrs_field
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
+    from ..models.field_value_input import FieldValueInput
     from ..models.parallel_summary_input import ParallelSummaryInput
 
 
@@ -31,6 +32,7 @@ class DetailedSetResponseInput:
         parallels (list['ParallelSummaryInput']): List of parallel variants in this set
         description (Union[Unset, str]): Additional details about the set, such as card count, special features, or
             checklist highlights. May be null.
+        fields (Union[Unset, list['FieldValueInput']]):
     """
 
     id: str
@@ -43,6 +45,7 @@ class DetailedSetResponseInput:
     parallel_count: float
     parallels: list["ParallelSummaryInput"]
     description: Union[Unset, str] = UNSET
+    fields: Union[Unset, list["FieldValueInput"]] = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -69,6 +72,13 @@ class DetailedSetResponseInput:
 
         description = self.description
 
+        fields: Union[Unset, list[dict[str, Any]]] = UNSET
+        if not isinstance(self.fields, Unset):
+            fields = []
+            for componentsschemas_field_values_input_item_data in self.fields:
+                componentsschemas_field_values_input_item = componentsschemas_field_values_input_item_data.to_dict()
+                fields.append(componentsschemas_field_values_input_item)
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update(
@@ -86,11 +96,14 @@ class DetailedSetResponseInput:
         )
         if description is not UNSET:
             field_dict["description"] = description
+        if fields is not UNSET:
+            field_dict["fields"] = fields
 
         return field_dict
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        from ..models.field_value_input import FieldValueInput
         from ..models.parallel_summary_input import ParallelSummaryInput
 
         d = dict(src_dict)
@@ -119,6 +132,15 @@ class DetailedSetResponseInput:
 
         description = d.pop("description", UNSET)
 
+        fields = []
+        _fields = d.pop("fields", UNSET)
+        for componentsschemas_field_values_input_item_data in _fields or []:
+            componentsschemas_field_values_input_item = FieldValueInput.from_dict(
+                componentsschemas_field_values_input_item_data
+            )
+
+            fields.append(componentsschemas_field_values_input_item)
+
         detailed_set_response_input = cls(
             id=id,
             release_id=release_id,
@@ -130,6 +152,7 @@ class DetailedSetResponseInput:
             parallel_count=parallel_count,
             parallels=parallels,
             description=description,
+            fields=fields,
         )
 
         detailed_set_response_input.additional_properties = d

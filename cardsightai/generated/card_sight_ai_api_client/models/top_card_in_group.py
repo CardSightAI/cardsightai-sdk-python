@@ -19,7 +19,6 @@ class TopCardInGroup:
         release_year (str): Release year
         quantity (float): Quantity in collection
         buy_price (Union[Unset, str]): Purchase price per card
-        current_value (Union[Unset, str]): Current market value per card
     """
 
     card_id: str
@@ -29,7 +28,6 @@ class TopCardInGroup:
     release_year: str
     quantity: float
     buy_price: Union[Unset, str] = UNSET
-    current_value: Union[Unset, str] = UNSET
 
     def to_dict(self) -> dict[str, Any]:
         card_id = self.card_id
@@ -46,8 +44,6 @@ class TopCardInGroup:
 
         buy_price = self.buy_price
 
-        current_value = self.current_value
-
         field_dict: dict[str, Any] = {}
 
         field_dict.update(
@@ -62,8 +58,6 @@ class TopCardInGroup:
         )
         if buy_price is not UNSET:
             field_dict["buyPrice"] = buy_price
-        if current_value is not UNSET:
-            field_dict["currentValue"] = current_value
 
         return field_dict
 
@@ -84,8 +78,6 @@ class TopCardInGroup:
 
         buy_price = d.pop("buyPrice", UNSET)
 
-        current_value = d.pop("currentValue", UNSET)
-
         top_card_in_group = cls(
             card_id=card_id,
             card_name=card_name,
@@ -94,7 +86,6 @@ class TopCardInGroup:
             release_year=release_year,
             quantity=quantity,
             buy_price=buy_price,
-            current_value=current_value,
         )
 
         return top_card_in_group

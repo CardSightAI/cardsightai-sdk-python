@@ -20,10 +20,9 @@ def _get_kwargs(
     take: Union[Unset, int] = 20,
     skip: Union[Unset, int] = 0,
     group_by: GetCollectionBreakdownGroupBy,
-    sort_by: Union[Unset, GetCollectionBreakdownSortBy] = GetCollectionBreakdownSortBy.VALUE,
+    sort_by: Union[Unset, GetCollectionBreakdownSortBy] = GetCollectionBreakdownSortBy.COUNT,
     order: Union[Unset, GetCollectionBreakdownOrder] = GetCollectionBreakdownOrder.DESC,
     min_count: Union[Unset, float] = UNSET,
-    min_value: Union[Unset, str] = UNSET,
 ) -> dict[str, Any]:
     params: dict[str, Any] = {}
 
@@ -47,8 +46,6 @@ def _get_kwargs(
     params["order"] = json_order
 
     params["minCount"] = min_count
-
-    params["minValue"] = min_value
 
     params = {k: v for k, v in params.items() if v is not UNSET and v is not None}
 
@@ -118,29 +115,27 @@ def sync_detailed(
     take: Union[Unset, int] = 20,
     skip: Union[Unset, int] = 0,
     group_by: GetCollectionBreakdownGroupBy,
-    sort_by: Union[Unset, GetCollectionBreakdownSortBy] = GetCollectionBreakdownSortBy.VALUE,
+    sort_by: Union[Unset, GetCollectionBreakdownSortBy] = GetCollectionBreakdownSortBy.COUNT,
     order: Union[Unset, GetCollectionBreakdownOrder] = GetCollectionBreakdownOrder.DESC,
     min_count: Union[Unset, float] = UNSET,
-    min_value: Union[Unset, str] = UNSET,
 ) -> Response[Union[CollectionBreakdownResponse, ErrorResponse]]:
     r"""Analyze collection breakdown
 
-     Analyze your collection by different dimensions to identify concentration risks and opportunities.
+     Analyze your collection by different dimensions to understand composition and distribution.
 
     **Path Parameters:**
     - **collectionId**: UUID of the collection to analyze
 
     **Query Parameters:**
     - **groupBy**: Dimension to analyze (release, year, grade, player, manufacturer)
-    - **sortBy**: Sort groups by count, value, roi, or percentage (default: value)
+    - **sortBy**: Sort groups by count or percentage (default: count)
     - **order**: Sort order - asc or desc (default: desc)
     - **page**: Page number for pagination (default: 1)
     - **limit**: Items per page (default: 20, max: 100)
     - **minCount**: Filter groups with minimum card count
-    - **minValue**: Filter groups with minimum total value
 
     **Response includes:**
-    - **Summary statistics**: Total groups, cards, value, ROI, best performers
+    - **Summary statistics**: Total groups, cards, and top categories
     - **Group breakdowns**: Each group with metrics and top cards
     - **Pagination metadata**: For large result sets
 
@@ -154,17 +149,15 @@ def sync_detailed(
 
     **Metrics per Group:**
     - Card count and unique card count
-    - Total and average values
-    - Return on investment (ROI)
+    - Total invested (sum of purchase prices)
     - Percentage of total collection
-    - Top 5 most valuable cards
+    - Top 5 cards in the group
 
     **Use Cases:**
-    - Identify overconcentration in specific releases or players
-    - Find best performing segments by ROI
+    - Identify concentration in specific releases or players
     - Analyze grade distribution for grading decisions
     - Discover diversification opportunities
-    - Portfolio risk assessment
+    - Understand collection composition
 
     Args:
         collection_id (UUID):
@@ -172,11 +165,10 @@ def sync_detailed(
         skip (Union[Unset, int]):  Default: 0.
         group_by (GetCollectionBreakdownGroupBy):
         sort_by (Union[Unset, GetCollectionBreakdownSortBy]):  Default:
-            GetCollectionBreakdownSortBy.VALUE.
+            GetCollectionBreakdownSortBy.COUNT.
         order (Union[Unset, GetCollectionBreakdownOrder]):  Default:
             GetCollectionBreakdownOrder.DESC.
         min_count (Union[Unset, float]):
-        min_value (Union[Unset, str]):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -194,7 +186,6 @@ def sync_detailed(
         sort_by=sort_by,
         order=order,
         min_count=min_count,
-        min_value=min_value,
     )
 
     response = client.get_httpx_client().request(
@@ -211,29 +202,27 @@ def sync(
     take: Union[Unset, int] = 20,
     skip: Union[Unset, int] = 0,
     group_by: GetCollectionBreakdownGroupBy,
-    sort_by: Union[Unset, GetCollectionBreakdownSortBy] = GetCollectionBreakdownSortBy.VALUE,
+    sort_by: Union[Unset, GetCollectionBreakdownSortBy] = GetCollectionBreakdownSortBy.COUNT,
     order: Union[Unset, GetCollectionBreakdownOrder] = GetCollectionBreakdownOrder.DESC,
     min_count: Union[Unset, float] = UNSET,
-    min_value: Union[Unset, str] = UNSET,
 ) -> Optional[Union[CollectionBreakdownResponse, ErrorResponse]]:
     r"""Analyze collection breakdown
 
-     Analyze your collection by different dimensions to identify concentration risks and opportunities.
+     Analyze your collection by different dimensions to understand composition and distribution.
 
     **Path Parameters:**
     - **collectionId**: UUID of the collection to analyze
 
     **Query Parameters:**
     - **groupBy**: Dimension to analyze (release, year, grade, player, manufacturer)
-    - **sortBy**: Sort groups by count, value, roi, or percentage (default: value)
+    - **sortBy**: Sort groups by count or percentage (default: count)
     - **order**: Sort order - asc or desc (default: desc)
     - **page**: Page number for pagination (default: 1)
     - **limit**: Items per page (default: 20, max: 100)
     - **minCount**: Filter groups with minimum card count
-    - **minValue**: Filter groups with minimum total value
 
     **Response includes:**
-    - **Summary statistics**: Total groups, cards, value, ROI, best performers
+    - **Summary statistics**: Total groups, cards, and top categories
     - **Group breakdowns**: Each group with metrics and top cards
     - **Pagination metadata**: For large result sets
 
@@ -247,17 +236,15 @@ def sync(
 
     **Metrics per Group:**
     - Card count and unique card count
-    - Total and average values
-    - Return on investment (ROI)
+    - Total invested (sum of purchase prices)
     - Percentage of total collection
-    - Top 5 most valuable cards
+    - Top 5 cards in the group
 
     **Use Cases:**
-    - Identify overconcentration in specific releases or players
-    - Find best performing segments by ROI
+    - Identify concentration in specific releases or players
     - Analyze grade distribution for grading decisions
     - Discover diversification opportunities
-    - Portfolio risk assessment
+    - Understand collection composition
 
     Args:
         collection_id (UUID):
@@ -265,11 +252,10 @@ def sync(
         skip (Union[Unset, int]):  Default: 0.
         group_by (GetCollectionBreakdownGroupBy):
         sort_by (Union[Unset, GetCollectionBreakdownSortBy]):  Default:
-            GetCollectionBreakdownSortBy.VALUE.
+            GetCollectionBreakdownSortBy.COUNT.
         order (Union[Unset, GetCollectionBreakdownOrder]):  Default:
             GetCollectionBreakdownOrder.DESC.
         min_count (Union[Unset, float]):
-        min_value (Union[Unset, str]):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -288,7 +274,6 @@ def sync(
         sort_by=sort_by,
         order=order,
         min_count=min_count,
-        min_value=min_value,
     ).parsed
 
 
@@ -299,29 +284,27 @@ async def asyncio_detailed(
     take: Union[Unset, int] = 20,
     skip: Union[Unset, int] = 0,
     group_by: GetCollectionBreakdownGroupBy,
-    sort_by: Union[Unset, GetCollectionBreakdownSortBy] = GetCollectionBreakdownSortBy.VALUE,
+    sort_by: Union[Unset, GetCollectionBreakdownSortBy] = GetCollectionBreakdownSortBy.COUNT,
     order: Union[Unset, GetCollectionBreakdownOrder] = GetCollectionBreakdownOrder.DESC,
     min_count: Union[Unset, float] = UNSET,
-    min_value: Union[Unset, str] = UNSET,
 ) -> Response[Union[CollectionBreakdownResponse, ErrorResponse]]:
     r"""Analyze collection breakdown
 
-     Analyze your collection by different dimensions to identify concentration risks and opportunities.
+     Analyze your collection by different dimensions to understand composition and distribution.
 
     **Path Parameters:**
     - **collectionId**: UUID of the collection to analyze
 
     **Query Parameters:**
     - **groupBy**: Dimension to analyze (release, year, grade, player, manufacturer)
-    - **sortBy**: Sort groups by count, value, roi, or percentage (default: value)
+    - **sortBy**: Sort groups by count or percentage (default: count)
     - **order**: Sort order - asc or desc (default: desc)
     - **page**: Page number for pagination (default: 1)
     - **limit**: Items per page (default: 20, max: 100)
     - **minCount**: Filter groups with minimum card count
-    - **minValue**: Filter groups with minimum total value
 
     **Response includes:**
-    - **Summary statistics**: Total groups, cards, value, ROI, best performers
+    - **Summary statistics**: Total groups, cards, and top categories
     - **Group breakdowns**: Each group with metrics and top cards
     - **Pagination metadata**: For large result sets
 
@@ -335,17 +318,15 @@ async def asyncio_detailed(
 
     **Metrics per Group:**
     - Card count and unique card count
-    - Total and average values
-    - Return on investment (ROI)
+    - Total invested (sum of purchase prices)
     - Percentage of total collection
-    - Top 5 most valuable cards
+    - Top 5 cards in the group
 
     **Use Cases:**
-    - Identify overconcentration in specific releases or players
-    - Find best performing segments by ROI
+    - Identify concentration in specific releases or players
     - Analyze grade distribution for grading decisions
     - Discover diversification opportunities
-    - Portfolio risk assessment
+    - Understand collection composition
 
     Args:
         collection_id (UUID):
@@ -353,11 +334,10 @@ async def asyncio_detailed(
         skip (Union[Unset, int]):  Default: 0.
         group_by (GetCollectionBreakdownGroupBy):
         sort_by (Union[Unset, GetCollectionBreakdownSortBy]):  Default:
-            GetCollectionBreakdownSortBy.VALUE.
+            GetCollectionBreakdownSortBy.COUNT.
         order (Union[Unset, GetCollectionBreakdownOrder]):  Default:
             GetCollectionBreakdownOrder.DESC.
         min_count (Union[Unset, float]):
-        min_value (Union[Unset, str]):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -375,7 +355,6 @@ async def asyncio_detailed(
         sort_by=sort_by,
         order=order,
         min_count=min_count,
-        min_value=min_value,
     )
 
     response = await client.get_async_httpx_client().request(**kwargs)
@@ -390,29 +369,27 @@ async def asyncio(
     take: Union[Unset, int] = 20,
     skip: Union[Unset, int] = 0,
     group_by: GetCollectionBreakdownGroupBy,
-    sort_by: Union[Unset, GetCollectionBreakdownSortBy] = GetCollectionBreakdownSortBy.VALUE,
+    sort_by: Union[Unset, GetCollectionBreakdownSortBy] = GetCollectionBreakdownSortBy.COUNT,
     order: Union[Unset, GetCollectionBreakdownOrder] = GetCollectionBreakdownOrder.DESC,
     min_count: Union[Unset, float] = UNSET,
-    min_value: Union[Unset, str] = UNSET,
 ) -> Optional[Union[CollectionBreakdownResponse, ErrorResponse]]:
     r"""Analyze collection breakdown
 
-     Analyze your collection by different dimensions to identify concentration risks and opportunities.
+     Analyze your collection by different dimensions to understand composition and distribution.
 
     **Path Parameters:**
     - **collectionId**: UUID of the collection to analyze
 
     **Query Parameters:**
     - **groupBy**: Dimension to analyze (release, year, grade, player, manufacturer)
-    - **sortBy**: Sort groups by count, value, roi, or percentage (default: value)
+    - **sortBy**: Sort groups by count or percentage (default: count)
     - **order**: Sort order - asc or desc (default: desc)
     - **page**: Page number for pagination (default: 1)
     - **limit**: Items per page (default: 20, max: 100)
     - **minCount**: Filter groups with minimum card count
-    - **minValue**: Filter groups with minimum total value
 
     **Response includes:**
-    - **Summary statistics**: Total groups, cards, value, ROI, best performers
+    - **Summary statistics**: Total groups, cards, and top categories
     - **Group breakdowns**: Each group with metrics and top cards
     - **Pagination metadata**: For large result sets
 
@@ -426,17 +403,15 @@ async def asyncio(
 
     **Metrics per Group:**
     - Card count and unique card count
-    - Total and average values
-    - Return on investment (ROI)
+    - Total invested (sum of purchase prices)
     - Percentage of total collection
-    - Top 5 most valuable cards
+    - Top 5 cards in the group
 
     **Use Cases:**
-    - Identify overconcentration in specific releases or players
-    - Find best performing segments by ROI
+    - Identify concentration in specific releases or players
     - Analyze grade distribution for grading decisions
     - Discover diversification opportunities
-    - Portfolio risk assessment
+    - Understand collection composition
 
     Args:
         collection_id (UUID):
@@ -444,11 +419,10 @@ async def asyncio(
         skip (Union[Unset, int]):  Default: 0.
         group_by (GetCollectionBreakdownGroupBy):
         sort_by (Union[Unset, GetCollectionBreakdownSortBy]):  Default:
-            GetCollectionBreakdownSortBy.VALUE.
+            GetCollectionBreakdownSortBy.COUNT.
         order (Union[Unset, GetCollectionBreakdownOrder]):  Default:
             GetCollectionBreakdownOrder.DESC.
         min_count (Union[Unset, float]):
-        min_value (Union[Unset, str]):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -468,6 +442,5 @@ async def asyncio(
             sort_by=sort_by,
             order=order,
             min_count=min_count,
-            min_value=min_value,
         )
     ).parsed

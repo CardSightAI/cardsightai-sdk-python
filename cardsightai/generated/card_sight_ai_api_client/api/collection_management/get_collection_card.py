@@ -92,13 +92,11 @@ def sync_detailed(
     - All collection-specific metadata
     - Purchase and sale information
     - Grading details if applicable
-    - Current market value
-    - Historical price data (if available)
     - Personal notes
 
     **Use Cases:**
     - View full card details
-    - Check card value and grade
+    - Check card grade and condition
     - Review purchase history
     - Prepare for sale listing
 
@@ -145,13 +143,11 @@ def sync(
     - All collection-specific metadata
     - Purchase and sale information
     - Grading details if applicable
-    - Current market value
-    - Historical price data (if available)
     - Personal notes
 
     **Use Cases:**
     - View full card details
-    - Check card value and grade
+    - Check card grade and condition
     - Review purchase history
     - Prepare for sale listing
 
@@ -193,13 +189,11 @@ async def asyncio_detailed(
     - All collection-specific metadata
     - Purchase and sale information
     - Grading details if applicable
-    - Current market value
-    - Historical price data (if available)
     - Personal notes
 
     **Use Cases:**
     - View full card details
-    - Check card value and grade
+    - Check card grade and condition
     - Review purchase history
     - Prepare for sale listing
 
@@ -244,13 +238,11 @@ async def asyncio(
     - All collection-specific metadata
     - Purchase and sale information
     - Grading details if applicable
-    - Current market value
-    - Historical price data (if available)
     - Personal notes
 
     **Use Cases:**
     - View full card details
-    - Check card value and grade
+    - Check card grade and condition
     - Review purchase history
     - Prepare for sale listing
 

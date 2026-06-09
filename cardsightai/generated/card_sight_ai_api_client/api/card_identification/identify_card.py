@@ -88,11 +88,13 @@ def sync_detailed(
     client: AuthenticatedClient,
     body: FileUploadInput,
 ) -> Response[Union[ErrorResponse, IdentifyCardResponse]]:
-    """Identifies a card from the submitted image (defaults to baseball)
+    """Identifies card(s) from the submitted image (automatic segment detection)
 
-     Identify a card from an image. Defaults to the baseball segment. Use POST /card/:segment for other
-    sports. Supports both multipart/form-data and direct binary upload (image/jpeg, image/png,
-    image/webp). Maximum file size: 20MB. Supported formats: JPEG, PNG, WebP, HEIF, HEIC.
+     Identify one or more cards from an image. The segment (sport/category) of each card is detected
+    automatically, so a single image may contain cards from different segments (e.g., baseball and
+    basketball). To force a specific segment, use POST /card/:segment instead. Supports both
+    multipart/form-data and direct binary upload (image/jpeg, image/png, image/webp). Maximum file size:
+    20MB. Supported formats: JPEG, PNG, WebP, HEIF, HEIC.
 
     Args:
         body (FileUploadInput):
@@ -121,11 +123,13 @@ def sync(
     client: AuthenticatedClient,
     body: FileUploadInput,
 ) -> Optional[Union[ErrorResponse, IdentifyCardResponse]]:
-    """Identifies a card from the submitted image (defaults to baseball)
+    """Identifies card(s) from the submitted image (automatic segment detection)
 
-     Identify a card from an image. Defaults to the baseball segment. Use POST /card/:segment for other
-    sports. Supports both multipart/form-data and direct binary upload (image/jpeg, image/png,
-    image/webp). Maximum file size: 20MB. Supported formats: JPEG, PNG, WebP, HEIF, HEIC.
+     Identify one or more cards from an image. The segment (sport/category) of each card is detected
+    automatically, so a single image may contain cards from different segments (e.g., baseball and
+    basketball). To force a specific segment, use POST /card/:segment instead. Supports both
+    multipart/form-data and direct binary upload (image/jpeg, image/png, image/webp). Maximum file size:
+    20MB. Supported formats: JPEG, PNG, WebP, HEIF, HEIC.
 
     Args:
         body (FileUploadInput):
@@ -149,11 +153,13 @@ async def asyncio_detailed(
     client: AuthenticatedClient,
     body: FileUploadInput,
 ) -> Response[Union[ErrorResponse, IdentifyCardResponse]]:
-    """Identifies a card from the submitted image (defaults to baseball)
+    """Identifies card(s) from the submitted image (automatic segment detection)
 
-     Identify a card from an image. Defaults to the baseball segment. Use POST /card/:segment for other
-    sports. Supports both multipart/form-data and direct binary upload (image/jpeg, image/png,
-    image/webp). Maximum file size: 20MB. Supported formats: JPEG, PNG, WebP, HEIF, HEIC.
+     Identify one or more cards from an image. The segment (sport/category) of each card is detected
+    automatically, so a single image may contain cards from different segments (e.g., baseball and
+    basketball). To force a specific segment, use POST /card/:segment instead. Supports both
+    multipart/form-data and direct binary upload (image/jpeg, image/png, image/webp). Maximum file size:
+    20MB. Supported formats: JPEG, PNG, WebP, HEIF, HEIC.
 
     Args:
         body (FileUploadInput):
@@ -180,11 +186,13 @@ async def asyncio(
     client: AuthenticatedClient,
     body: FileUploadInput,
 ) -> Optional[Union[ErrorResponse, IdentifyCardResponse]]:
-    """Identifies a card from the submitted image (defaults to baseball)
+    """Identifies card(s) from the submitted image (automatic segment detection)
 
-     Identify a card from an image. Defaults to the baseball segment. Use POST /card/:segment for other
-    sports. Supports both multipart/form-data and direct binary upload (image/jpeg, image/png,
-    image/webp). Maximum file size: 20MB. Supported formats: JPEG, PNG, WebP, HEIF, HEIC.
+     Identify one or more cards from an image. The segment (sport/category) of each card is detected
+    automatically, so a single image may contain cards from different segments (e.g., baseball and
+    basketball). To force a specific segment, use POST /card/:segment instead. Supports both
+    multipart/form-data and direct binary upload (image/jpeg, image/png, image/webp). Maximum file size:
+    20MB. Supported formats: JPEG, PNG, WebP, HEIF, HEIC.
 
     Args:
         body (FileUploadInput):

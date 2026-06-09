@@ -7,6 +7,7 @@ import httpx
 from ... import errors
 from ...client import AuthenticatedClient, Client
 from ...models.error_response import ErrorResponse
+from ...models.get_card_image_default import GetCardImageDefault
 from ...models.get_card_image_format import GetCardImageFormat
 from ...models.image_json_response import ImageJsonResponse
 from ...types import UNSET, Response, Unset
@@ -16,6 +17,7 @@ def _get_kwargs(
     id: UUID,
     *,
     format_: Union[Unset, GetCardImageFormat] = GetCardImageFormat.RAW,
+    default: Union[Unset, GetCardImageDefault] = GetCardImageDefault.FALSE,
 ) -> dict[str, Any]:
     params: dict[str, Any] = {}
 
@@ -24,6 +26,12 @@ def _get_kwargs(
         json_format_ = format_.value
 
     params["format"] = json_format_
+
+    json_default: Union[Unset, str] = UNSET
+    if not isinstance(default, Unset):
+        json_default = default.value
+
+    params["default"] = json_default
 
     params = {k: v for k, v in params.items() if v is not UNSET and v is not None}
 
@@ -86,6 +94,7 @@ def sync_detailed(
     *,
     client: Union[AuthenticatedClient, Client],
     format_: Union[Unset, GetCardImageFormat] = GetCardImageFormat.RAW,
+    default: Union[Unset, GetCardImageDefault] = GetCardImageDefault.FALSE,
 ) -> Response[Union[ErrorResponse, ImageJsonResponse]]:
     """Get card image
 
@@ -95,6 +104,7 @@ def sync_detailed(
     Args:
         id (UUID):
         format_ (Union[Unset, GetCardImageFormat]):  Default: GetCardImageFormat.RAW.
+        default (Union[Unset, GetCardImageDefault]):  Default: GetCardImageDefault.FALSE.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -107,6 +117,7 @@ def sync_detailed(
     kwargs = _get_kwargs(
         id=id,
         format_=format_,
+        default=default,
     )
 
     response = client.get_httpx_client().request(
@@ -121,6 +132,7 @@ def sync(
     *,
     client: Union[AuthenticatedClient, Client],
     format_: Union[Unset, GetCardImageFormat] = GetCardImageFormat.RAW,
+    default: Union[Unset, GetCardImageDefault] = GetCardImageDefault.FALSE,
 ) -> Optional[Union[ErrorResponse, ImageJsonResponse]]:
     """Get card image
 
@@ -130,6 +142,7 @@ def sync(
     Args:
         id (UUID):
         format_ (Union[Unset, GetCardImageFormat]):  Default: GetCardImageFormat.RAW.
+        default (Union[Unset, GetCardImageDefault]):  Default: GetCardImageDefault.FALSE.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -143,6 +156,7 @@ def sync(
         id=id,
         client=client,
         format_=format_,
+        default=default,
     ).parsed
 
 
@@ -151,6 +165,7 @@ async def asyncio_detailed(
     *,
     client: Union[AuthenticatedClient, Client],
     format_: Union[Unset, GetCardImageFormat] = GetCardImageFormat.RAW,
+    default: Union[Unset, GetCardImageDefault] = GetCardImageDefault.FALSE,
 ) -> Response[Union[ErrorResponse, ImageJsonResponse]]:
     """Get card image
 
@@ -160,6 +175,7 @@ async def asyncio_detailed(
     Args:
         id (UUID):
         format_ (Union[Unset, GetCardImageFormat]):  Default: GetCardImageFormat.RAW.
+        default (Union[Unset, GetCardImageDefault]):  Default: GetCardImageDefault.FALSE.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -172,6 +188,7 @@ async def asyncio_detailed(
     kwargs = _get_kwargs(
         id=id,
         format_=format_,
+        default=default,
     )
 
     response = await client.get_async_httpx_client().request(**kwargs)
@@ -184,6 +201,7 @@ async def asyncio(
     *,
     client: Union[AuthenticatedClient, Client],
     format_: Union[Unset, GetCardImageFormat] = GetCardImageFormat.RAW,
+    default: Union[Unset, GetCardImageDefault] = GetCardImageDefault.FALSE,
 ) -> Optional[Union[ErrorResponse, ImageJsonResponse]]:
     """Get card image
 
@@ -193,6 +211,7 @@ async def asyncio(
     Args:
         id (UUID):
         format_ (Union[Unset, GetCardImageFormat]):  Default: GetCardImageFormat.RAW.
+        default (Union[Unset, GetCardImageDefault]):  Default: GetCardImageDefault.FALSE.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -207,5 +226,6 @@ async def asyncio(
             id=id,
             client=client,
             format_=format_,
+            default=default,
         )
     ).parsed

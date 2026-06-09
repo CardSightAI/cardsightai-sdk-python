@@ -7,7 +7,6 @@ if TYPE_CHECKING:
     from ..models.collection_composition import CollectionComposition
     from ..models.collection_financials import CollectionFinancials
     from ..models.collection_overview import CollectionOverview
-    from ..models.collection_performance import CollectionPerformance
 
 
 T = TypeVar("T", bound="CollectionAnalyticsResponse")
@@ -20,13 +19,11 @@ class CollectionAnalyticsResponse:
         overview (CollectionOverview):
         financials (CollectionFinancials):
         composition (CollectionComposition):
-        performance (CollectionPerformance):
     """
 
     overview: "CollectionOverview"
     financials: "CollectionFinancials"
     composition: "CollectionComposition"
-    performance: "CollectionPerformance"
 
     def to_dict(self) -> dict[str, Any]:
         overview = self.overview.to_dict()
@@ -35,8 +32,6 @@ class CollectionAnalyticsResponse:
 
         composition = self.composition.to_dict()
 
-        performance = self.performance.to_dict()
-
         field_dict: dict[str, Any] = {}
 
         field_dict.update(
@@ -44,7 +39,6 @@ class CollectionAnalyticsResponse:
                 "overview": overview,
                 "financials": financials,
                 "composition": composition,
-                "performance": performance,
             }
         )
 
@@ -55,7 +49,6 @@ class CollectionAnalyticsResponse:
         from ..models.collection_composition import CollectionComposition
         from ..models.collection_financials import CollectionFinancials
         from ..models.collection_overview import CollectionOverview
-        from ..models.collection_performance import CollectionPerformance
 
         d = dict(src_dict)
         overview = CollectionOverview.from_dict(d.pop("overview"))
@@ -64,13 +57,10 @@ class CollectionAnalyticsResponse:
 
         composition = CollectionComposition.from_dict(d.pop("composition"))
 
-        performance = CollectionPerformance.from_dict(d.pop("performance"))
-
         collection_analytics_response = cls(
             overview=overview,
             financials=financials,
             composition=composition,
-            performance=performance,
         )
 
         return collection_analytics_response

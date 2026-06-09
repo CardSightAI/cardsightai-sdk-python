@@ -6,6 +6,7 @@ from attrs import define as _attrs_define
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
+    from ..models.field_value import FieldValue
     from ..models.set_summary_with_counts import SetSummaryWithCounts
 
 
@@ -30,6 +31,7 @@ class DetailedReleaseResponse:
         sets (list['SetSummaryWithCounts']): Sets within this release
         description (Union[Unset, str]): Additional details about the release, such as special features, number of
             cards, or notable inclusions. May be null.
+        fields (Union[Unset, list['FieldValue']]):
     """
 
     id: str
@@ -40,6 +42,7 @@ class DetailedReleaseResponse:
     is_identifiable: bool
     sets: list["SetSummaryWithCounts"]
     description: Union[Unset, str] = UNSET
+    fields: Union[Unset, list["FieldValue"]] = UNSET
 
     def to_dict(self) -> dict[str, Any]:
         id = self.id
@@ -61,6 +64,13 @@ class DetailedReleaseResponse:
 
         description = self.description
 
+        fields: Union[Unset, list[dict[str, Any]]] = UNSET
+        if not isinstance(self.fields, Unset):
+            fields = []
+            for componentsschemas_field_values_item_data in self.fields:
+                componentsschemas_field_values_item = componentsschemas_field_values_item_data.to_dict()
+                fields.append(componentsschemas_field_values_item)
+
         field_dict: dict[str, Any] = {}
 
         field_dict.update(
@@ -76,11 +86,14 @@ class DetailedReleaseResponse:
         )
         if description is not UNSET:
             field_dict["description"] = description
+        if fields is not UNSET:
+            field_dict["fields"] = fields
 
         return field_dict
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        from ..models.field_value import FieldValue
         from ..models.set_summary_with_counts import SetSummaryWithCounts
 
         d = dict(src_dict)
@@ -105,6 +118,13 @@ class DetailedReleaseResponse:
 
         description = d.pop("description", UNSET)
 
+        fields = []
+        _fields = d.pop("fields", UNSET)
+        for componentsschemas_field_values_item_data in _fields or []:
+            componentsschemas_field_values_item = FieldValue.from_dict(componentsschemas_field_values_item_data)
+
+            fields.append(componentsschemas_field_values_item)
+
         detailed_release_response = cls(
             id=id,
             segment_id=segment_id,
@@ -114,6 +134,7 @@ class DetailedReleaseResponse:
             is_identifiable=is_identifiable,
             sets=sets,
             description=description,
+            fields=fields,
         )
 
         return detailed_release_response

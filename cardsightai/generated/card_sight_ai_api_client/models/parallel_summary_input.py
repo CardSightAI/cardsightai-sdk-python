@@ -1,14 +1,10 @@
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar, Union, cast
+from typing import Any, TypeVar, Union, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
-
-if TYPE_CHECKING:
-    from ..models.parallel_summary_input_prices import ParallelSummaryInputPrices
-
 
 T = TypeVar("T", bound="ParallelSummaryInput")
 
@@ -26,8 +22,6 @@ class ParallelSummaryInput:
         is_partial (Union[Unset, bool]): Present and true only if this parallel applies to specific cards (e.g., cards
             1-400 of a 800-card set). Omitted if parallel applies to the entire set.
         numbered_to (Union[Unset, float]): Limited print run number for this parallel
-        prices (Union[Unset, ParallelSummaryInputPrices]): Average pricing data for this parallel variant. Only included
-            when price data is available.
         cards (Union[Unset, list[str]]): Card UUIDs that have this parallel. Only present when isPartial is true.
     """
 
@@ -36,7 +30,6 @@ class ParallelSummaryInput:
     description: Union[Unset, str] = UNSET
     is_partial: Union[Unset, bool] = UNSET
     numbered_to: Union[Unset, float] = UNSET
-    prices: Union[Unset, "ParallelSummaryInputPrices"] = UNSET
     cards: Union[Unset, list[str]] = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
@@ -50,10 +43,6 @@ class ParallelSummaryInput:
         is_partial = self.is_partial
 
         numbered_to = self.numbered_to
-
-        prices: Union[Unset, dict[str, Any]] = UNSET
-        if not isinstance(self.prices, Unset):
-            prices = self.prices.to_dict()
 
         cards: Union[Unset, list[str]] = UNSET
         if not isinstance(self.cards, Unset):
@@ -73,8 +62,6 @@ class ParallelSummaryInput:
             field_dict["isPartial"] = is_partial
         if numbered_to is not UNSET:
             field_dict["numberedTo"] = numbered_to
-        if prices is not UNSET:
-            field_dict["prices"] = prices
         if cards is not UNSET:
             field_dict["cards"] = cards
 
@@ -82,8 +69,6 @@ class ParallelSummaryInput:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.parallel_summary_input_prices import ParallelSummaryInputPrices
-
         d = dict(src_dict)
         id = d.pop("id")
 
@@ -95,13 +80,6 @@ class ParallelSummaryInput:
 
         numbered_to = d.pop("numberedTo", UNSET)
 
-        _prices = d.pop("prices", UNSET)
-        prices: Union[Unset, ParallelSummaryInputPrices]
-        if isinstance(_prices, Unset):
-            prices = UNSET
-        else:
-            prices = ParallelSummaryInputPrices.from_dict(_prices)
-
         cards = cast(list[str], d.pop("cards", UNSET))
 
         parallel_summary_input = cls(
@@ -110,7 +88,6 @@ class ParallelSummaryInput:
             description=description,
             is_partial=is_partial,
             numbered_to=numbered_to,
-            prices=prices,
             cards=cards,
         )
 

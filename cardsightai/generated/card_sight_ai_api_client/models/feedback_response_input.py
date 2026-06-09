@@ -16,14 +16,14 @@ T = TypeVar("T", bound="FeedbackResponseInput")
 class FeedbackResponseInput:
     """
     Attributes:
-        unique_id (UUID):
-        entity_type (FeedbackResponseInputEntityType): EntityType
-        entity_id (Union[None, UUID]):
-        feedback_type (Union[FeedbackResponseInputFeedbackTypeType0, None]):
-        message (str):
-        status (FeedbackResponseInputStatus): FeedbackStatus
-        created_at (str):
-        updated_at (str):
+        unique_id (UUID): Unique identifier for this feedback submission
+        entity_type (FeedbackResponseInputEntityType): The type of entity this feedback is about
+        entity_id (Union[None, UUID]): The unique ID of the entity, or null for general feedback
+        feedback_type (Union[FeedbackResponseInputFeedbackTypeType0, None]): The category of feedback submitted
+        message (str): The feedback message
+        status (FeedbackResponseInputStatus): Current review status of the feedback
+        created_at (str): ISO 8601 timestamp when the feedback was submitted
+        updated_at (str): ISO 8601 timestamp when the feedback was last updated
     """
 
     unique_id: UUID

@@ -82,6 +82,11 @@ class TestClientProperties:
         "collection_images",
         "card_detection",
         "card_identification",
+        "pricing",
+        "marketplace",
+        "population",
+        "release_calendar",
+        "detect",
     ]
 
     @pytest.fixture
@@ -243,6 +248,55 @@ class TestAPIModuleProxy:
 
     def test_card_identification_identify_card_by_segment(self, async_client):
         func = async_client.card_identification.identify_card_by_segment
+        assert callable(func)
+
+    def test_card_identification_check_set_identifiable(self, async_client):
+        func = async_client.card_identification.check_set_identifiable
+        assert callable(func)
+
+    def test_card_identification_list_identifiable_sets(self, async_client):
+        func = async_client.card_identification.list_identifiable_sets
+        assert callable(func)
+
+    def test_catalog_get_fields(self, async_client):
+        func = async_client.catalog.get_fields
+        assert callable(func)
+
+    def test_catalog_get_field_by_id(self, async_client):
+        func = async_client.catalog.get_field_by_id
+        assert callable(func)
+
+    def test_pricing_get_card_pricing(self, async_client):
+        func = async_client.pricing.get_card_pricing
+        assert callable(func)
+
+    def test_pricing_get_bulk_pricing(self, async_client):
+        func = async_client.pricing.get_bulk_pricing
+        assert callable(func)
+
+    def test_marketplace_get_card_marketplace(self, async_client):
+        func = async_client.marketplace.get_card_marketplace
+        assert callable(func)
+
+    def test_population_get_card_population(self, async_client):
+        func = async_client.population.get_card_population
+        assert callable(func)
+
+    def test_population_get_set_population(self, async_client):
+        func = async_client.population.get_set_population
+        assert callable(func)
+
+    def test_population_get_release_population(self, async_client):
+        func = async_client.population.get_release_population
+        assert callable(func)
+
+    def test_release_calendar_get_release_calendar(self, async_client):
+        func = async_client.release_calendar.get_release_calendar
+        assert callable(func)
+
+    def test_detect_alias_detect_card(self, async_client):
+        """`detect` is a Node-style alias mapping to the card_detection module"""
+        func = async_client.detect.detect_card
         assert callable(func)
 
 

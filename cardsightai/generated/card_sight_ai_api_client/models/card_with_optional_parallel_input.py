@@ -8,7 +8,7 @@ from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
     from ..models.card_with_optional_parallel_input_parallels_item import CardWithOptionalParallelInputParallelsItem
-    from ..models.card_with_optional_parallel_input_prices import CardWithOptionalParallelInputPrices
+    from ..models.field_value_input import FieldValueInput
 
 
 T = TypeVar("T", bound="CardWithOptionalParallelInput")
@@ -37,12 +37,11 @@ class CardWithOptionalParallelInput:
         release_name (Union[Unset, str]): Name of the release
         release_year (Union[Unset, str]): Year of the release
         attributes (Union[Unset, list[str]]): Array of attribute short names
-        prices (Union[Unset, CardWithOptionalParallelInputPrices]): Average pricing data for the base card. Only
-            included when price data is available.
         variation_of (Union[Unset, str]): UUID of the base card if this is a variation. Only present for variation
             cards, omitted for base cards.
         parallels (Union[Unset, list['CardWithOptionalParallelInputParallelsItem']]): Simplified list of parallel
             variants for this card. Includes id, name, and numberedTo.
+        fields (Union[Unset, list['FieldValueInput']]):
         is_parallel (Union[Unset, bool]): True if this card was converted to a parallel variant through the random odds
             system
         parallel_id (Union[Unset, str]): UUID of the parallel type if this card is a parallel variant
@@ -62,9 +61,9 @@ class CardWithOptionalParallelInput:
     release_name: Union[Unset, str] = UNSET
     release_year: Union[Unset, str] = UNSET
     attributes: Union[Unset, list[str]] = UNSET
-    prices: Union[Unset, "CardWithOptionalParallelInputPrices"] = UNSET
     variation_of: Union[Unset, str] = UNSET
     parallels: Union[Unset, list["CardWithOptionalParallelInputParallelsItem"]] = UNSET
+    fields: Union[Unset, list["FieldValueInput"]] = UNSET
     is_parallel: Union[Unset, bool] = UNSET
     parallel_id: Union[Unset, str] = UNSET
     parallel_name: Union[Unset, str] = UNSET
@@ -96,10 +95,6 @@ class CardWithOptionalParallelInput:
         if not isinstance(self.attributes, Unset):
             attributes = self.attributes
 
-        prices: Union[Unset, dict[str, Any]] = UNSET
-        if not isinstance(self.prices, Unset):
-            prices = self.prices.to_dict()
-
         variation_of = self.variation_of
 
         parallels: Union[Unset, list[dict[str, Any]]] = UNSET
@@ -108,6 +103,13 @@ class CardWithOptionalParallelInput:
             for parallels_item_data in self.parallels:
                 parallels_item = parallels_item_data.to_dict()
                 parallels.append(parallels_item)
+
+        fields: Union[Unset, list[dict[str, Any]]] = UNSET
+        if not isinstance(self.fields, Unset):
+            fields = []
+            for componentsschemas_field_values_input_item_data in self.fields:
+                componentsschemas_field_values_input_item = componentsschemas_field_values_input_item_data.to_dict()
+                fields.append(componentsschemas_field_values_input_item)
 
         is_parallel = self.is_parallel
 
@@ -144,12 +146,12 @@ class CardWithOptionalParallelInput:
             field_dict["releaseYear"] = release_year
         if attributes is not UNSET:
             field_dict["attributes"] = attributes
-        if prices is not UNSET:
-            field_dict["prices"] = prices
         if variation_of is not UNSET:
             field_dict["variationOf"] = variation_of
         if parallels is not UNSET:
             field_dict["parallels"] = parallels
+        if fields is not UNSET:
+            field_dict["fields"] = fields
         if is_parallel is not UNSET:
             field_dict["isParallel"] = is_parallel
         if parallel_id is not UNSET:
@@ -164,7 +166,7 @@ class CardWithOptionalParallelInput:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.card_with_optional_parallel_input_parallels_item import CardWithOptionalParallelInputParallelsItem
-        from ..models.card_with_optional_parallel_input_prices import CardWithOptionalParallelInputPrices
+        from ..models.field_value_input import FieldValueInput
 
         d = dict(src_dict)
         release_id = d.pop("releaseId")
@@ -189,13 +191,6 @@ class CardWithOptionalParallelInput:
 
         attributes = cast(list[str], d.pop("attributes", UNSET))
 
-        _prices = d.pop("prices", UNSET)
-        prices: Union[Unset, CardWithOptionalParallelInputPrices]
-        if isinstance(_prices, Unset):
-            prices = UNSET
-        else:
-            prices = CardWithOptionalParallelInputPrices.from_dict(_prices)
-
         variation_of = d.pop("variationOf", UNSET)
 
         parallels = []
@@ -204,6 +199,15 @@ class CardWithOptionalParallelInput:
             parallels_item = CardWithOptionalParallelInputParallelsItem.from_dict(parallels_item_data)
 
             parallels.append(parallels_item)
+
+        fields = []
+        _fields = d.pop("fields", UNSET)
+        for componentsschemas_field_values_input_item_data in _fields or []:
+            componentsschemas_field_values_input_item = FieldValueInput.from_dict(
+                componentsschemas_field_values_input_item_data
+            )
+
+            fields.append(componentsschemas_field_values_input_item)
 
         is_parallel = d.pop("isParallel", UNSET)
 
@@ -232,9 +236,9 @@ class CardWithOptionalParallelInput:
             release_name=release_name,
             release_year=release_year,
             attributes=attributes,
-            prices=prices,
             variation_of=variation_of,
             parallels=parallels,
+            fields=fields,
             is_parallel=is_parallel,
             parallel_id=parallel_id,
             parallel_name=parallel_name,

@@ -79,7 +79,7 @@ def sync_detailed(
 ) -> Response[Union[CollectionAnalyticsResponse, ErrorResponse]]:
     """Get collection analytics
 
-     Retrieve comprehensive analytics about collection performance and composition.
+     Retrieve comprehensive analytics about collection composition and purchase data.
 
     **Path Parameters:**
     - **collectionId**: UUID of the collection to analyze
@@ -92,29 +92,18 @@ def sync_detailed(
 
     **Financials:**
     - Total invested (sum of all buy prices)
-    - Current market value (based on latest market prices)
-    - Total realized gains (profit/loss from sold cards)
-    - Total unrealized gains (current value vs buy price for unsold cards)
-    - Overall ROI percentage
-    - Realized ROI (performance on sold cards only)
+    - Total realized gains (profit/loss from sold cards based on user-entered sale prices)
 
     **Composition:**
     - Graded vs raw card counts and percentages
     - Cards listed for sale
     - Cards already sold
 
-    **Performance:**
-    - Average card value
-    - Average ROI across portfolio
-    - Top gainer by percentage
-    - Most valuable card by current market price
-
     **Use Cases:**
-    - Portfolio performance dashboard
-    - Investment tracking
-    - Tax reporting (realized vs unrealized gains)
-    - Collection valuation
-    - Performance benchmarking
+    - Collection overview dashboard
+    - Track purchase spending
+    - Tax reporting (realized gains from sold cards)
+    - Collection composition analysis
 
     Args:
         collection_id (UUID):
@@ -145,7 +134,7 @@ def sync(
 ) -> Optional[Union[CollectionAnalyticsResponse, ErrorResponse]]:
     """Get collection analytics
 
-     Retrieve comprehensive analytics about collection performance and composition.
+     Retrieve comprehensive analytics about collection composition and purchase data.
 
     **Path Parameters:**
     - **collectionId**: UUID of the collection to analyze
@@ -158,29 +147,18 @@ def sync(
 
     **Financials:**
     - Total invested (sum of all buy prices)
-    - Current market value (based on latest market prices)
-    - Total realized gains (profit/loss from sold cards)
-    - Total unrealized gains (current value vs buy price for unsold cards)
-    - Overall ROI percentage
-    - Realized ROI (performance on sold cards only)
+    - Total realized gains (profit/loss from sold cards based on user-entered sale prices)
 
     **Composition:**
     - Graded vs raw card counts and percentages
     - Cards listed for sale
     - Cards already sold
 
-    **Performance:**
-    - Average card value
-    - Average ROI across portfolio
-    - Top gainer by percentage
-    - Most valuable card by current market price
-
     **Use Cases:**
-    - Portfolio performance dashboard
-    - Investment tracking
-    - Tax reporting (realized vs unrealized gains)
-    - Collection valuation
-    - Performance benchmarking
+    - Collection overview dashboard
+    - Track purchase spending
+    - Tax reporting (realized gains from sold cards)
+    - Collection composition analysis
 
     Args:
         collection_id (UUID):
@@ -206,7 +184,7 @@ async def asyncio_detailed(
 ) -> Response[Union[CollectionAnalyticsResponse, ErrorResponse]]:
     """Get collection analytics
 
-     Retrieve comprehensive analytics about collection performance and composition.
+     Retrieve comprehensive analytics about collection composition and purchase data.
 
     **Path Parameters:**
     - **collectionId**: UUID of the collection to analyze
@@ -219,29 +197,18 @@ async def asyncio_detailed(
 
     **Financials:**
     - Total invested (sum of all buy prices)
-    - Current market value (based on latest market prices)
-    - Total realized gains (profit/loss from sold cards)
-    - Total unrealized gains (current value vs buy price for unsold cards)
-    - Overall ROI percentage
-    - Realized ROI (performance on sold cards only)
+    - Total realized gains (profit/loss from sold cards based on user-entered sale prices)
 
     **Composition:**
     - Graded vs raw card counts and percentages
     - Cards listed for sale
     - Cards already sold
 
-    **Performance:**
-    - Average card value
-    - Average ROI across portfolio
-    - Top gainer by percentage
-    - Most valuable card by current market price
-
     **Use Cases:**
-    - Portfolio performance dashboard
-    - Investment tracking
-    - Tax reporting (realized vs unrealized gains)
-    - Collection valuation
-    - Performance benchmarking
+    - Collection overview dashboard
+    - Track purchase spending
+    - Tax reporting (realized gains from sold cards)
+    - Collection composition analysis
 
     Args:
         collection_id (UUID):
@@ -270,7 +237,7 @@ async def asyncio(
 ) -> Optional[Union[CollectionAnalyticsResponse, ErrorResponse]]:
     """Get collection analytics
 
-     Retrieve comprehensive analytics about collection performance and composition.
+     Retrieve comprehensive analytics about collection composition and purchase data.
 
     **Path Parameters:**
     - **collectionId**: UUID of the collection to analyze
@@ -283,29 +250,18 @@ async def asyncio(
 
     **Financials:**
     - Total invested (sum of all buy prices)
-    - Current market value (based on latest market prices)
-    - Total realized gains (profit/loss from sold cards)
-    - Total unrealized gains (current value vs buy price for unsold cards)
-    - Overall ROI percentage
-    - Realized ROI (performance on sold cards only)
+    - Total realized gains (profit/loss from sold cards based on user-entered sale prices)
 
     **Composition:**
     - Graded vs raw card counts and percentages
     - Cards listed for sale
     - Cards already sold
 
-    **Performance:**
-    - Average card value
-    - Average ROI across portfolio
-    - Top gainer by percentage
-    - Most valuable card by current market price
-
     **Use Cases:**
-    - Portfolio performance dashboard
-    - Investment tracking
-    - Tax reporting (realized vs unrealized gains)
-    - Collection valuation
-    - Performance benchmarking
+    - Collection overview dashboard
+    - Track purchase spending
+    - Tax reporting (realized gains from sold cards)
+    - Collection composition analysis
 
     Args:
         collection_id (UUID):

@@ -105,7 +105,6 @@ def sync_detailed(
     - **purchasePrice**: Correct purchase price
     - **purchaseDate**: Fix acquisition date
     - **purchaseFrom**: Update source information
-    - **currentValue**: Update market value estimate
     - **condition**: Change raw condition assessment
     - **notes**: Modify personal notes
     - **isForSale**: Toggle sale status
@@ -121,7 +120,6 @@ def sync_detailed(
     **Use Cases:**
     - Update card after grading
     - Adjust quantities after sales
-    - Update market values
     - Add or modify notes
     - Change sale status
 
@@ -173,7 +171,6 @@ def sync(
     - **purchasePrice**: Correct purchase price
     - **purchaseDate**: Fix acquisition date
     - **purchaseFrom**: Update source information
-    - **currentValue**: Update market value estimate
     - **condition**: Change raw condition assessment
     - **notes**: Modify personal notes
     - **isForSale**: Toggle sale status
@@ -189,7 +186,6 @@ def sync(
     **Use Cases:**
     - Update card after grading
     - Adjust quantities after sales
-    - Update market values
     - Add or modify notes
     - Change sale status
 
@@ -236,7 +232,6 @@ async def asyncio_detailed(
     - **purchasePrice**: Correct purchase price
     - **purchaseDate**: Fix acquisition date
     - **purchaseFrom**: Update source information
-    - **currentValue**: Update market value estimate
     - **condition**: Change raw condition assessment
     - **notes**: Modify personal notes
     - **isForSale**: Toggle sale status
@@ -252,7 +247,6 @@ async def asyncio_detailed(
     **Use Cases:**
     - Update card after grading
     - Adjust quantities after sales
-    - Update market values
     - Add or modify notes
     - Change sale status
 
@@ -302,7 +296,6 @@ async def asyncio(
     - **purchasePrice**: Correct purchase price
     - **purchaseDate**: Fix acquisition date
     - **purchaseFrom**: Update source information
-    - **currentValue**: Update market value estimate
     - **condition**: Change raw condition assessment
     - **notes**: Modify personal notes
     - **isForSale**: Toggle sale status
@@ -318,7 +311,6 @@ async def asyncio(
     **Use Cases:**
     - Update card after grading
     - Adjust quantities after sales
-    - Update market values
     - Add or modify notes
     - Change sale status
 

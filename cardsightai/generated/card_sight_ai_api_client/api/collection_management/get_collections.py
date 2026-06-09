@@ -133,7 +133,6 @@ def sync_detailed(
     - Collection metadata (name, type, privacy, dates)
     - Associated collector information
     - Card count per collection
-    - Total value estimates (if applicable)
     - Pagination metadata
 
     **Use Cases:**
@@ -204,7 +203,6 @@ def sync(
     - Collection metadata (name, type, privacy, dates)
     - Associated collector information
     - Card count per collection
-    - Total value estimates (if applicable)
     - Pagination metadata
 
     **Use Cases:**
@@ -270,7 +268,6 @@ async def asyncio_detailed(
     - Collection metadata (name, type, privacy, dates)
     - Associated collector information
     - Card count per collection
-    - Total value estimates (if applicable)
     - Pagination metadata
 
     **Use Cases:**
@@ -339,7 +336,6 @@ async def asyncio(
     - Collection metadata (name, type, privacy, dates)
     - Associated collector information
     - Card count per collection
-    - Total value estimates (if applicable)
     - Pagination metadata
 
     **Use Cases:**

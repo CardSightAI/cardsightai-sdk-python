@@ -14,8 +14,11 @@ T = TypeVar("T", bound="FeedbackInputInput")
 class FeedbackInputInput:
     """
     Attributes:
-        message (str):
-        feedback_type (Union[Unset, FeedbackInputInputFeedbackType]): FeedbackType
+        message (str): Detailed description of the feedback. Include specifics such as what is wrong, what you expected,
+            or what you suggest. Max 1000 characters.
+        feedback_type (Union[Unset, FeedbackInputInputFeedbackType]): Category of feedback. Accepted values: data_error
+            (incorrect data), missing_data (something is missing from the catalog), suggestion (improvement idea), bug
+            (something is broken), other (does not fit other categories)
     """
 
     message: str

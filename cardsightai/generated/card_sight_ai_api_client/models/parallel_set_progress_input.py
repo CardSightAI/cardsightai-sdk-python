@@ -1,10 +1,8 @@
 from collections.abc import Mapping
-from typing import Any, TypeVar, Union, cast
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="ParallelSetProgressInput")
 
@@ -23,8 +21,6 @@ class ParallelSetProgressInput:
         owned_cards (float): Number of this parallel owned
         missing_cards (list[str]): Array of missing card UUIDs for this parallel
         completion_percentage (float): Percentage complete for this parallel (0-100)
-        estimated_cost_to_complete (Union[Unset, str]): Estimated cost to acquire missing cards of this parallel
-        average_card_value (Union[Unset, str]): Average value per card for this parallel
     """
 
     set_id: str
@@ -37,8 +33,6 @@ class ParallelSetProgressInput:
     owned_cards: float
     missing_cards: list[str]
     completion_percentage: float
-    estimated_cost_to_complete: Union[Unset, str] = UNSET
-    average_card_value: Union[Unset, str] = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -62,10 +56,6 @@ class ParallelSetProgressInput:
 
         completion_percentage = self.completion_percentage
 
-        estimated_cost_to_complete = self.estimated_cost_to_complete
-
-        average_card_value = self.average_card_value
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update(
@@ -82,10 +72,6 @@ class ParallelSetProgressInput:
                 "completionPercentage": completion_percentage,
             }
         )
-        if estimated_cost_to_complete is not UNSET:
-            field_dict["estimatedCostToComplete"] = estimated_cost_to_complete
-        if average_card_value is not UNSET:
-            field_dict["averageCardValue"] = average_card_value
 
         return field_dict
 
@@ -112,10 +98,6 @@ class ParallelSetProgressInput:
 
         completion_percentage = d.pop("completionPercentage")
 
-        estimated_cost_to_complete = d.pop("estimatedCostToComplete", UNSET)
-
-        average_card_value = d.pop("averageCardValue", UNSET)
-
         parallel_set_progress_input = cls(
             set_id=set_id,
             set_name=set_name,
@@ -127,8 +109,6 @@ class ParallelSetProgressInput:
             owned_cards=owned_cards,
             missing_cards=missing_cards,
             completion_percentage=completion_percentage,
-            estimated_cost_to_complete=estimated_cost_to_complete,
-            average_card_value=average_card_value,
         )
 
         parallel_set_progress_input.additional_properties = d

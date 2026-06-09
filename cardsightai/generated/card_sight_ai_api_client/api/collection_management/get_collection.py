@@ -88,7 +88,7 @@ def sync_detailed(
     - Complete collection metadata
     - Collector information
     - Creation and update timestamps
-    - Card count and value statistics
+    - Card count statistics
     - Collection type and privacy settings
 
     **Security:**
@@ -139,7 +139,7 @@ def sync(
     - Complete collection metadata
     - Collector information
     - Creation and update timestamps
-    - Card count and value statistics
+    - Card count statistics
     - Collection type and privacy settings
 
     **Security:**
@@ -185,7 +185,7 @@ async def asyncio_detailed(
     - Complete collection metadata
     - Collector information
     - Creation and update timestamps
-    - Card count and value statistics
+    - Card count statistics
     - Collection type and privacy settings
 
     **Security:**
@@ -234,7 +234,7 @@ async def asyncio(
     - Complete collection metadata
     - Collector information
     - Creation and update timestamps
-    - Card count and value statistics
+    - Card count statistics
     - Collection type and privacy settings
 
     **Security:**

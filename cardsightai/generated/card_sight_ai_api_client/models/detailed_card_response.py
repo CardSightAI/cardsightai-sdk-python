@@ -6,7 +6,7 @@ from attrs import define as _attrs_define
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
-    from ..models.detailed_card_response_prices import DetailedCardResponsePrices
+    from ..models.field_value import FieldValue
     from ..models.parallel_summary import ParallelSummary
 
 
@@ -39,10 +39,9 @@ class DetailedCardResponse:
         release_year (Union[Unset, str]): Year of the release
         numbered_to (Union[Unset, float]): Limited print run number for this specific card
         attributes (Union[Unset, list[str]]): Array of attribute short names
-        prices (Union[Unset, DetailedCardResponsePrices]): Average pricing data for the base card. Only included when
-            price data is available. Prices are averaged across all available sources.
         variation_of (Union[Unset, str]): UUID of the base card if this is a variation. Only present for variation
             cards, omitted for base cards.
+        fields (Union[Unset, list['FieldValue']]):
     """
 
     release_id: str
@@ -59,8 +58,8 @@ class DetailedCardResponse:
     release_year: Union[Unset, str] = UNSET
     numbered_to: Union[Unset, float] = UNSET
     attributes: Union[Unset, list[str]] = UNSET
-    prices: Union[Unset, "DetailedCardResponsePrices"] = UNSET
     variation_of: Union[Unset, str] = UNSET
+    fields: Union[Unset, list["FieldValue"]] = UNSET
 
     def to_dict(self) -> dict[str, Any]:
         release_id = self.release_id
@@ -96,11 +95,14 @@ class DetailedCardResponse:
         if not isinstance(self.attributes, Unset):
             attributes = self.attributes
 
-        prices: Union[Unset, dict[str, Any]] = UNSET
-        if not isinstance(self.prices, Unset):
-            prices = self.prices.to_dict()
-
         variation_of = self.variation_of
+
+        fields: Union[Unset, list[dict[str, Any]]] = UNSET
+        if not isinstance(self.fields, Unset):
+            fields = []
+            for componentsschemas_field_values_item_data in self.fields:
+                componentsschemas_field_values_item = componentsschemas_field_values_item_data.to_dict()
+                fields.append(componentsschemas_field_values_item)
 
         field_dict: dict[str, Any] = {}
 
@@ -129,16 +131,16 @@ class DetailedCardResponse:
             field_dict["numberedTo"] = numbered_to
         if attributes is not UNSET:
             field_dict["attributes"] = attributes
-        if prices is not UNSET:
-            field_dict["prices"] = prices
         if variation_of is not UNSET:
             field_dict["variationOf"] = variation_of
+        if fields is not UNSET:
+            field_dict["fields"] = fields
 
         return field_dict
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.detailed_card_response_prices import DetailedCardResponsePrices
+        from ..models.field_value import FieldValue
         from ..models.parallel_summary import ParallelSummary
 
         d = dict(src_dict)
@@ -175,14 +177,14 @@ class DetailedCardResponse:
 
         attributes = cast(list[str], d.pop("attributes", UNSET))
 
-        _prices = d.pop("prices", UNSET)
-        prices: Union[Unset, DetailedCardResponsePrices]
-        if isinstance(_prices, Unset):
-            prices = UNSET
-        else:
-            prices = DetailedCardResponsePrices.from_dict(_prices)
-
         variation_of = d.pop("variationOf", UNSET)
+
+        fields = []
+        _fields = d.pop("fields", UNSET)
+        for componentsschemas_field_values_item_data in _fields or []:
+            componentsschemas_field_values_item = FieldValue.from_dict(componentsschemas_field_values_item_data)
+
+            fields.append(componentsschemas_field_values_item)
 
         detailed_card_response = cls(
             release_id=release_id,
@@ -199,8 +201,8 @@ class DetailedCardResponse:
             release_year=release_year,
             numbered_to=numbered_to,
             attributes=attributes,
-            prices=prices,
             variation_of=variation_of,
+            fields=fields,
         )
 
         return detailed_card_response

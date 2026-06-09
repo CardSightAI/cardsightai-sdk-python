@@ -3,7 +3,6 @@ from enum import Enum
 
 class GetRandomCardsSort(str, Enum):
     NAME = "name"
-    PRICE_RAW = "price-raw"
     RELEASE = "release"
     SET = "set"
     YEAR = "year"

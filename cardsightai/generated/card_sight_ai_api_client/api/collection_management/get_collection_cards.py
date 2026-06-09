@@ -141,26 +141,22 @@ def sync_detailed(
     **Query Parameters:**
     - **page**: Page number (default: 1)
     - **limit**: Items per page (default: 20, max: 100)
-    - **sortBy**: Sort field (name, number, value, purchaseDate, addedDate)
+    - **sortBy**: Sort field (name, number, purchaseDate, addedDate)
     - **sortOrder**: asc or desc (default: asc)
     - **search**: Search card names and descriptions
     - **binderId**: Filter by specific binder
     - **graded**: Filter graded cards only (true/false)
     - **forSale**: Filter cards marked for sale
-    - **minValue**: Minimum current value filter
-    - **maxValue**: Maximum current value filter
 
     **Response includes:**
     - Full card catalog details (name, set, year, etc.)
     - Collection-specific metadata (quantity, grade, purchase info)
-    - Current market values
-    - Aggregated statistics (total value, card count)
+    - Aggregated statistics (card count)
     - Pagination metadata
 
     **Use Cases:**
     - Browse collection inventory
     - Search for specific cards
-    - Filter high-value cards
     - Export collection data
     - Generate collection reports
 
@@ -222,26 +218,22 @@ def sync(
     **Query Parameters:**
     - **page**: Page number (default: 1)
     - **limit**: Items per page (default: 20, max: 100)
-    - **sortBy**: Sort field (name, number, value, purchaseDate, addedDate)
+    - **sortBy**: Sort field (name, number, purchaseDate, addedDate)
     - **sortOrder**: asc or desc (default: asc)
     - **search**: Search card names and descriptions
     - **binderId**: Filter by specific binder
     - **graded**: Filter graded cards only (true/false)
     - **forSale**: Filter cards marked for sale
-    - **minValue**: Minimum current value filter
-    - **maxValue**: Maximum current value filter
 
     **Response includes:**
     - Full card catalog details (name, set, year, etc.)
     - Collection-specific metadata (quantity, grade, purchase info)
-    - Current market values
-    - Aggregated statistics (total value, card count)
+    - Aggregated statistics (card count)
     - Pagination metadata
 
     **Use Cases:**
     - Browse collection inventory
     - Search for specific cards
-    - Filter high-value cards
     - Export collection data
     - Generate collection reports
 
@@ -298,26 +290,22 @@ async def asyncio_detailed(
     **Query Parameters:**
     - **page**: Page number (default: 1)
     - **limit**: Items per page (default: 20, max: 100)
-    - **sortBy**: Sort field (name, number, value, purchaseDate, addedDate)
+    - **sortBy**: Sort field (name, number, purchaseDate, addedDate)
     - **sortOrder**: asc or desc (default: asc)
     - **search**: Search card names and descriptions
     - **binderId**: Filter by specific binder
     - **graded**: Filter graded cards only (true/false)
     - **forSale**: Filter cards marked for sale
-    - **minValue**: Minimum current value filter
-    - **maxValue**: Maximum current value filter
 
     **Response includes:**
     - Full card catalog details (name, set, year, etc.)
     - Collection-specific metadata (quantity, grade, purchase info)
-    - Current market values
-    - Aggregated statistics (total value, card count)
+    - Aggregated statistics (card count)
     - Pagination metadata
 
     **Use Cases:**
     - Browse collection inventory
     - Search for specific cards
-    - Filter high-value cards
     - Export collection data
     - Generate collection reports
 
@@ -377,26 +365,22 @@ async def asyncio(
     **Query Parameters:**
     - **page**: Page number (default: 1)
     - **limit**: Items per page (default: 20, max: 100)
-    - **sortBy**: Sort field (name, number, value, purchaseDate, addedDate)
+    - **sortBy**: Sort field (name, number, purchaseDate, addedDate)
     - **sortOrder**: asc or desc (default: asc)
     - **search**: Search card names and descriptions
     - **binderId**: Filter by specific binder
     - **graded**: Filter graded cards only (true/false)
     - **forSale**: Filter cards marked for sale
-    - **minValue**: Minimum current value filter
-    - **maxValue**: Maximum current value filter
 
     **Response includes:**
     - Full card catalog details (name, set, year, etc.)
     - Collection-specific metadata (quantity, grade, purchase info)
-    - Current market values
-    - Aggregated statistics (total value, card count)
+    - Aggregated statistics (card count)
     - Pagination metadata
 
     **Use Cases:**
     - Browse collection inventory
     - Search for specific cards
-    - Filter high-value cards
     - Export collection data
     - Generate collection reports
 

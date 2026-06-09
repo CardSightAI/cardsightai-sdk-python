@@ -100,8 +100,6 @@ def sync_detailed(
     - Total cards in set vs owned cards of this specific parallel
     - Completion percentage for this parallel variant (0-100)
     - Array of missing card UUIDs for this parallel (for targeted buying)
-    - Estimated cost to complete this parallel variant (based on raw card prices)
-    - Average card value for this parallel
 
     **How it differs from base set progress:**
     - **Base set progress** (/set-progress/:setId): Counts card #5 as owned if you have ANY parallel
@@ -111,10 +109,8 @@ def sync_detailed(
 
     **Use Cases:**
     - Track completion of premium parallel sets (Refractors, numbered parallels)
-    - Calculate exact cost to complete a specific parallel run
-    - Focus buying decisions on specific parallel variants
+    - Focus acquisitions on specific parallel variants
     - Chase rare parallel variations (e.g., Gold /10, Orange /25)
-    - Investment tracking for high-value parallels
     - Set collection goals for parallel variants
 
     **Example Scenario:**
@@ -122,12 +118,10 @@ def sync_detailed(
     Refractors. This endpoint returns:
     - 74.8% complete
     - List of 63 missing Refractor card UUIDs
-    - Estimated $1,247.50 to complete the Refractor parallel set
 
     **Important Notes:**
     - Only base cards are considered (card variations where baseCardId IS NOT NULL are excluded)
     - Filters collection_cards by the specific parallelId provided
-    - Estimated costs are based on raw (ungraded) card prices for this parallel
     - Returns 404 if parallel doesn't belong to the specified set
     - Missing cards are returned as UUIDs for easy lookup via the catalog API
 
@@ -183,8 +177,6 @@ def sync(
     - Total cards in set vs owned cards of this specific parallel
     - Completion percentage for this parallel variant (0-100)
     - Array of missing card UUIDs for this parallel (for targeted buying)
-    - Estimated cost to complete this parallel variant (based on raw card prices)
-    - Average card value for this parallel
 
     **How it differs from base set progress:**
     - **Base set progress** (/set-progress/:setId): Counts card #5 as owned if you have ANY parallel
@@ -194,10 +186,8 @@ def sync(
 
     **Use Cases:**
     - Track completion of premium parallel sets (Refractors, numbered parallels)
-    - Calculate exact cost to complete a specific parallel run
-    - Focus buying decisions on specific parallel variants
+    - Focus acquisitions on specific parallel variants
     - Chase rare parallel variations (e.g., Gold /10, Orange /25)
-    - Investment tracking for high-value parallels
     - Set collection goals for parallel variants
 
     **Example Scenario:**
@@ -205,12 +195,10 @@ def sync(
     Refractors. This endpoint returns:
     - 74.8% complete
     - List of 63 missing Refractor card UUIDs
-    - Estimated $1,247.50 to complete the Refractor parallel set
 
     **Important Notes:**
     - Only base cards are considered (card variations where baseCardId IS NOT NULL are excluded)
     - Filters collection_cards by the specific parallelId provided
-    - Estimated costs are based on raw (ungraded) card prices for this parallel
     - Returns 404 if parallel doesn't belong to the specified set
     - Missing cards are returned as UUIDs for easy lookup via the catalog API
 
@@ -261,8 +249,6 @@ async def asyncio_detailed(
     - Total cards in set vs owned cards of this specific parallel
     - Completion percentage for this parallel variant (0-100)
     - Array of missing card UUIDs for this parallel (for targeted buying)
-    - Estimated cost to complete this parallel variant (based on raw card prices)
-    - Average card value for this parallel
 
     **How it differs from base set progress:**
     - **Base set progress** (/set-progress/:setId): Counts card #5 as owned if you have ANY parallel
@@ -272,10 +258,8 @@ async def asyncio_detailed(
 
     **Use Cases:**
     - Track completion of premium parallel sets (Refractors, numbered parallels)
-    - Calculate exact cost to complete a specific parallel run
-    - Focus buying decisions on specific parallel variants
+    - Focus acquisitions on specific parallel variants
     - Chase rare parallel variations (e.g., Gold /10, Orange /25)
-    - Investment tracking for high-value parallels
     - Set collection goals for parallel variants
 
     **Example Scenario:**
@@ -283,12 +267,10 @@ async def asyncio_detailed(
     Refractors. This endpoint returns:
     - 74.8% complete
     - List of 63 missing Refractor card UUIDs
-    - Estimated $1,247.50 to complete the Refractor parallel set
 
     **Important Notes:**
     - Only base cards are considered (card variations where baseCardId IS NOT NULL are excluded)
     - Filters collection_cards by the specific parallelId provided
-    - Estimated costs are based on raw (ungraded) card prices for this parallel
     - Returns 404 if parallel doesn't belong to the specified set
     - Missing cards are returned as UUIDs for easy lookup via the catalog API
 
@@ -342,8 +324,6 @@ async def asyncio(
     - Total cards in set vs owned cards of this specific parallel
     - Completion percentage for this parallel variant (0-100)
     - Array of missing card UUIDs for this parallel (for targeted buying)
-    - Estimated cost to complete this parallel variant (based on raw card prices)
-    - Average card value for this parallel
 
     **How it differs from base set progress:**
     - **Base set progress** (/set-progress/:setId): Counts card #5 as owned if you have ANY parallel
@@ -353,10 +333,8 @@ async def asyncio(
 
     **Use Cases:**
     - Track completion of premium parallel sets (Refractors, numbered parallels)
-    - Calculate exact cost to complete a specific parallel run
-    - Focus buying decisions on specific parallel variants
+    - Focus acquisitions on specific parallel variants
     - Chase rare parallel variations (e.g., Gold /10, Orange /25)
-    - Investment tracking for high-value parallels
     - Set collection goals for parallel variants
 
     **Example Scenario:**
@@ -364,12 +342,10 @@ async def asyncio(
     Refractors. This endpoint returns:
     - 74.8% complete
     - List of 63 missing Refractor card UUIDs
-    - Estimated $1,247.50 to complete the Refractor parallel set
 
     **Important Notes:**
     - Only base cards are considered (card variations where baseCardId IS NOT NULL are excluded)
     - Filters collection_cards by the specific parallelId provided
-    - Estimated costs are based on raw (ungraded) card prices for this parallel
     - Returns 404 if parallel doesn't belong to the specified set
     - Missing cards are returned as UUIDs for easy lookup via the catalog API
 

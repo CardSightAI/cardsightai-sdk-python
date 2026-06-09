@@ -92,20 +92,15 @@ def sync_detailed(
     - Total cards in set vs owned cards
     - Completion percentage (0-100)
     - Array of missing card UUIDs
-    - Estimated cost to complete set
-    - Difficulty score (based on card availability)
-    - Average card value for the set
 
     **Use Cases:**
     - Check progress on a specific set
     - Get list of missing cards for targeted purchasing
-    - Calculate exact cost to complete a set
     - Track progress toward set completion goal
     - Identify which cards are still needed
 
     **Important Notes:**
     - Only base cards are considered (parallels excluded)
-    - Estimated cost based on raw (ungraded) card prices
     - Missing cards returned as UUIDs for easy card lookup
     - Returns 404 if set is not represented in collection
 
@@ -152,20 +147,15 @@ def sync(
     - Total cards in set vs owned cards
     - Completion percentage (0-100)
     - Array of missing card UUIDs
-    - Estimated cost to complete set
-    - Difficulty score (based on card availability)
-    - Average card value for the set
 
     **Use Cases:**
     - Check progress on a specific set
     - Get list of missing cards for targeted purchasing
-    - Calculate exact cost to complete a set
     - Track progress toward set completion goal
     - Identify which cards are still needed
 
     **Important Notes:**
     - Only base cards are considered (parallels excluded)
-    - Estimated cost based on raw (ungraded) card prices
     - Missing cards returned as UUIDs for easy card lookup
     - Returns 404 if set is not represented in collection
 
@@ -207,20 +197,15 @@ async def asyncio_detailed(
     - Total cards in set vs owned cards
     - Completion percentage (0-100)
     - Array of missing card UUIDs
-    - Estimated cost to complete set
-    - Difficulty score (based on card availability)
-    - Average card value for the set
 
     **Use Cases:**
     - Check progress on a specific set
     - Get list of missing cards for targeted purchasing
-    - Calculate exact cost to complete a set
     - Track progress toward set completion goal
     - Identify which cards are still needed
 
     **Important Notes:**
     - Only base cards are considered (parallels excluded)
-    - Estimated cost based on raw (ungraded) card prices
     - Missing cards returned as UUIDs for easy card lookup
     - Returns 404 if set is not represented in collection
 
@@ -265,20 +250,15 @@ async def asyncio(
     - Total cards in set vs owned cards
     - Completion percentage (0-100)
     - Array of missing card UUIDs
-    - Estimated cost to complete set
-    - Difficulty score (based on card availability)
-    - Average card value for the set
 
     **Use Cases:**
     - Check progress on a specific set
     - Get list of missing cards for targeted purchasing
-    - Calculate exact cost to complete a set
     - Track progress toward set completion goal
     - Identify which cards are still needed
 
     **Important Notes:**
     - Only base cards are considered (parallels excluded)
-    - Estimated cost based on raw (ungraded) card prices
     - Missing cards returned as UUIDs for easy card lookup
     - Returns 404 if set is not represented in collection
 

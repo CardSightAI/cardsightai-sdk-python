@@ -104,7 +104,7 @@ def sync_detailed(
     **Query Parameters:**
     - **page**: Page number (default: 1)
     - **limit**: Items per page (default: 20, max: 100)
-    - **sortBy**: Sort field (name, number, value, sortOrder)
+    - **sortBy**: Sort field (name, number, sortOrder)
     - **sortOrder**: asc or desc (default: asc)
     - **search**: Search card names
 
@@ -112,13 +112,11 @@ def sync_detailed(
     - Full card details from catalog
     - Collection-specific metadata
     - Binder-specific sort order
-    - Total value calculations
     - Pagination metadata
 
     **Use Cases:**
     - View binder contents
     - Generate binder listings
-    - Calculate binder value
     - Export binder inventory
 
     Args:
@@ -168,7 +166,7 @@ def sync(
     **Query Parameters:**
     - **page**: Page number (default: 1)
     - **limit**: Items per page (default: 20, max: 100)
-    - **sortBy**: Sort field (name, number, value, sortOrder)
+    - **sortBy**: Sort field (name, number, sortOrder)
     - **sortOrder**: asc or desc (default: asc)
     - **search**: Search card names
 
@@ -176,13 +174,11 @@ def sync(
     - Full card details from catalog
     - Collection-specific metadata
     - Binder-specific sort order
-    - Total value calculations
     - Pagination metadata
 
     **Use Cases:**
     - View binder contents
     - Generate binder listings
-    - Calculate binder value
     - Export binder inventory
 
     Args:
@@ -227,7 +223,7 @@ async def asyncio_detailed(
     **Query Parameters:**
     - **page**: Page number (default: 1)
     - **limit**: Items per page (default: 20, max: 100)
-    - **sortBy**: Sort field (name, number, value, sortOrder)
+    - **sortBy**: Sort field (name, number, sortOrder)
     - **sortOrder**: asc or desc (default: asc)
     - **search**: Search card names
 
@@ -235,13 +231,11 @@ async def asyncio_detailed(
     - Full card details from catalog
     - Collection-specific metadata
     - Binder-specific sort order
-    - Total value calculations
     - Pagination metadata
 
     **Use Cases:**
     - View binder contents
     - Generate binder listings
-    - Calculate binder value
     - Export binder inventory
 
     Args:
@@ -289,7 +283,7 @@ async def asyncio(
     **Query Parameters:**
     - **page**: Page number (default: 1)
     - **limit**: Items per page (default: 20, max: 100)
-    - **sortBy**: Sort field (name, number, value, sortOrder)
+    - **sortBy**: Sort field (name, number, sortOrder)
     - **sortOrder**: asc or desc (default: asc)
     - **search**: Search card names
 
@@ -297,13 +291,11 @@ async def asyncio(
     - Full card details from catalog
     - Collection-specific metadata
     - Binder-specific sort order
-    - Total value calculations
     - Pagination metadata
 
     **Use Cases:**
     - View binder contents
     - Generate binder listings
-    - Calculate binder value
     - Export binder inventory
 
     Args:

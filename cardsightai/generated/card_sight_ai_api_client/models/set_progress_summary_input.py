@@ -1,10 +1,8 @@
 from collections.abc import Mapping
-from typing import Any, TypeVar, Union
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="SetProgressSummaryInput")
 
@@ -16,13 +14,11 @@ class SetProgressSummaryInput:
         total_sets (float): Total number of sets represented in collection
         near_complete_sets (float): Number of sets >80% complete
         fully_complete_sets (float): Number of fully complete sets
-        total_estimated_cost (Union[Unset, str]): Total cost to complete all sets
     """
 
     total_sets: float
     near_complete_sets: float
     fully_complete_sets: float
-    total_estimated_cost: Union[Unset, str] = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -31,8 +27,6 @@ class SetProgressSummaryInput:
         near_complete_sets = self.near_complete_sets
 
         fully_complete_sets = self.fully_complete_sets
-
-        total_estimated_cost = self.total_estimated_cost
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -43,8 +37,6 @@ class SetProgressSummaryInput:
                 "fullyCompleteSets": fully_complete_sets,
             }
         )
-        if total_estimated_cost is not UNSET:
-            field_dict["totalEstimatedCost"] = total_estimated_cost
 
         return field_dict
 
@@ -57,13 +49,10 @@ class SetProgressSummaryInput:
 
         fully_complete_sets = d.pop("fullyCompleteSets")
 
-        total_estimated_cost = d.pop("totalEstimatedCost", UNSET)
-
         set_progress_summary_input = cls(
             total_sets=total_sets,
             near_complete_sets=near_complete_sets,
             fully_complete_sets=fully_complete_sets,
-            total_estimated_cost=total_estimated_cost,
         )
 
         set_progress_summary_input.additional_properties = d

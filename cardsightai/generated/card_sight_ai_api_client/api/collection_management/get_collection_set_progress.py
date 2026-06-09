@@ -125,7 +125,7 @@ def sync_detailed(
     - **collectionId**: UUID of the collection to analyze
 
     **Query Parameters:**
-    - **sortBy**: Sort sets by completion, missing, cost, or difficulty (default: completion)
+    - **sortBy**: Sort sets by completion or missing (default: completion)
     - **order**: Sort order - asc or desc (default: desc)
     - **page**: Page number for pagination (default: 1)
     - **limit**: Items per page (default: 20, max: 100)
@@ -138,26 +138,20 @@ def sync_detailed(
     - Total sets represented in collection
     - Number of near-complete sets (>80%)
     - Number of fully complete sets (100%)
-    - Total estimated cost to complete all sets
 
     **Per Set:**
     - Set name, release name, and release year for context
     - Total cards in set vs owned cards
     - Completion percentage
     - Missing card UUIDs (only included for sets >= 85% complete; empty array otherwise)
-    - Estimated cost to complete (based on raw card market prices)
-    - Difficulty score (based on card availability)
 
     **Use Cases:**
     - Identify which sets are close to completion
-    - Calculate cost to complete specific sets
-    - Focus buying decisions on near-complete sets
+    - Prioritize acquisitions for near-complete sets
     - Track collection completion goals
-    - Discover sets worth completing for investment
 
     **Important Notes:**
     - Only base cards are considered (parallels excluded)
-    - Estimated costs based on raw (ungraded) card prices
     - Missing card UUIDs only returned for sets >= 85% complete (to avoid multi-thousand line responses)
     - For sets < 85% complete, use totalCards - ownedCards to get missing count
     - Sorted by completion percentage (highest first) by default
@@ -217,7 +211,7 @@ def sync(
     - **collectionId**: UUID of the collection to analyze
 
     **Query Parameters:**
-    - **sortBy**: Sort sets by completion, missing, cost, or difficulty (default: completion)
+    - **sortBy**: Sort sets by completion or missing (default: completion)
     - **order**: Sort order - asc or desc (default: desc)
     - **page**: Page number for pagination (default: 1)
     - **limit**: Items per page (default: 20, max: 100)
@@ -230,26 +224,20 @@ def sync(
     - Total sets represented in collection
     - Number of near-complete sets (>80%)
     - Number of fully complete sets (100%)
-    - Total estimated cost to complete all sets
 
     **Per Set:**
     - Set name, release name, and release year for context
     - Total cards in set vs owned cards
     - Completion percentage
     - Missing card UUIDs (only included for sets >= 85% complete; empty array otherwise)
-    - Estimated cost to complete (based on raw card market prices)
-    - Difficulty score (based on card availability)
 
     **Use Cases:**
     - Identify which sets are close to completion
-    - Calculate cost to complete specific sets
-    - Focus buying decisions on near-complete sets
+    - Prioritize acquisitions for near-complete sets
     - Track collection completion goals
-    - Discover sets worth completing for investment
 
     **Important Notes:**
     - Only base cards are considered (parallels excluded)
-    - Estimated costs based on raw (ungraded) card prices
     - Missing card UUIDs only returned for sets >= 85% complete (to avoid multi-thousand line responses)
     - For sets < 85% complete, use totalCards - ownedCards to get missing count
     - Sorted by completion percentage (highest first) by default
@@ -304,7 +292,7 @@ async def asyncio_detailed(
     - **collectionId**: UUID of the collection to analyze
 
     **Query Parameters:**
-    - **sortBy**: Sort sets by completion, missing, cost, or difficulty (default: completion)
+    - **sortBy**: Sort sets by completion or missing (default: completion)
     - **order**: Sort order - asc or desc (default: desc)
     - **page**: Page number for pagination (default: 1)
     - **limit**: Items per page (default: 20, max: 100)
@@ -317,26 +305,20 @@ async def asyncio_detailed(
     - Total sets represented in collection
     - Number of near-complete sets (>80%)
     - Number of fully complete sets (100%)
-    - Total estimated cost to complete all sets
 
     **Per Set:**
     - Set name, release name, and release year for context
     - Total cards in set vs owned cards
     - Completion percentage
     - Missing card UUIDs (only included for sets >= 85% complete; empty array otherwise)
-    - Estimated cost to complete (based on raw card market prices)
-    - Difficulty score (based on card availability)
 
     **Use Cases:**
     - Identify which sets are close to completion
-    - Calculate cost to complete specific sets
-    - Focus buying decisions on near-complete sets
+    - Prioritize acquisitions for near-complete sets
     - Track collection completion goals
-    - Discover sets worth completing for investment
 
     **Important Notes:**
     - Only base cards are considered (parallels excluded)
-    - Estimated costs based on raw (ungraded) card prices
     - Missing card UUIDs only returned for sets >= 85% complete (to avoid multi-thousand line responses)
     - For sets < 85% complete, use totalCards - ownedCards to get missing count
     - Sorted by completion percentage (highest first) by default
@@ -394,7 +376,7 @@ async def asyncio(
     - **collectionId**: UUID of the collection to analyze
 
     **Query Parameters:**
-    - **sortBy**: Sort sets by completion, missing, cost, or difficulty (default: completion)
+    - **sortBy**: Sort sets by completion or missing (default: completion)
     - **order**: Sort order - asc or desc (default: desc)
     - **page**: Page number for pagination (default: 1)
     - **limit**: Items per page (default: 20, max: 100)
@@ -407,26 +389,20 @@ async def asyncio(
     - Total sets represented in collection
     - Number of near-complete sets (>80%)
     - Number of fully complete sets (100%)
-    - Total estimated cost to complete all sets
 
     **Per Set:**
     - Set name, release name, and release year for context
     - Total cards in set vs owned cards
     - Completion percentage
     - Missing card UUIDs (only included for sets >= 85% complete; empty array otherwise)
-    - Estimated cost to complete (based on raw card market prices)
-    - Difficulty score (based on card availability)
 
     **Use Cases:**
     - Identify which sets are close to completion
-    - Calculate cost to complete specific sets
-    - Focus buying decisions on near-complete sets
+    - Prioritize acquisitions for near-complete sets
     - Track collection completion goals
-    - Discover sets worth completing for investment
 
     **Important Notes:**
     - Only base cards are considered (parallels excluded)
-    - Estimated costs based on raw (ungraded) card prices
     - Missing card UUIDs only returned for sets >= 85% complete (to avoid multi-thousand line responses)
     - For sets < 85% complete, use totalCards - ownedCards to get missing count
     - Sorted by completion percentage (highest first) by default

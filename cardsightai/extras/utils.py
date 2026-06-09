@@ -15,7 +15,7 @@ def get_highest_confidence_detection(detections: list[dict[str, Any]] | dict[str
         The detection with the highest confidence, or None if no detections found
 
     Example:
-        >>> result = client.identify.card("card.jpg")
+        >>> result = client.identify.identify("card.jpg")
         >>> best_match = get_highest_confidence_detection(result)
         >>> if best_match:
         ...     print(f"Card: {best_match['card']['name']}")
@@ -63,7 +63,7 @@ def validate_image_file(
 
     Example:
         >>> image_path = validate_image_file("card.jpg")
-        >>> result = client.identify.card(image_path)
+        >>> result = client.identify.identify(image_path)
     """
     if allowed_formats is None:
         allowed_formats = [".jpeg", ".jpg", ".png", ".webp"]
@@ -97,7 +97,7 @@ class PaginationIterator:
     This class provides automatic pagination handling for list endpoints.
 
     Example:
-        >>> async for card in PaginationIterator(client.catalog.cards.list, take=100):
+        >>> async for card in PaginationIterator(client.catalog.get_cards, take=100):
         ...     print(card['name'])
     """
 
@@ -185,7 +185,7 @@ def create_pagination_iterator(fetch_func, **kwargs):
         PaginationIterator instance
 
     Example:
-        >>> iterator = create_pagination_iterator(client.catalog.cards.list, take=100)
+        >>> iterator = create_pagination_iterator(client.catalog.get_cards, take=100)
         >>> async for card in iterator:
         ...     print(card['name'])
     """

@@ -7,6 +7,7 @@ from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
     from ..models.identification_data import IdentificationData
+    from ..models.server_message import ServerMessage
 
 
 T = TypeVar("T", bound="IdentifyCardResponse")
@@ -23,12 +24,14 @@ class IdentifyCardResponse:
             Empty if no cards found.
         processing_time (Union[Unset, float]): Total processing time in milliseconds for AI analysis and catalog
             matching
+        messages (Union[Unset, list['ServerMessage']]): Server advisory messages (e.g., image quality warnings)
     """
 
     success: bool
     request_id: str
     detections: Union[Unset, list["IdentificationData"]] = UNSET
     processing_time: Union[Unset, float] = UNSET
+    messages: Union[Unset, list["ServerMessage"]] = UNSET
 
     def to_dict(self) -> dict[str, Any]:
         success = self.success
@@ -44,6 +47,13 @@ class IdentifyCardResponse:
 
         processing_time = self.processing_time
 
+        messages: Union[Unset, list[dict[str, Any]]] = UNSET
+        if not isinstance(self.messages, Unset):
+            messages = []
+            for messages_item_data in self.messages:
+                messages_item = messages_item_data.to_dict()
+                messages.append(messages_item)
+
         field_dict: dict[str, Any] = {}
 
         field_dict.update(
@@ -56,12 +66,15 @@ class IdentifyCardResponse:
             field_dict["detections"] = detections
         if processing_time is not UNSET:
             field_dict["processingTime"] = processing_time
+        if messages is not UNSET:
+            field_dict["messages"] = messages
 
         return field_dict
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.identification_data import IdentificationData
+        from ..models.server_message import ServerMessage
 
         d = dict(src_dict)
         success = d.pop("success")
@@ -77,11 +90,19 @@ class IdentifyCardResponse:
 
         processing_time = d.pop("processingTime", UNSET)
 
+        messages = []
+        _messages = d.pop("messages", UNSET)
+        for messages_item_data in _messages or []:
+            messages_item = ServerMessage.from_dict(messages_item_data)
+
+            messages.append(messages_item)
+
         identify_card_response = cls(
             success=success,
             request_id=request_id,
             detections=detections,
             processing_time=processing_time,
+            messages=messages,
         )
 
         return identify_card_response
