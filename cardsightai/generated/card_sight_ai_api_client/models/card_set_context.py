@@ -4,13 +4,12 @@ from uuid import UUID
 
 from attrs import define as _attrs_define
 
-T = TypeVar("T", bound="PricingCardContextSet")
+T = TypeVar("T", bound="CardSetContext")
 
 
 @_attrs_define
-class PricingCardContextSet:
-    """Set context
-
+class CardSetContext:
+    """
     Attributes:
         set_id (UUID): Set UUID
         name (str): Set name
@@ -56,11 +55,11 @@ class PricingCardContextSet:
 
         release = d.pop("release")
 
-        pricing_card_context_set = cls(
+        card_set_context = cls(
             set_id=set_id,
             name=name,
             year=year,
             release=release,
         )
 
-        return pricing_card_context_set
+        return card_set_context

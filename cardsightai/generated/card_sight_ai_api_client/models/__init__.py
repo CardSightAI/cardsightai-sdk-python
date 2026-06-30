@@ -58,6 +58,8 @@ from .card_parallel_population import CardParallelPopulation
 from .card_parallel_population_input import CardParallelPopulationInput
 from .card_population_response import CardPopulationResponse
 from .card_population_response_input import CardPopulationResponseInput
+from .card_set_context import CardSetContext
+from .card_set_context_input import CardSetContextInput
 from .card_suggestion import CardSuggestion
 from .card_suggestion_input import CardSuggestionInput
 from .card_summary import CardSummary
@@ -256,6 +258,14 @@ from .marketplace_record_input_listing_type_type_0 import MarketplaceRecordInput
 from .marketplace_record_listing_type_type_0 import MarketplaceRecordListingTypeType0
 from .marketplace_response import MarketplaceResponse
 from .marketplace_response_input import MarketplaceResponseInput
+from .marketplace_search_query_echo import MarketplaceSearchQueryEcho
+from .marketplace_search_query_echo_input import MarketplaceSearchQueryEchoInput
+from .marketplace_search_record import MarketplaceSearchRecord
+from .marketplace_search_record_input import MarketplaceSearchRecordInput
+from .marketplace_search_record_input_listing_type_type_0 import MarketplaceSearchRecordInputListingTypeType0
+from .marketplace_search_record_listing_type_type_0 import MarketplaceSearchRecordListingTypeType0
+from .marketplace_search_response import MarketplaceSearchResponse
+from .marketplace_search_response_input import MarketplaceSearchResponseInput
 from .paginated_attributes_response import PaginatedAttributesResponse
 from .paginated_attributes_response_input import PaginatedAttributesResponseInput
 from .paginated_binder_cards_response import PaginatedBinderCardsResponse
@@ -305,9 +315,7 @@ from .population_grading_type_input import PopulationGradingTypeInput
 from .pricing_card_context import PricingCardContext
 from .pricing_card_context_input import PricingCardContextInput
 from .pricing_card_context_input_parallel_type_0 import PricingCardContextInputParallelType0
-from .pricing_card_context_input_set import PricingCardContextInputSet
 from .pricing_card_context_parallel_type_0 import PricingCardContextParallelType0
-from .pricing_card_context_set import PricingCardContextSet
 from .pricing_company_group import PricingCompanyGroup
 from .pricing_company_group_input import PricingCompanyGroupInput
 from .pricing_grade_group import PricingGradeGroup
@@ -322,6 +330,14 @@ from .pricing_record_input_listing_type_type_0 import PricingRecordInputListingT
 from .pricing_record_listing_type_type_0 import PricingRecordListingTypeType0
 from .pricing_response import PricingResponse
 from .pricing_response_input import PricingResponseInput
+from .pricing_search_query_echo import PricingSearchQueryEcho
+from .pricing_search_query_echo_input import PricingSearchQueryEchoInput
+from .pricing_search_record import PricingSearchRecord
+from .pricing_search_record_input import PricingSearchRecordInput
+from .pricing_search_record_input_listing_type_type_0 import PricingSearchRecordInputListingTypeType0
+from .pricing_search_record_listing_type_type_0 import PricingSearchRecordListingTypeType0
+from .pricing_search_response import PricingSearchResponse
+from .pricing_search_response_input import PricingSearchResponseInput
 from .random_cards_response import RandomCardsResponse
 from .random_cards_response_input import RandomCardsResponseInput
 from .random_releases_response import RandomReleasesResponse
@@ -349,6 +365,14 @@ from .release_summary_input import ReleaseSummaryInput
 from .release_with_sets import ReleaseWithSets
 from .release_with_sets_input import ReleaseWithSetsInput
 from .search_catalog_type import SearchCatalogType
+from .search_grade import SearchGrade
+from .search_grade_input import SearchGradeInput
+from .search_marketplace_by_title_listing_type import SearchMarketplaceByTitleListingType
+from .search_matched_card import SearchMatchedCard
+from .search_matched_card_input import SearchMatchedCardInput
+from .search_meta import SearchMeta
+from .search_meta_input import SearchMetaInput
+from .search_pricing_by_title_listing_type import SearchPricingByTitleListingType
 from .search_result import SearchResult
 from .search_result_input import SearchResultInput
 from .search_result_input_type import SearchResultInputType
@@ -465,6 +489,8 @@ __all__ = (
     "CardParallelPopulationInput",
     "CardPopulationResponse",
     "CardPopulationResponseInput",
+    "CardSetContext",
+    "CardSetContextInput",
     "CardSuggestion",
     "CardSuggestionInput",
     "CardSummary",
@@ -663,6 +689,14 @@ __all__ = (
     "MarketplaceRecordListingTypeType0",
     "MarketplaceResponse",
     "MarketplaceResponseInput",
+    "MarketplaceSearchQueryEcho",
+    "MarketplaceSearchQueryEchoInput",
+    "MarketplaceSearchRecord",
+    "MarketplaceSearchRecordInput",
+    "MarketplaceSearchRecordInputListingTypeType0",
+    "MarketplaceSearchRecordListingTypeType0",
+    "MarketplaceSearchResponse",
+    "MarketplaceSearchResponseInput",
     "PaginatedAttributesResponse",
     "PaginatedAttributesResponseInput",
     "PaginatedBinderCardsResponse",
@@ -712,9 +746,7 @@ __all__ = (
     "PricingCardContext",
     "PricingCardContextInput",
     "PricingCardContextInputParallelType0",
-    "PricingCardContextInputSet",
     "PricingCardContextParallelType0",
-    "PricingCardContextSet",
     "PricingCompanyGroup",
     "PricingCompanyGroupInput",
     "PricingGradeGroup",
@@ -729,6 +761,14 @@ __all__ = (
     "PricingRecordListingTypeType0",
     "PricingResponse",
     "PricingResponseInput",
+    "PricingSearchQueryEcho",
+    "PricingSearchQueryEchoInput",
+    "PricingSearchRecord",
+    "PricingSearchRecordInput",
+    "PricingSearchRecordInputListingTypeType0",
+    "PricingSearchRecordListingTypeType0",
+    "PricingSearchResponse",
+    "PricingSearchResponseInput",
     "RandomCardsResponse",
     "RandomCardsResponseInput",
     "RandomReleasesResponse",
@@ -756,6 +796,14 @@ __all__ = (
     "ReleaseWithSets",
     "ReleaseWithSetsInput",
     "SearchCatalogType",
+    "SearchGrade",
+    "SearchGradeInput",
+    "SearchMarketplaceByTitleListingType",
+    "SearchMatchedCard",
+    "SearchMatchedCardInput",
+    "SearchMeta",
+    "SearchMetaInput",
+    "SearchPricingByTitleListingType",
     "SearchResult",
     "SearchResultInput",
     "SearchResultInputType",

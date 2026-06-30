@@ -92,10 +92,10 @@ def sync_detailed(
 ) -> Response[Union[ErrorResponse, IdentifyCardResponse]]:
     r"""Identifies a card from the submitted image for a specific segment (sport)
 
-     Identify a card from an image for a specific segment (sport). The segment can be specified by UUID
-    or name (case-insensitive, e.g., \"football\", \"basketball\"). Supports both multipart/form-data
-    and direct binary upload (image/jpeg, image/png, image/webp). Maximum file size: 20MB. Supported
-    formats: JPEG, PNG, WebP, HEIF, HEIC.
+     Identify a card from an image for a specific segment (sport). The segment can be specified by UUID,
+    name, or shortname (case-insensitive, e.g., \"football\", \"basketball\", \"magic\"). Supports both
+    multipart/form-data and direct binary upload (image/jpeg, image/png, image/webp). Maximum file size:
+    20MB. Supported formats: JPEG, PNG, WebP, HEIF, HEIC.
 
     Args:
         segment (str):
@@ -129,10 +129,10 @@ def sync(
 ) -> Optional[Union[ErrorResponse, IdentifyCardResponse]]:
     r"""Identifies a card from the submitted image for a specific segment (sport)
 
-     Identify a card from an image for a specific segment (sport). The segment can be specified by UUID
-    or name (case-insensitive, e.g., \"football\", \"basketball\"). Supports both multipart/form-data
-    and direct binary upload (image/jpeg, image/png, image/webp). Maximum file size: 20MB. Supported
-    formats: JPEG, PNG, WebP, HEIF, HEIC.
+     Identify a card from an image for a specific segment (sport). The segment can be specified by UUID,
+    name, or shortname (case-insensitive, e.g., \"football\", \"basketball\", \"magic\"). Supports both
+    multipart/form-data and direct binary upload (image/jpeg, image/png, image/webp). Maximum file size:
+    20MB. Supported formats: JPEG, PNG, WebP, HEIF, HEIC.
 
     Args:
         segment (str):
@@ -161,10 +161,10 @@ async def asyncio_detailed(
 ) -> Response[Union[ErrorResponse, IdentifyCardResponse]]:
     r"""Identifies a card from the submitted image for a specific segment (sport)
 
-     Identify a card from an image for a specific segment (sport). The segment can be specified by UUID
-    or name (case-insensitive, e.g., \"football\", \"basketball\"). Supports both multipart/form-data
-    and direct binary upload (image/jpeg, image/png, image/webp). Maximum file size: 20MB. Supported
-    formats: JPEG, PNG, WebP, HEIF, HEIC.
+     Identify a card from an image for a specific segment (sport). The segment can be specified by UUID,
+    name, or shortname (case-insensitive, e.g., \"football\", \"basketball\", \"magic\"). Supports both
+    multipart/form-data and direct binary upload (image/jpeg, image/png, image/webp). Maximum file size:
+    20MB. Supported formats: JPEG, PNG, WebP, HEIF, HEIC.
 
     Args:
         segment (str):
@@ -196,10 +196,10 @@ async def asyncio(
 ) -> Optional[Union[ErrorResponse, IdentifyCardResponse]]:
     r"""Identifies a card from the submitted image for a specific segment (sport)
 
-     Identify a card from an image for a specific segment (sport). The segment can be specified by UUID
-    or name (case-insensitive, e.g., \"football\", \"basketball\"). Supports both multipart/form-data
-    and direct binary upload (image/jpeg, image/png, image/webp). Maximum file size: 20MB. Supported
-    formats: JPEG, PNG, WebP, HEIF, HEIC.
+     Identify a card from an image for a specific segment (sport). The segment can be specified by UUID,
+    name, or shortname (case-insensitive, e.g., \"football\", \"basketball\", \"magic\"). Supports both
+    multipart/form-data and direct binary upload (image/jpeg, image/png, image/webp). Maximum file size:
+    20MB. Supported formats: JPEG, PNG, WebP, HEIF, HEIC.
 
     Args:
         segment (str):

@@ -1,18 +1,23 @@
 from collections.abc import Mapping
-from typing import Any, TypeVar, Union, cast
+from typing import TYPE_CHECKING, Any, TypeVar, Union, cast
 from uuid import UUID
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..models.pricing_record_input_listing_type_type_0 import PricingRecordInputListingTypeType0
+from ..models.pricing_search_record_input_listing_type_type_0 import PricingSearchRecordInputListingTypeType0
 from ..types import UNSET, Unset
 
-T = TypeVar("T", bound="PricingRecordInput")
+if TYPE_CHECKING:
+    from ..models.search_grade_input import SearchGradeInput
+    from ..models.search_matched_card_input import SearchMatchedCardInput
+
+
+T = TypeVar("T", bound="PricingSearchRecordInput")
 
 
 @_attrs_define
-class PricingRecordInput:
+class PricingSearchRecordInput:
     """
     Attributes:
         price (float): Price in USD. For auctions this is the final sale price (the "bid" side); for fixed/Buy It Now
@@ -20,23 +25,27 @@ class PricingRecordInput:
         source (str): Data source (e.g., "ebay")
         title (Union[None, Unset, str]): Listing title from marketplace
         date (Union[None, Unset, str]): Date the listing ended, in ISO 8601 format
-        listing_type (Union[None, PricingRecordInputListingTypeType0, Unset]): Listing type: "auction" = a completed
-            auction sale (bid side), "fixed" = a Buy It Now asking price (ask side).
+        listing_type (Union[None, PricingSearchRecordInputListingTypeType0, Unset]): Listing type: "auction" = a
+            completed auction sale (bid side), "fixed" = a Buy It Now asking price (ask side).
         url (Union[None, Unset, str]): URL to the original listing
         image_url (Union[None, Unset, str]): Primary image URL for the listing
         parallel_id (Union[None, UUID, Unset]): Parallel variant UUID. Null for base card listings.
         parallel_name (Union[None, Unset, str]): Parallel variant name. Null for base card listings.
+        matched_card (Union[Unset, SearchMatchedCardInput]):
+        grade (Union[Unset, SearchGradeInput]):
     """
 
     price: float
     source: str
     title: Union[None, Unset, str] = UNSET
     date: Union[None, Unset, str] = UNSET
-    listing_type: Union[None, PricingRecordInputListingTypeType0, Unset] = UNSET
+    listing_type: Union[None, PricingSearchRecordInputListingTypeType0, Unset] = UNSET
     url: Union[None, Unset, str] = UNSET
     image_url: Union[None, Unset, str] = UNSET
     parallel_id: Union[None, UUID, Unset] = UNSET
     parallel_name: Union[None, Unset, str] = UNSET
+    matched_card: Union[Unset, "SearchMatchedCardInput"] = UNSET
+    grade: Union[Unset, "SearchGradeInput"] = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -59,7 +68,7 @@ class PricingRecordInput:
         listing_type: Union[None, Unset, str]
         if isinstance(self.listing_type, Unset):
             listing_type = UNSET
-        elif isinstance(self.listing_type, PricingRecordInputListingTypeType0):
+        elif isinstance(self.listing_type, PricingSearchRecordInputListingTypeType0):
             listing_type = self.listing_type.value
         else:
             listing_type = self.listing_type
@@ -90,6 +99,14 @@ class PricingRecordInput:
         else:
             parallel_name = self.parallel_name
 
+        matched_card: Union[Unset, dict[str, Any]] = UNSET
+        if not isinstance(self.matched_card, Unset):
+            matched_card = self.matched_card.to_dict()
+
+        grade: Union[Unset, dict[str, Any]] = UNSET
+        if not isinstance(self.grade, Unset):
+            grade = self.grade.to_dict()
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update(
@@ -112,11 +129,18 @@ class PricingRecordInput:
             field_dict["parallel_id"] = parallel_id
         if parallel_name is not UNSET:
             field_dict["parallel_name"] = parallel_name
+        if matched_card is not UNSET:
+            field_dict["matched_card"] = matched_card
+        if grade is not UNSET:
+            field_dict["grade"] = grade
 
         return field_dict
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        from ..models.search_grade_input import SearchGradeInput
+        from ..models.search_matched_card_input import SearchMatchedCardInput
+
         d = dict(src_dict)
         price = d.pop("price")
 
@@ -140,7 +164,7 @@ class PricingRecordInput:
 
         date = _parse_date(d.pop("date", UNSET))
 
-        def _parse_listing_type(data: object) -> Union[None, PricingRecordInputListingTypeType0, Unset]:
+        def _parse_listing_type(data: object) -> Union[None, PricingSearchRecordInputListingTypeType0, Unset]:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -148,12 +172,12 @@ class PricingRecordInput:
             try:
                 if not isinstance(data, str):
                     raise TypeError()
-                listing_type_type_0 = PricingRecordInputListingTypeType0(data)
+                listing_type_type_0 = PricingSearchRecordInputListingTypeType0(data)
 
                 return listing_type_type_0
             except:  # noqa: E722
                 pass
-            return cast(Union[None, PricingRecordInputListingTypeType0, Unset], data)
+            return cast(Union[None, PricingSearchRecordInputListingTypeType0, Unset], data)
 
         listing_type = _parse_listing_type(d.pop("listing_type", UNSET))
 
@@ -201,7 +225,21 @@ class PricingRecordInput:
 
         parallel_name = _parse_parallel_name(d.pop("parallel_name", UNSET))
 
-        pricing_record_input = cls(
+        _matched_card = d.pop("matched_card", UNSET)
+        matched_card: Union[Unset, SearchMatchedCardInput]
+        if isinstance(_matched_card, Unset):
+            matched_card = UNSET
+        else:
+            matched_card = SearchMatchedCardInput.from_dict(_matched_card)
+
+        _grade = d.pop("grade", UNSET)
+        grade: Union[Unset, SearchGradeInput]
+        if isinstance(_grade, Unset):
+            grade = UNSET
+        else:
+            grade = SearchGradeInput.from_dict(_grade)
+
+        pricing_search_record_input = cls(
             price=price,
             source=source,
             title=title,
@@ -211,10 +249,12 @@ class PricingRecordInput:
             image_url=image_url,
             parallel_id=parallel_id,
             parallel_name=parallel_name,
+            matched_card=matched_card,
+            grade=grade,
         )
 
-        pricing_record_input.additional_properties = d
-        return pricing_record_input
+        pricing_search_record_input.additional_properties = d
+        return pricing_search_record_input
 
     @property
     def additional_keys(self) -> list[str]:

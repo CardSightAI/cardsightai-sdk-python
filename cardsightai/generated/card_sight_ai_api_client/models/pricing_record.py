@@ -14,11 +14,13 @@ T = TypeVar("T", bound="PricingRecord")
 class PricingRecord:
     """
     Attributes:
-        price (float): Sale price in USD
+        price (float): Price in USD. For auctions this is the final sale price (the "bid" side); for fixed/Buy It Now
+            this is the seller's asking price (the "ask" side) and is NOT necessarily a completed sale.
         source (str): Data source (e.g., "ebay")
         title (Union[None, Unset, str]): Listing title from marketplace
-        date (Union[None, Unset, str]): Sale date in ISO 8601 format
-        listing_type (Union[None, PricingRecordListingTypeType0, Unset]): Type of listing: auction or fixed price
+        date (Union[None, Unset, str]): Date the listing ended, in ISO 8601 format
+        listing_type (Union[None, PricingRecordListingTypeType0, Unset]): Listing type: "auction" = a completed auction
+            sale (bid side), "fixed" = a Buy It Now asking price (ask side).
         url (Union[None, Unset, str]): URL to the original listing
         image_url (Union[None, Unset, str]): Primary image URL for the listing
         parallel_id (Union[None, UUID, Unset]): Parallel variant UUID. Null for base card listings.

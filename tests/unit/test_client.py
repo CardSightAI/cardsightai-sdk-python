@@ -274,8 +274,16 @@ class TestAPIModuleProxy:
         func = async_client.pricing.get_bulk_pricing
         assert callable(func)
 
+    def test_pricing_search_pricing_by_title(self, async_client):
+        func = async_client.pricing.search_pricing_by_title
+        assert callable(func)
+
     def test_marketplace_get_card_marketplace(self, async_client):
         func = async_client.marketplace.get_card_marketplace
+        assert callable(func)
+
+    def test_marketplace_search_marketplace_by_title(self, async_client):
+        func = async_client.marketplace.search_marketplace_by_title
         assert callable(func)
 
     def test_population_get_card_population(self, async_client):

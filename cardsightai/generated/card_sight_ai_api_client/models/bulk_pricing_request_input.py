@@ -22,7 +22,8 @@ class BulkPricingRequestInput:
         period (Union[Unset, str]): Lookback period. Examples: "7d", "14d", "2w", "3m", "1y", "all". Omit or "all" for
             no time limit. Default: 'all'.
         listing_type (Union[Unset, BulkPricingRequestInputListingType]): Filter by listing type. auction=completed
-            auctions, fixed=buy-it-now, both=all Default: BulkPricingRequestInputListingType.BOTH.
+            auction sales (bid side), fixed=Buy It Now asking prices (ask side), both=all Default:
+            BulkPricingRequestInputListingType.BOTH.
         limit (Union[Unset, int]): Maximum number of records per card
     """
 

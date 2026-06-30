@@ -18,8 +18,8 @@ class BulkPricingRequest:
             search results.
         period (str): Lookback period. Examples: "7d", "14d", "2w", "3m", "1y", "all". Omit or "all" for no time limit.
             Default: 'all'.
-        listing_type (BulkPricingRequestListingType): Filter by listing type. auction=completed auctions, fixed=buy-it-
-            now, both=all Default: BulkPricingRequestListingType.BOTH.
+        listing_type (BulkPricingRequestListingType): Filter by listing type. auction=completed auction sales (bid
+            side), fixed=Buy It Now asking prices (ask side), both=all Default: BulkPricingRequestListingType.BOTH.
         parallel_id (Union[None, UUID, Unset]): Filter by parallel variant UUID. null = base card only.
         grade_id (Union[None, UUID, Unset]): Filter by grade UUID. null = ungraded only.
         limit (Union[Unset, int]): Maximum number of records per card

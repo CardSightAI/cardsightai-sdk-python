@@ -107,11 +107,13 @@ def sync_detailed(
     listing_type: Union[Unset, GetCardPricingListingType] = GetCardPricingListingType.BOTH,
     limit: Union[Unset, int] = UNSET,
 ) -> Response[Union[ErrorResponse, PricingResponse]]:
-    """Get completed sales pricing for a card
+    r"""Get price history (bid/ask) for a card
 
-     Returns completed sales data for a single card, grouped into raw (ungraded) and graded sections.
-    Graded results are organized by grading company and grade value. Supports filtering by parallel
-    variant, grade, time period, and listing type.
+     Returns historical pricing for a single card as a bid/ask spread: completed auction sales (the
+    \"bid\" side — what cards actually sold for) alongside Buy It Now listings (the \"ask\" side — what
+    sellers were asking, which is not necessarily a completed sale). Results are grouped into raw
+    (ungraded) and graded sections, with graded results organized by grading company and grade value.
+    Supports filtering by parallel variant, grade, time period, and listing type.
 
     Args:
         card_id (str):
@@ -156,11 +158,13 @@ def sync(
     listing_type: Union[Unset, GetCardPricingListingType] = GetCardPricingListingType.BOTH,
     limit: Union[Unset, int] = UNSET,
 ) -> Optional[Union[ErrorResponse, PricingResponse]]:
-    """Get completed sales pricing for a card
+    r"""Get price history (bid/ask) for a card
 
-     Returns completed sales data for a single card, grouped into raw (ungraded) and graded sections.
-    Graded results are organized by grading company and grade value. Supports filtering by parallel
-    variant, grade, time period, and listing type.
+     Returns historical pricing for a single card as a bid/ask spread: completed auction sales (the
+    \"bid\" side — what cards actually sold for) alongside Buy It Now listings (the \"ask\" side — what
+    sellers were asking, which is not necessarily a completed sale). Results are grouped into raw
+    (ungraded) and graded sections, with graded results organized by grading company and grade value.
+    Supports filtering by parallel variant, grade, time period, and listing type.
 
     Args:
         card_id (str):
@@ -200,11 +204,13 @@ async def asyncio_detailed(
     listing_type: Union[Unset, GetCardPricingListingType] = GetCardPricingListingType.BOTH,
     limit: Union[Unset, int] = UNSET,
 ) -> Response[Union[ErrorResponse, PricingResponse]]:
-    """Get completed sales pricing for a card
+    r"""Get price history (bid/ask) for a card
 
-     Returns completed sales data for a single card, grouped into raw (ungraded) and graded sections.
-    Graded results are organized by grading company and grade value. Supports filtering by parallel
-    variant, grade, time period, and listing type.
+     Returns historical pricing for a single card as a bid/ask spread: completed auction sales (the
+    \"bid\" side — what cards actually sold for) alongside Buy It Now listings (the \"ask\" side — what
+    sellers were asking, which is not necessarily a completed sale). Results are grouped into raw
+    (ungraded) and graded sections, with graded results organized by grading company and grade value.
+    Supports filtering by parallel variant, grade, time period, and listing type.
 
     Args:
         card_id (str):
@@ -247,11 +253,13 @@ async def asyncio(
     listing_type: Union[Unset, GetCardPricingListingType] = GetCardPricingListingType.BOTH,
     limit: Union[Unset, int] = UNSET,
 ) -> Optional[Union[ErrorResponse, PricingResponse]]:
-    """Get completed sales pricing for a card
+    r"""Get price history (bid/ask) for a card
 
-     Returns completed sales data for a single card, grouped into raw (ungraded) and graded sections.
-    Graded results are organized by grading company and grade value. Supports filtering by parallel
-    variant, grade, time period, and listing type.
+     Returns historical pricing for a single card as a bid/ask spread: completed auction sales (the
+    \"bid\" side — what cards actually sold for) alongside Buy It Now listings (the \"ask\" side — what
+    sellers were asking, which is not necessarily a completed sale). Results are grouped into raw
+    (ungraded) and graded sections, with graded results organized by grading company and grade value.
+    Supports filtering by parallel variant, grade, time period, and listing type.
 
     Args:
         card_id (str):

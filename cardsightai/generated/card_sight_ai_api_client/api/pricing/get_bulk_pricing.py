@@ -85,11 +85,12 @@ def sync_detailed(
     client: AuthenticatedClient,
     body: BulkPricingRequestInput,
 ) -> Response[Union[BulkPricingResponse, ErrorResponse]]:
-    """Get pricing for multiple cards
+    """Get price history (bid/ask) for multiple cards
 
-     Returns completed sales data for up to 100 cards in a single request. Each card is processed
-    independently — individual cards may succeed or fail without affecting others. Results include the
-    same raw/graded grouping as the single-card endpoint.
+     Returns price history as a bid/ask spread for up to 100 cards in a single request — completed
+    auction sales (bid) and Buy It Now asking prices (ask, not necessarily a completed sale). Each card
+    is processed independently — individual cards may succeed or fail without affecting others. Results
+    include the same raw/graded grouping as the single-card endpoint.
 
     Args:
         body (BulkPricingRequestInput):
@@ -118,11 +119,12 @@ def sync(
     client: AuthenticatedClient,
     body: BulkPricingRequestInput,
 ) -> Optional[Union[BulkPricingResponse, ErrorResponse]]:
-    """Get pricing for multiple cards
+    """Get price history (bid/ask) for multiple cards
 
-     Returns completed sales data for up to 100 cards in a single request. Each card is processed
-    independently — individual cards may succeed or fail without affecting others. Results include the
-    same raw/graded grouping as the single-card endpoint.
+     Returns price history as a bid/ask spread for up to 100 cards in a single request — completed
+    auction sales (bid) and Buy It Now asking prices (ask, not necessarily a completed sale). Each card
+    is processed independently — individual cards may succeed or fail without affecting others. Results
+    include the same raw/graded grouping as the single-card endpoint.
 
     Args:
         body (BulkPricingRequestInput):
@@ -146,11 +148,12 @@ async def asyncio_detailed(
     client: AuthenticatedClient,
     body: BulkPricingRequestInput,
 ) -> Response[Union[BulkPricingResponse, ErrorResponse]]:
-    """Get pricing for multiple cards
+    """Get price history (bid/ask) for multiple cards
 
-     Returns completed sales data for up to 100 cards in a single request. Each card is processed
-    independently — individual cards may succeed or fail without affecting others. Results include the
-    same raw/graded grouping as the single-card endpoint.
+     Returns price history as a bid/ask spread for up to 100 cards in a single request — completed
+    auction sales (bid) and Buy It Now asking prices (ask, not necessarily a completed sale). Each card
+    is processed independently — individual cards may succeed or fail without affecting others. Results
+    include the same raw/graded grouping as the single-card endpoint.
 
     Args:
         body (BulkPricingRequestInput):
@@ -177,11 +180,12 @@ async def asyncio(
     client: AuthenticatedClient,
     body: BulkPricingRequestInput,
 ) -> Optional[Union[BulkPricingResponse, ErrorResponse]]:
-    """Get pricing for multiple cards
+    """Get price history (bid/ask) for multiple cards
 
-     Returns completed sales data for up to 100 cards in a single request. Each card is processed
-    independently — individual cards may succeed or fail without affecting others. Results include the
-    same raw/graded grouping as the single-card endpoint.
+     Returns price history as a bid/ask spread for up to 100 cards in a single request — completed
+    auction sales (bid) and Buy It Now asking prices (ask, not necessarily a completed sale). Each card
+    is processed independently — individual cards may succeed or fail without affecting others. Results
+    include the same raw/graded grouping as the single-card endpoint.
 
     Args:
         body (BulkPricingRequestInput):

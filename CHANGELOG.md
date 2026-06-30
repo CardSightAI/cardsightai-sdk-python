@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.0] - 2026-06-30
+
+### Added
+- **Pricing search** endpoint: `client.pricing.search_pricing_by_title(q="...")` — free-text fuzzy search over historical pricing by listing title (`GET /v1/pricing/search`), covering completed auction sales and Buy It Now asking prices, with optional `period`, `listing_type`, and `limit` filters
+- **Marketplace search** endpoint: `client.marketplace.search_marketplace_by_title(q="...")` — free-text fuzzy search over active marketplace listings by title (`GET /v1/marketplace/search`), with optional `listing_type` and `limit` filters
+- New response models: `PricingSearchResponse`, `PricingSearchRecord`, `MarketplaceSearchResponse`, `MarketplaceSearchRecord`, and shared `SearchMeta`, `SearchMatchedCard`, `CardSetContext`, and `SearchGrade`
+
 ## [1.2.0] - 2026-06-08
 
 ### Added

@@ -5,13 +5,12 @@ from uuid import UUID
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-T = TypeVar("T", bound="PricingCardContextInputSet")
+T = TypeVar("T", bound="CardSetContextInput")
 
 
 @_attrs_define
-class PricingCardContextInputSet:
-    """Set context
-
+class CardSetContextInput:
+    """
     Attributes:
         set_id (UUID): Set UUID
         name (str): Set name
@@ -58,15 +57,15 @@ class PricingCardContextInputSet:
 
         release = d.pop("release")
 
-        pricing_card_context_input_set = cls(
+        card_set_context_input = cls(
             set_id=set_id,
             name=name,
             year=year,
             release=release,
         )
 
-        pricing_card_context_input_set.additional_properties = d
-        return pricing_card_context_input_set
+        card_set_context_input.additional_properties = d
+        return card_set_context_input
 
     @property
     def additional_keys(self) -> list[str]:

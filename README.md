@@ -8,7 +8,7 @@
 **Official Python SDK for [CardSight AI](https://cardsight.ai) REST API**
 
 The most comprehensive trading card identification and collection management platform.
-**6M+ Cards** • **Baseball, Football, Basketball** • **AI-Powered Recognition** • **Free Tier Available**
+**12M+ Trading Card Catalog** • **Baseball, Football, Basketball, Hockey, Pokemon, Magic: The Gathering** • **AI-Powered Recognition** • **Free Tier Available**
 
 **Quick Links:** [Getting Started](https://github.com/CardSightAI/cardsightai-sdk-python#getting-started) • [Installation](https://github.com/CardSightAI/cardsightai-sdk-python#installation) • [Examples](https://github.com/CardSightAI/cardsightai-sdk-python#usage-examples) • [API Documentation](https://cardsight.ai/documentation/api-reference) • [Support](https://cardsight.ai/support)
 
@@ -34,11 +34,11 @@ The most comprehensive trading card identification and collection management pla
 | **Set Identifiability** | Free pre-flight check of which sets AI can identify | `card_identification.list_identifiable_sets()`, `card_identification.check_set_identifiable()` |
 | **Card Detection** | Detect cards in images | `detect.detect_card()` |
 | **Global Search** | Fuzzy search across cards, sets, releases, parallels | `catalog.search_catalog(q="...")` |
-| **Catalog Search** | Search 6M+ trading cards database | `catalog.get_cards()`, `catalog.get_sets()` |
+| **Catalog Search** | Search 12M+ trading cards database | `catalog.get_cards()`, `catalog.get_sets()` |
 | **Flexible Metadata** | Browse flexible card fields (HP, Rarity, Artist, etc.) | `catalog.get_fields()`, `catalog.get_field_by_id()` |
 | **Random Catalog** | Pack opening simulations with parallel odds | `catalog.get_random_cards()`, `catalog.get_random_sets()` |
-| **Pricing** | Completed sales data, raw + graded, single & bulk | `pricing.get_card_pricing()`, `pricing.get_bulk_pricing()` |
-| **Marketplace** | Active marketplace listings by grade and type | `marketplace.get_card_marketplace()` |
+| **Pricing** | Completed sales data, raw + graded, single & bulk, title search | `pricing.get_card_pricing()`, `pricing.get_bulk_pricing()`, `pricing.search_pricing_by_title()` |
+| **Marketplace** | Active marketplace listings by grade and type, title search | `marketplace.get_card_marketplace()`, `marketplace.search_marketplace_by_title()` |
 | **Population** | Graded population reports by card, set, release | `population.get_card_population()`, `population.get_set_population()`, `population.get_release_population()` |
 | **Release Calendar** | Upcoming & recent product releases | `release_calendar.get_release_calendar()` |
 | **Collections** | Manage owned card collections with analytics | `collections.create_collection()`, `collections.add_collection_cards()` |
@@ -505,6 +505,24 @@ bulk = client.pricing.get_bulk_pricing(
 )
 for result in bulk.results:
     print(result)
+
+# Fuzzy free-text search over historical pricing by listing title
+results = client.pricing.search_pricing_by_title(
+    q='2018 Bowman Chrome Juan Soto PSA 10',
+    period='all',   # all, 30d, 90d, 1y, 5y
+    limit=25,
+)
+print(f"Matched {results.meta.total_records} records")
+for record in results.results:
+    print(f"{record.price} — {record.title} ({record.source})")
+
+# Optionally filter by listing type (auction vs. fixed-price)
+from cardsightai.generated.card_sight_ai_api_client.models import SearchPricingByTitleListingType
+
+auctions = client.pricing.search_pricing_by_title(
+    q='2018 Bowman Chrome Juan Soto PSA 10',
+    listing_type=SearchPricingByTitleListingType.AUCTION,  # auction, fixed, both
+)
 ```
 
 ### Marketplace (Active Listings)
@@ -524,6 +542,15 @@ listings = client.marketplace.get_card_marketplace(
 print(f"Raw listings: {len(listings.raw.records)}")
 for company in listings.graded:
     print(f"{company.company_name}: {len(company.grades)} grade groups")
+
+# Fuzzy free-text search over active marketplace listings by title
+results = client.marketplace.search_marketplace_by_title(
+    q='2018 Bowman Chrome Juan Soto PSA 10',
+    limit=25,
+)
+print(f"Matched {results.meta.total_records} active listings")
+for record in results.results:
+    print(f"{record.title} — {record.price} ({record.source})")
 ```
 
 ### Population Reports (Graded Census)
@@ -700,8 +727,8 @@ The SDK provides complete coverage of all CardSight AI endpoints:
 | Catalog | Statistics, Segments, Manufacturers, Releases, Sets, Cards, Parallels, Attributes | ✅ |
 | Catalog Fields | `GET /v1/catalog/fields`, `GET /v1/catalog/fields/{id}` | ✅ |
 | Random Catalog | Random cards, sets, releases | ✅ |
-| Pricing | `GET /v1/pricing/{card_id}`, `POST /v1/pricing/` (bulk) | ✅ |
-| Marketplace | `GET /v1/marketplace/{card_id}` | ✅ |
+| Pricing | `GET /v1/pricing/{card_id}`, `POST /v1/pricing/` (bulk), `GET /v1/pricing/search` (title search) | ✅ |
+| Marketplace | `GET /v1/marketplace/{card_id}`, `GET /v1/marketplace/search` (title search) | ✅ |
 | Population | `GET /v1/population/card/{id}`, `/set/{id}`, `/release/{id}` | ✅ |
 | Release Calendar | `GET /v1/release-calendar/` | ✅ |
 | Collections | Full CRUD, analytics, breakdown, cards | ✅ |
@@ -796,7 +823,7 @@ The SDK has minimal runtime dependencies:
 - **Documentation**: [api.cardsight.ai/documentation](https://api.cardsight.ai/documentation)
 - **Issues**: [GitHub Issues](https://github.com/CardSightAI/cardsightai-sdk-python/issues)
 - **Email**: support@cardsight.ai
-- **Discord**: [Join our community](https://discord.gg/cardsightai)
+- **Discord**: [Join our community](https://discord.gg/UrYrv2SZm8)
 
 ## License
 

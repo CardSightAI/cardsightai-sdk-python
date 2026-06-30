@@ -1,5 +1,5 @@
 from collections.abc import Mapping
-from typing import Any, TypeVar
+from typing import Any, TypeVar, Union, cast
 
 from attrs import define as _attrs_define
 
@@ -14,18 +14,25 @@ class Segment:
             operations involving this segment.
         name (str): Display name of the segment. Examples: "Sports", "Entertainment", "Gaming". Used for categorizing
             releases and filtering.
+        shortname (Union[None, str]): Short, URL-friendly key for the segment, usable in place of the name or UUID on
+            segment-specific routes such as /v1/identify/card/{segment} (e.g. "magic" for "Magic: The Gathering"). Null when
+            no shortname is set.
         is_identifiable (bool): Whether cards in this segment can be identified by the CardSightAI identification
             service.
     """
 
     id: str
     name: str
+    shortname: Union[None, str]
     is_identifiable: bool
 
     def to_dict(self) -> dict[str, Any]:
         id = self.id
 
         name = self.name
+
+        shortname: Union[None, str]
+        shortname = self.shortname
 
         is_identifiable = self.is_identifiable
 
@@ -35,6 +42,7 @@ class Segment:
             {
                 "id": id,
                 "name": name,
+                "shortname": shortname,
                 "is_identifiable": is_identifiable,
             }
         )
@@ -48,11 +56,19 @@ class Segment:
 
         name = d.pop("name")
 
+        def _parse_shortname(data: object) -> Union[None, str]:
+            if data is None:
+                return data
+            return cast(Union[None, str], data)
+
+        shortname = _parse_shortname(d.pop("shortname"))
+
         is_identifiable = d.pop("is_identifiable")
 
         segment = cls(
             id=id,
             name=name,
+            shortname=shortname,
             is_identifiable=is_identifiable,
         )
 
