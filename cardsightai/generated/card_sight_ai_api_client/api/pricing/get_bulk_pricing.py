@@ -90,7 +90,11 @@ def sync_detailed(
      Returns price history as a bid/ask spread for up to 100 cards in a single request — completed
     auction sales (bid) and Buy It Now asking prices (ask, not necessarily a completed sale). Each card
     is processed independently — individual cards may succeed or fail without affecting others. Results
-    include the same raw/graded grouping as the single-card endpoint.
+    include the same raw/graded grouping as the single-card endpoint. This endpoint is a recent market
+    snapshot: it returns the most-recent listings per card up to `limit` (default 25, max 100). A single
+    request covers up to 100 cards, so the default returns up to 2,500 datapoints and the maximum up to
+    10,000. When a card hits that cap a warning is returned in its `messages`; for a card's full history
+    use GET /pricing/{card_id} with `as_of_date` to page backward.
 
     Args:
         body (BulkPricingRequestInput):
@@ -124,7 +128,11 @@ def sync(
      Returns price history as a bid/ask spread for up to 100 cards in a single request — completed
     auction sales (bid) and Buy It Now asking prices (ask, not necessarily a completed sale). Each card
     is processed independently — individual cards may succeed or fail without affecting others. Results
-    include the same raw/graded grouping as the single-card endpoint.
+    include the same raw/graded grouping as the single-card endpoint. This endpoint is a recent market
+    snapshot: it returns the most-recent listings per card up to `limit` (default 25, max 100). A single
+    request covers up to 100 cards, so the default returns up to 2,500 datapoints and the maximum up to
+    10,000. When a card hits that cap a warning is returned in its `messages`; for a card's full history
+    use GET /pricing/{card_id} with `as_of_date` to page backward.
 
     Args:
         body (BulkPricingRequestInput):
@@ -153,7 +161,11 @@ async def asyncio_detailed(
      Returns price history as a bid/ask spread for up to 100 cards in a single request — completed
     auction sales (bid) and Buy It Now asking prices (ask, not necessarily a completed sale). Each card
     is processed independently — individual cards may succeed or fail without affecting others. Results
-    include the same raw/graded grouping as the single-card endpoint.
+    include the same raw/graded grouping as the single-card endpoint. This endpoint is a recent market
+    snapshot: it returns the most-recent listings per card up to `limit` (default 25, max 100). A single
+    request covers up to 100 cards, so the default returns up to 2,500 datapoints and the maximum up to
+    10,000. When a card hits that cap a warning is returned in its `messages`; for a card's full history
+    use GET /pricing/{card_id} with `as_of_date` to page backward.
 
     Args:
         body (BulkPricingRequestInput):
@@ -185,7 +197,11 @@ async def asyncio(
      Returns price history as a bid/ask spread for up to 100 cards in a single request — completed
     auction sales (bid) and Buy It Now asking prices (ask, not necessarily a completed sale). Each card
     is processed independently — individual cards may succeed or fail without affecting others. Results
-    include the same raw/graded grouping as the single-card endpoint.
+    include the same raw/graded grouping as the single-card endpoint. This endpoint is a recent market
+    snapshot: it returns the most-recent listings per card up to `limit` (default 25, max 100). A single
+    request covers up to 100 cards, so the default returns up to 2,500 datapoints and the maximum up to
+    10,000. When a card hits that cap a warning is returned in its `messages`; for a card's full history
+    use GET /pricing/{card_id} with `as_of_date` to page backward.
 
     Args:
         body (BulkPricingRequestInput):

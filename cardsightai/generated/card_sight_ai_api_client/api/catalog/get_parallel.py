@@ -76,7 +76,7 @@ def sync_detailed(
     *,
     client: AuthenticatedClient,
 ) -> Response[Union[DetailedParallelResponse, ErrorResponse]]:
-    """Get detailed parallel information
+    """Get detailed parallel information (free)
 
      Retrieve detailed information about a specific Parallel, including set and release context. For
     partial parallels (isPartial=true), the response includes an array of Card IDs that have this
@@ -109,7 +109,7 @@ def sync(
     *,
     client: AuthenticatedClient,
 ) -> Optional[Union[DetailedParallelResponse, ErrorResponse]]:
-    """Get detailed parallel information
+    """Get detailed parallel information (free)
 
      Retrieve detailed information about a specific Parallel, including set and release context. For
     partial parallels (isPartial=true), the response includes an array of Card IDs that have this
@@ -137,7 +137,7 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient,
 ) -> Response[Union[DetailedParallelResponse, ErrorResponse]]:
-    """Get detailed parallel information
+    """Get detailed parallel information (free)
 
      Retrieve detailed information about a specific Parallel, including set and release context. For
     partial parallels (isPartial=true), the response includes an array of Card IDs that have this
@@ -168,7 +168,7 @@ async def asyncio(
     *,
     client: AuthenticatedClient,
 ) -> Optional[Union[DetailedParallelResponse, ErrorResponse]]:
-    """Get detailed parallel information
+    """Get detailed parallel information (free)
 
      Retrieve detailed information about a specific Parallel, including set and release context. For
     partial parallels (isPartial=true), the response includes an array of Card IDs that have this

@@ -1,7 +1,9 @@
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar
+from typing import TYPE_CHECKING, Any, TypeVar, Union
 
 from attrs import define as _attrs_define
+
+from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
     from ..models.pricing_card_context import PricingCardContext
@@ -9,6 +11,7 @@ if TYPE_CHECKING:
     from ..models.pricing_meta import PricingMeta
     from ..models.pricing_query_echo import PricingQueryEcho
     from ..models.raw_pricing_section import RawPricingSection
+    from ..models.server_message import ServerMessage
 
 
 T = TypeVar("T", bound="PricingResponse")
@@ -23,6 +26,8 @@ class PricingResponse:
         raw (RawPricingSection):
         graded (list['PricingCompanyGroup']): Graded pricing data grouped by company and grade
         meta (PricingMeta):
+        messages (Union[Unset, list['ServerMessage']]): Server advisory messages (e.g. the requested period was
+            truncated, or the row cap was hit and more listings may exist within the window). Omitted when there are none.
     """
 
     card: "PricingCardContext"
@@ -30,6 +35,7 @@ class PricingResponse:
     raw: "RawPricingSection"
     graded: list["PricingCompanyGroup"]
     meta: "PricingMeta"
+    messages: Union[Unset, list["ServerMessage"]] = UNSET
 
     def to_dict(self) -> dict[str, Any]:
         card = self.card.to_dict()
@@ -45,6 +51,13 @@ class PricingResponse:
 
         meta = self.meta.to_dict()
 
+        messages: Union[Unset, list[dict[str, Any]]] = UNSET
+        if not isinstance(self.messages, Unset):
+            messages = []
+            for messages_item_data in self.messages:
+                messages_item = messages_item_data.to_dict()
+                messages.append(messages_item)
+
         field_dict: dict[str, Any] = {}
 
         field_dict.update(
@@ -56,6 +69,8 @@ class PricingResponse:
                 "meta": meta,
             }
         )
+        if messages is not UNSET:
+            field_dict["messages"] = messages
 
         return field_dict
 
@@ -66,6 +81,7 @@ class PricingResponse:
         from ..models.pricing_meta import PricingMeta
         from ..models.pricing_query_echo import PricingQueryEcho
         from ..models.raw_pricing_section import RawPricingSection
+        from ..models.server_message import ServerMessage
 
         d = dict(src_dict)
         card = PricingCardContext.from_dict(d.pop("card"))
@@ -83,12 +99,20 @@ class PricingResponse:
 
         meta = PricingMeta.from_dict(d.pop("meta"))
 
+        messages = []
+        _messages = d.pop("messages", UNSET)
+        for messages_item_data in _messages or []:
+            messages_item = ServerMessage.from_dict(messages_item_data)
+
+            messages.append(messages_item)
+
         pricing_response = cls(
             card=card,
             query=query,
             raw=raw,
             graded=graded,
             meta=meta,
+            messages=messages,
         )
 
         return pricing_response

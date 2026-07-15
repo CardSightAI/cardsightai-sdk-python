@@ -17,6 +17,7 @@ def _get_kwargs(
     parallel_id: Union[Unset, str] = UNSET,
     grade_id: Union[Unset, str] = UNSET,
     period: Union[Unset, str] = "all",
+    as_of_date: Union[Unset, str] = UNSET,
     listing_type: Union[Unset, GetCardPricingListingType] = GetCardPricingListingType.BOTH,
     limit: Union[Unset, int] = UNSET,
 ) -> dict[str, Any]:
@@ -27,6 +28,8 @@ def _get_kwargs(
     params["grade_id"] = grade_id
 
     params["period"] = period
+
+    params["as_of_date"] = as_of_date
 
     json_listing_type: Union[Unset, str] = UNSET
     if not isinstance(listing_type, Unset):
@@ -104,6 +107,7 @@ def sync_detailed(
     parallel_id: Union[Unset, str] = UNSET,
     grade_id: Union[Unset, str] = UNSET,
     period: Union[Unset, str] = "all",
+    as_of_date: Union[Unset, str] = UNSET,
     listing_type: Union[Unset, GetCardPricingListingType] = GetCardPricingListingType.BOTH,
     limit: Union[Unset, int] = UNSET,
 ) -> Response[Union[ErrorResponse, PricingResponse]]:
@@ -113,13 +117,18 @@ def sync_detailed(
     \"bid\" side — what cards actually sold for) alongside Buy It Now listings (the \"ask\" side — what
     sellers were asking, which is not necessarily a completed sale). Results are grouped into raw
     (ungraded) and graded sections, with graded results organized by grading company and grade value.
-    Supports filtering by parallel variant, grade, time period, and listing type.
+    Supports filtering by parallel variant, grade, time period, and listing type. Each call returns the
+    most-recent listings for the card, up to a cap of 500 rows ending at `as_of_date` (default today, US
+    Eastern). If that cap is hit a warning is returned in `messages`; to page further back through
+    history, set `as_of_date` to the oldest `date` in the response and query again (the boundary day may
+    repeat a few rows — duplicates, never gaps).
 
     Args:
         card_id (str):
         parallel_id (Union[Unset, str]):
         grade_id (Union[Unset, str]):
         period (Union[Unset, str]):  Default: 'all'.
+        as_of_date (Union[Unset, str]):
         listing_type (Union[Unset, GetCardPricingListingType]):  Default:
             GetCardPricingListingType.BOTH.
         limit (Union[Unset, int]):
@@ -137,6 +146,7 @@ def sync_detailed(
         parallel_id=parallel_id,
         grade_id=grade_id,
         period=period,
+        as_of_date=as_of_date,
         listing_type=listing_type,
         limit=limit,
     )
@@ -155,6 +165,7 @@ def sync(
     parallel_id: Union[Unset, str] = UNSET,
     grade_id: Union[Unset, str] = UNSET,
     period: Union[Unset, str] = "all",
+    as_of_date: Union[Unset, str] = UNSET,
     listing_type: Union[Unset, GetCardPricingListingType] = GetCardPricingListingType.BOTH,
     limit: Union[Unset, int] = UNSET,
 ) -> Optional[Union[ErrorResponse, PricingResponse]]:
@@ -164,13 +175,18 @@ def sync(
     \"bid\" side — what cards actually sold for) alongside Buy It Now listings (the \"ask\" side — what
     sellers were asking, which is not necessarily a completed sale). Results are grouped into raw
     (ungraded) and graded sections, with graded results organized by grading company and grade value.
-    Supports filtering by parallel variant, grade, time period, and listing type.
+    Supports filtering by parallel variant, grade, time period, and listing type. Each call returns the
+    most-recent listings for the card, up to a cap of 500 rows ending at `as_of_date` (default today, US
+    Eastern). If that cap is hit a warning is returned in `messages`; to page further back through
+    history, set `as_of_date` to the oldest `date` in the response and query again (the boundary day may
+    repeat a few rows — duplicates, never gaps).
 
     Args:
         card_id (str):
         parallel_id (Union[Unset, str]):
         grade_id (Union[Unset, str]):
         period (Union[Unset, str]):  Default: 'all'.
+        as_of_date (Union[Unset, str]):
         listing_type (Union[Unset, GetCardPricingListingType]):  Default:
             GetCardPricingListingType.BOTH.
         limit (Union[Unset, int]):
@@ -189,6 +205,7 @@ def sync(
         parallel_id=parallel_id,
         grade_id=grade_id,
         period=period,
+        as_of_date=as_of_date,
         listing_type=listing_type,
         limit=limit,
     ).parsed
@@ -201,6 +218,7 @@ async def asyncio_detailed(
     parallel_id: Union[Unset, str] = UNSET,
     grade_id: Union[Unset, str] = UNSET,
     period: Union[Unset, str] = "all",
+    as_of_date: Union[Unset, str] = UNSET,
     listing_type: Union[Unset, GetCardPricingListingType] = GetCardPricingListingType.BOTH,
     limit: Union[Unset, int] = UNSET,
 ) -> Response[Union[ErrorResponse, PricingResponse]]:
@@ -210,13 +228,18 @@ async def asyncio_detailed(
     \"bid\" side — what cards actually sold for) alongside Buy It Now listings (the \"ask\" side — what
     sellers were asking, which is not necessarily a completed sale). Results are grouped into raw
     (ungraded) and graded sections, with graded results organized by grading company and grade value.
-    Supports filtering by parallel variant, grade, time period, and listing type.
+    Supports filtering by parallel variant, grade, time period, and listing type. Each call returns the
+    most-recent listings for the card, up to a cap of 500 rows ending at `as_of_date` (default today, US
+    Eastern). If that cap is hit a warning is returned in `messages`; to page further back through
+    history, set `as_of_date` to the oldest `date` in the response and query again (the boundary day may
+    repeat a few rows — duplicates, never gaps).
 
     Args:
         card_id (str):
         parallel_id (Union[Unset, str]):
         grade_id (Union[Unset, str]):
         period (Union[Unset, str]):  Default: 'all'.
+        as_of_date (Union[Unset, str]):
         listing_type (Union[Unset, GetCardPricingListingType]):  Default:
             GetCardPricingListingType.BOTH.
         limit (Union[Unset, int]):
@@ -234,6 +257,7 @@ async def asyncio_detailed(
         parallel_id=parallel_id,
         grade_id=grade_id,
         period=period,
+        as_of_date=as_of_date,
         listing_type=listing_type,
         limit=limit,
     )
@@ -250,6 +274,7 @@ async def asyncio(
     parallel_id: Union[Unset, str] = UNSET,
     grade_id: Union[Unset, str] = UNSET,
     period: Union[Unset, str] = "all",
+    as_of_date: Union[Unset, str] = UNSET,
     listing_type: Union[Unset, GetCardPricingListingType] = GetCardPricingListingType.BOTH,
     limit: Union[Unset, int] = UNSET,
 ) -> Optional[Union[ErrorResponse, PricingResponse]]:
@@ -259,13 +284,18 @@ async def asyncio(
     \"bid\" side — what cards actually sold for) alongside Buy It Now listings (the \"ask\" side — what
     sellers were asking, which is not necessarily a completed sale). Results are grouped into raw
     (ungraded) and graded sections, with graded results organized by grading company and grade value.
-    Supports filtering by parallel variant, grade, time period, and listing type.
+    Supports filtering by parallel variant, grade, time period, and listing type. Each call returns the
+    most-recent listings for the card, up to a cap of 500 rows ending at `as_of_date` (default today, US
+    Eastern). If that cap is hit a warning is returned in `messages`; to page further back through
+    history, set `as_of_date` to the oldest `date` in the response and query again (the boundary day may
+    repeat a few rows — duplicates, never gaps).
 
     Args:
         card_id (str):
         parallel_id (Union[Unset, str]):
         grade_id (Union[Unset, str]):
         period (Union[Unset, str]):  Default: 'all'.
+        as_of_date (Union[Unset, str]):
         listing_type (Union[Unset, GetCardPricingListingType]):  Default:
             GetCardPricingListingType.BOTH.
         limit (Union[Unset, int]):
@@ -285,6 +315,7 @@ async def asyncio(
             parallel_id=parallel_id,
             grade_id=grade_id,
             period=period,
+            as_of_date=as_of_date,
             listing_type=listing_type,
             limit=limit,
         )

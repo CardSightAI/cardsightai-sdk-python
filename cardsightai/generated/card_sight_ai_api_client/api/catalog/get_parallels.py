@@ -130,7 +130,7 @@ def sync_detailed(
     sort: Union[Unset, GetParallelsSort] = UNSET,
     order: Union[Unset, GetParallelsOrder] = GetParallelsOrder.ASC,
 ) -> Response[Union[ErrorResponse, PaginatedParallelsResponse]]:
-    """Search for parallels across sets and releases
+    """Search for parallels across sets and releases (free)
 
      Search for parallels by name and filter by release. Returns all sets containing the parallel with
     release information
@@ -189,7 +189,7 @@ def sync(
     sort: Union[Unset, GetParallelsSort] = UNSET,
     order: Union[Unset, GetParallelsOrder] = GetParallelsOrder.ASC,
 ) -> Optional[Union[ErrorResponse, PaginatedParallelsResponse]]:
-    """Search for parallels across sets and releases
+    """Search for parallels across sets and releases (free)
 
      Search for parallels by name and filter by release. Returns all sets containing the parallel with
     release information
@@ -243,7 +243,7 @@ async def asyncio_detailed(
     sort: Union[Unset, GetParallelsSort] = UNSET,
     order: Union[Unset, GetParallelsOrder] = GetParallelsOrder.ASC,
 ) -> Response[Union[ErrorResponse, PaginatedParallelsResponse]]:
-    """Search for parallels across sets and releases
+    """Search for parallels across sets and releases (free)
 
      Search for parallels by name and filter by release. Returns all sets containing the parallel with
     release information
@@ -300,7 +300,7 @@ async def asyncio(
     sort: Union[Unset, GetParallelsSort] = UNSET,
     order: Union[Unset, GetParallelsOrder] = GetParallelsOrder.ASC,
 ) -> Optional[Union[ErrorResponse, PaginatedParallelsResponse]]:
-    """Search for parallels across sets and releases
+    """Search for parallels across sets and releases (free)
 
      Search for parallels by name and filter by release. Returns all sets containing the parallel with
     release information

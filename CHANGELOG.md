@@ -1,5 +1,15 @@
 # Changelog
 
+## [1.4.0] - 2026-07-15
+
+### Added
+- **Pricing history paging** — `pricing` accepts an optional `as_of_date` query param on `GET /v1/pricing/{card_id}`; results are capped at 500 rows with a non-fatal advisory surfaced in the response `messages` array.
+- **Catalog `/N` slash search** — `SearchResult` now carries an optional `numbered_to` field; a standalone `/N` term in the search query hard-filters to items serial-numbered to N.
+- **Server advisory messages** — `ServerMessage[]` `messages` arrays added to `PaginatedCardsResponse`, `CatalogSearchResponse`, and `PricingResponse`.
+
+### Changed
+- Regenerated the client from the latest OpenAPI spec.
+
 ## [1.3.0] - 2026-06-30
 
 ### Added

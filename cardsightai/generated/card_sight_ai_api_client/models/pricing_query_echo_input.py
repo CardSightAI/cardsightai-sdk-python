@@ -14,7 +14,8 @@ T = TypeVar("T", bound="PricingQueryEchoInput")
 class PricingQueryEchoInput:
     """
     Attributes:
-        as_of_date (str): Date the data was retrieved
+        as_of_date (str): Anchor date (US Eastern Time) the lookback window ends on — echoes the as_of_date input, or
+            today when omitted.
         parallel_id (Union[None, UUID, Unset]): Parallel UUID filter applied
         grade_id (Union[None, UUID, Unset]): Grade UUID filter applied
         period (Union[Unset, str]): Period filter applied (pricing only)

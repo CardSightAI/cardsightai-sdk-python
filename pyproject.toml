@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "cardsightai"
-version = "1.3.0"
+version = "1.4.0"
 description = "Official Python SDK for CardSight AI REST API"
 authors = ["CardSight AI"]
 license = "MIT"

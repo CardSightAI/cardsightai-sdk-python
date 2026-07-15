@@ -26,6 +26,8 @@ class SearchResult:
         manufacturer_name (Union[Unset, str]): Manufacturer name.
         parallel_name (Union[Unset, str]): Name of the matching parallel variant. Present when a parallel name
             contributed to this result's relevance.
+        numbered_to (Union[Unset, int]): Serial print-run limit of the matching parallel (e.g. 25 for a /25). Present on
+            parallel results, and on card results matched via `/N` slash notation.
     """
 
     type_: SearchResultType
@@ -37,6 +39,7 @@ class SearchResult:
     release_name: Union[Unset, str] = UNSET
     manufacturer_name: Union[Unset, str] = UNSET
     parallel_name: Union[Unset, str] = UNSET
+    numbered_to: Union[Unset, int] = UNSET
 
     def to_dict(self) -> dict[str, Any]:
         type_ = self.type_.value
@@ -56,6 +59,8 @@ class SearchResult:
         manufacturer_name = self.manufacturer_name
 
         parallel_name = self.parallel_name
+
+        numbered_to = self.numbered_to
 
         field_dict: dict[str, Any] = {}
 
@@ -77,6 +82,8 @@ class SearchResult:
             field_dict["manufacturerName"] = manufacturer_name
         if parallel_name is not UNSET:
             field_dict["parallelName"] = parallel_name
+        if numbered_to is not UNSET:
+            field_dict["numberedTo"] = numbered_to
 
         return field_dict
 
@@ -101,6 +108,8 @@ class SearchResult:
 
         parallel_name = d.pop("parallelName", UNSET)
 
+        numbered_to = d.pop("numberedTo", UNSET)
+
         search_result = cls(
             type_=type_,
             id=id,
@@ -111,6 +120,7 @@ class SearchResult:
             release_name=release_name,
             manufacturer_name=manufacturer_name,
             parallel_name=parallel_name,
+            numbered_to=numbered_to,
         )
 
         return search_result

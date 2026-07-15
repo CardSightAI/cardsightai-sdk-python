@@ -136,8 +136,11 @@ def sync_detailed(
     topps\", \"1952 mickey mantle\", or \"refractor\". Uses PostgreSQL full-text search combined with
     trigram similarity for typo-tolerant matching. Results are ranked by relevance and returned as a
     mixed list of cards, sets, releases, and parallels. Cards and sets that match a parallel name (e.g.,
-    \"Refractor\") are boosted in relevance and include the matching parallelName in the response. Use
-    the \"type\" parameter to filter to a specific entity type.
+    \"Refractor\") are boosted in relevance and include the matching parallelName in the response. Slash
+    notation is supported: append a standalone term like \"/25\" (e.g. \"aaron judge /25\") to hard-
+    filter results to cards and parallels whose applicable parallel is serial-numbered to that value;
+    matched results include the numberedTo field. Use the \"type\" parameter to filter to a specific
+    entity type.
 
     Args:
         take (Union[Unset, int]):  Default: 20.
@@ -200,8 +203,11 @@ def sync(
     topps\", \"1952 mickey mantle\", or \"refractor\". Uses PostgreSQL full-text search combined with
     trigram similarity for typo-tolerant matching. Results are ranked by relevance and returned as a
     mixed list of cards, sets, releases, and parallels. Cards and sets that match a parallel name (e.g.,
-    \"Refractor\") are boosted in relevance and include the matching parallelName in the response. Use
-    the \"type\" parameter to filter to a specific entity type.
+    \"Refractor\") are boosted in relevance and include the matching parallelName in the response. Slash
+    notation is supported: append a standalone term like \"/25\" (e.g. \"aaron judge /25\") to hard-
+    filter results to cards and parallels whose applicable parallel is serial-numbered to that value;
+    matched results include the numberedTo field. Use the \"type\" parameter to filter to a specific
+    entity type.
 
     Args:
         take (Union[Unset, int]):  Default: 20.
@@ -259,8 +265,11 @@ async def asyncio_detailed(
     topps\", \"1952 mickey mantle\", or \"refractor\". Uses PostgreSQL full-text search combined with
     trigram similarity for typo-tolerant matching. Results are ranked by relevance and returned as a
     mixed list of cards, sets, releases, and parallels. Cards and sets that match a parallel name (e.g.,
-    \"Refractor\") are boosted in relevance and include the matching parallelName in the response. Use
-    the \"type\" parameter to filter to a specific entity type.
+    \"Refractor\") are boosted in relevance and include the matching parallelName in the response. Slash
+    notation is supported: append a standalone term like \"/25\" (e.g. \"aaron judge /25\") to hard-
+    filter results to cards and parallels whose applicable parallel is serial-numbered to that value;
+    matched results include the numberedTo field. Use the \"type\" parameter to filter to a specific
+    entity type.
 
     Args:
         take (Union[Unset, int]):  Default: 20.
@@ -321,8 +330,11 @@ async def asyncio(
     topps\", \"1952 mickey mantle\", or \"refractor\". Uses PostgreSQL full-text search combined with
     trigram similarity for typo-tolerant matching. Results are ranked by relevance and returned as a
     mixed list of cards, sets, releases, and parallels. Cards and sets that match a parallel name (e.g.,
-    \"Refractor\") are boosted in relevance and include the matching parallelName in the response. Use
-    the \"type\" parameter to filter to a specific entity type.
+    \"Refractor\") are boosted in relevance and include the matching parallelName in the response. Slash
+    notation is supported: append a standalone term like \"/25\" (e.g. \"aaron judge /25\") to hard-
+    filter results to cards and parallels whose applicable parallel is serial-numbered to that value;
+    matched results include the numberedTo field. Use the \"type\" parameter to filter to a specific
+    entity type.
 
     Args:
         take (Union[Unset, int]):  Default: 20.

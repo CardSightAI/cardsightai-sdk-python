@@ -24,7 +24,9 @@ class BulkPricingRequestInput:
         listing_type (Union[Unset, BulkPricingRequestInputListingType]): Filter by listing type. auction=completed
             auction sales (bid side), fixed=Buy It Now asking prices (ask side), both=all Default:
             BulkPricingRequestInputListingType.BOTH.
-        limit (Union[Unset, int]): Maximum number of records per card
+        limit (Union[Unset, int]): Most-recent listings to return per card. Defaults to 25 (server-applied when omitted)
+            — across a full 100-card request that is up to 2,500 datapoints. Max 100 (up to 10,000 datapoints per request).
+            For a card's full history use GET /pricing/{card_id} with as_of_date.
     """
 
     card_ids: list[UUID]
