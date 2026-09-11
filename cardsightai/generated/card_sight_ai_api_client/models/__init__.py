@@ -48,6 +48,12 @@ from .bulk_pricing_result import BulkPricingResult
 from .bulk_pricing_result_error import BulkPricingResultError
 from .bulk_pricing_result_input import BulkPricingResultInput
 from .bulk_pricing_result_input_error import BulkPricingResultInputError
+from .candle_period import CandlePeriod
+from .candle_period_input import CandlePeriodInput
+from .candle_period_input_types import CandlePeriodInputTypes
+from .candle_period_types import CandlePeriodTypes
+from .candle_stats import CandleStats
+from .candle_stats_input import CandleStatsInput
 from .card import Card
 from .card_base_population import CardBasePopulation
 from .card_base_population_input import CardBasePopulationInput
@@ -174,6 +180,8 @@ from .get_card_image_default import GetCardImageDefault
 from .get_card_image_format import GetCardImageFormat
 from .get_card_marketplace_listing_type import GetCardMarketplaceListingType
 from .get_card_pricing_listing_type import GetCardPricingListingType
+from .get_card_pricing_timeseries_interval import GetCardPricingTimeseriesInterval
+from .get_card_pricing_timeseries_listing_type import GetCardPricingTimeseriesListingType
 from .get_cards_order import GetCardsOrder
 from .get_cards_sort import GetCardsSort
 from .get_collection_breakdown_group_by import GetCollectionBreakdownGroupBy
@@ -304,6 +312,10 @@ from .parallel import Parallel
 from .parallel_input import ParallelInput
 from .parallel_set_progress import ParallelSetProgress
 from .parallel_set_progress_input import ParallelSetProgressInput
+from .parallel_suggestion import ParallelSuggestion
+from .parallel_suggestion_confidence import ParallelSuggestionConfidence
+from .parallel_suggestion_input import ParallelSuggestionInput
+from .parallel_suggestion_input_confidence import ParallelSuggestionInputConfidence
 from .parallel_summary import ParallelSummary
 from .parallel_summary_input import ParallelSummaryInput
 from .parallel_with_set import ParallelWithSet
@@ -350,6 +362,10 @@ from .raw_marketplace_section import RawMarketplaceSection
 from .raw_marketplace_section_input import RawMarketplaceSectionInput
 from .raw_pricing_section import RawPricingSection
 from .raw_pricing_section_input import RawPricingSectionInput
+from .raw_timeseries_section import RawTimeseriesSection
+from .raw_timeseries_section_input import RawTimeseriesSectionInput
+from .raw_timeseries_section_input_totals import RawTimeseriesSectionInputTotals
+from .raw_timeseries_section_totals import RawTimeseriesSectionTotals
 from .release import Release
 from .release_calendar_entry import ReleaseCalendarEntry
 from .release_calendar_entry_input import ReleaseCalendarEntryInput
@@ -375,7 +391,9 @@ from .search_meta_input import SearchMetaInput
 from .search_pricing_by_title_listing_type import SearchPricingByTitleListingType
 from .search_result import SearchResult
 from .search_result_input import SearchResultInput
+from .search_result_input_match_kind import SearchResultInputMatchKind
 from .search_result_input_type import SearchResultInputType
+from .search_result_match_kind import SearchResultMatchKind
 from .search_result_type import SearchResultType
 from .segment import Segment
 from .segment_input import SegmentInput
@@ -413,6 +431,18 @@ from .source_breakdown_item import SourceBreakdownItem
 from .source_breakdown_item_input import SourceBreakdownItemInput
 from .subscription_info import SubscriptionInfo
 from .subscription_info_input import SubscriptionInfoInput
+from .timeseries_company_group import TimeseriesCompanyGroup
+from .timeseries_company_group_input import TimeseriesCompanyGroupInput
+from .timeseries_grade_group import TimeseriesGradeGroup
+from .timeseries_grade_group_input import TimeseriesGradeGroupInput
+from .timeseries_grade_group_input_totals import TimeseriesGradeGroupInputTotals
+from .timeseries_grade_group_totals import TimeseriesGradeGroupTotals
+from .timeseries_query_echo import TimeseriesQueryEcho
+from .timeseries_query_echo_input import TimeseriesQueryEchoInput
+from .timeseries_response import TimeseriesResponse
+from .timeseries_response_input import TimeseriesResponseInput
+from .timeseries_type_totals import TimeseriesTypeTotals
+from .timeseries_type_totals_input import TimeseriesTypeTotalsInput
 from .top_card_in_group import TopCardInGroup
 from .top_card_in_group_input import TopCardInGroupInput
 from .update_binder import UpdateBinder
@@ -479,6 +509,12 @@ __all__ = (
     "BulkPricingResultError",
     "BulkPricingResultInput",
     "BulkPricingResultInputError",
+    "CandlePeriod",
+    "CandlePeriodInput",
+    "CandlePeriodInputTypes",
+    "CandlePeriodTypes",
+    "CandleStats",
+    "CandleStatsInput",
     "Card",
     "CardBasePopulation",
     "CardBasePopulationInput",
@@ -605,6 +641,8 @@ __all__ = (
     "GetCardImageFormat",
     "GetCardMarketplaceListingType",
     "GetCardPricingListingType",
+    "GetCardPricingTimeseriesInterval",
+    "GetCardPricingTimeseriesListingType",
     "GetCardsOrder",
     "GetCardsSort",
     "GetCollectionBreakdownGroupBy",
@@ -735,6 +773,10 @@ __all__ = (
     "ParallelInput",
     "ParallelSetProgress",
     "ParallelSetProgressInput",
+    "ParallelSuggestion",
+    "ParallelSuggestionConfidence",
+    "ParallelSuggestionInput",
+    "ParallelSuggestionInputConfidence",
     "ParallelSummary",
     "ParallelSummaryInput",
     "ParallelWithSet",
@@ -781,6 +823,10 @@ __all__ = (
     "RawMarketplaceSectionInput",
     "RawPricingSection",
     "RawPricingSectionInput",
+    "RawTimeseriesSection",
+    "RawTimeseriesSectionInput",
+    "RawTimeseriesSectionInputTotals",
+    "RawTimeseriesSectionTotals",
     "Release",
     "ReleaseCalendarEntry",
     "ReleaseCalendarEntryInput",
@@ -806,7 +852,9 @@ __all__ = (
     "SearchPricingByTitleListingType",
     "SearchResult",
     "SearchResultInput",
+    "SearchResultInputMatchKind",
     "SearchResultInputType",
+    "SearchResultMatchKind",
     "SearchResultType",
     "Segment",
     "SegmentInput",
@@ -844,6 +892,18 @@ __all__ = (
     "SourceBreakdownItemInput",
     "SubscriptionInfo",
     "SubscriptionInfoInput",
+    "TimeseriesCompanyGroup",
+    "TimeseriesCompanyGroupInput",
+    "TimeseriesGradeGroup",
+    "TimeseriesGradeGroupInput",
+    "TimeseriesGradeGroupInputTotals",
+    "TimeseriesGradeGroupTotals",
+    "TimeseriesQueryEcho",
+    "TimeseriesQueryEchoInput",
+    "TimeseriesResponse",
+    "TimeseriesResponseInput",
+    "TimeseriesTypeTotals",
+    "TimeseriesTypeTotalsInput",
     "TopCardInGroup",
     "TopCardInGroupInput",
     "UpdateBinder",

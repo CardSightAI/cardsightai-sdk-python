@@ -93,10 +93,20 @@ def _parse_response(
 
         return response_404
 
+    if response.status_code == 408:
+        response_408 = ErrorResponse.from_dict(response.json())
+
+        return response_408
+
     if response.status_code == 500:
         response_500 = ErrorResponse.from_dict(response.json())
 
         return response_500
+
+    if response.status_code == 503:
+        response_503 = ErrorResponse.from_dict(response.json())
+
+        return response_503
 
     if client.raise_on_unexpected_status:
         raise errors.UnexpectedStatus(response.status_code, response.content)
@@ -133,14 +143,13 @@ def sync_detailed(
 
      Global fuzzy search endpoint that searches across card names, set names, release names, parallel
     names, manufacturer names, and years simultaneously. Supports multi-word queries like \"aaron judge
-    topps\", \"1952 mickey mantle\", or \"refractor\". Uses PostgreSQL full-text search combined with
-    trigram similarity for typo-tolerant matching. Results are ranked by relevance and returned as a
-    mixed list of cards, sets, releases, and parallels. Cards and sets that match a parallel name (e.g.,
-    \"Refractor\") are boosted in relevance and include the matching parallelName in the response. Slash
-    notation is supported: append a standalone term like \"/25\" (e.g. \"aaron judge /25\") to hard-
-    filter results to cards and parallels whose applicable parallel is serial-numbered to that value;
-    matched results include the numberedTo field. Use the \"type\" parameter to filter to a specific
-    entity type.
+    topps\", \"1952 mickey mantle\", or \"refractor\". Matching is typo-tolerant. Results are ranked by
+    relevance and returned as a mixed list of cards, sets, releases, and parallels. Cards and sets that
+    match a parallel name (e.g., \"Refractor\") are boosted in relevance and include the matching
+    parallelName in the response. Slash notation is supported: append a standalone term like \"/25\"
+    (e.g. \"aaron judge /25\") to hard-filter results to cards and parallels whose applicable parallel
+    is serial-numbered to that value; matched results include the numberedTo field. Use the \"type\"
+    parameter to filter to a specific entity type.
 
     Args:
         take (Union[Unset, int]):  Default: 20.
@@ -200,14 +209,13 @@ def sync(
 
      Global fuzzy search endpoint that searches across card names, set names, release names, parallel
     names, manufacturer names, and years simultaneously. Supports multi-word queries like \"aaron judge
-    topps\", \"1952 mickey mantle\", or \"refractor\". Uses PostgreSQL full-text search combined with
-    trigram similarity for typo-tolerant matching. Results are ranked by relevance and returned as a
-    mixed list of cards, sets, releases, and parallels. Cards and sets that match a parallel name (e.g.,
-    \"Refractor\") are boosted in relevance and include the matching parallelName in the response. Slash
-    notation is supported: append a standalone term like \"/25\" (e.g. \"aaron judge /25\") to hard-
-    filter results to cards and parallels whose applicable parallel is serial-numbered to that value;
-    matched results include the numberedTo field. Use the \"type\" parameter to filter to a specific
-    entity type.
+    topps\", \"1952 mickey mantle\", or \"refractor\". Matching is typo-tolerant. Results are ranked by
+    relevance and returned as a mixed list of cards, sets, releases, and parallels. Cards and sets that
+    match a parallel name (e.g., \"Refractor\") are boosted in relevance and include the matching
+    parallelName in the response. Slash notation is supported: append a standalone term like \"/25\"
+    (e.g. \"aaron judge /25\") to hard-filter results to cards and parallels whose applicable parallel
+    is serial-numbered to that value; matched results include the numberedTo field. Use the \"type\"
+    parameter to filter to a specific entity type.
 
     Args:
         take (Union[Unset, int]):  Default: 20.
@@ -262,14 +270,13 @@ async def asyncio_detailed(
 
      Global fuzzy search endpoint that searches across card names, set names, release names, parallel
     names, manufacturer names, and years simultaneously. Supports multi-word queries like \"aaron judge
-    topps\", \"1952 mickey mantle\", or \"refractor\". Uses PostgreSQL full-text search combined with
-    trigram similarity for typo-tolerant matching. Results are ranked by relevance and returned as a
-    mixed list of cards, sets, releases, and parallels. Cards and sets that match a parallel name (e.g.,
-    \"Refractor\") are boosted in relevance and include the matching parallelName in the response. Slash
-    notation is supported: append a standalone term like \"/25\" (e.g. \"aaron judge /25\") to hard-
-    filter results to cards and parallels whose applicable parallel is serial-numbered to that value;
-    matched results include the numberedTo field. Use the \"type\" parameter to filter to a specific
-    entity type.
+    topps\", \"1952 mickey mantle\", or \"refractor\". Matching is typo-tolerant. Results are ranked by
+    relevance and returned as a mixed list of cards, sets, releases, and parallels. Cards and sets that
+    match a parallel name (e.g., \"Refractor\") are boosted in relevance and include the matching
+    parallelName in the response. Slash notation is supported: append a standalone term like \"/25\"
+    (e.g. \"aaron judge /25\") to hard-filter results to cards and parallels whose applicable parallel
+    is serial-numbered to that value; matched results include the numberedTo field. Use the \"type\"
+    parameter to filter to a specific entity type.
 
     Args:
         take (Union[Unset, int]):  Default: 20.
@@ -327,14 +334,13 @@ async def asyncio(
 
      Global fuzzy search endpoint that searches across card names, set names, release names, parallel
     names, manufacturer names, and years simultaneously. Supports multi-word queries like \"aaron judge
-    topps\", \"1952 mickey mantle\", or \"refractor\". Uses PostgreSQL full-text search combined with
-    trigram similarity for typo-tolerant matching. Results are ranked by relevance and returned as a
-    mixed list of cards, sets, releases, and parallels. Cards and sets that match a parallel name (e.g.,
-    \"Refractor\") are boosted in relevance and include the matching parallelName in the response. Slash
-    notation is supported: append a standalone term like \"/25\" (e.g. \"aaron judge /25\") to hard-
-    filter results to cards and parallels whose applicable parallel is serial-numbered to that value;
-    matched results include the numberedTo field. Use the \"type\" parameter to filter to a specific
-    entity type.
+    topps\", \"1952 mickey mantle\", or \"refractor\". Matching is typo-tolerant. Results are ranked by
+    relevance and returned as a mixed list of cards, sets, releases, and parallels. Cards and sets that
+    match a parallel name (e.g., \"Refractor\") are boosted in relevance and include the matching
+    parallelName in the response. Slash notation is supported: append a standalone term like \"/25\"
+    (e.g. \"aaron judge /25\") to hard-filter results to cards and parallels whose applicable parallel
+    is serial-numbered to that value; matched results include the numberedTo field. Use the \"type\"
+    parameter to filter to a specific entity type.
 
     Args:
         take (Union[Unset, int]):  Default: 20.

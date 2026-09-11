@@ -1,5 +1,23 @@
 # Changelog
 
+## [2.0.0] - 2026-09-11
+
+### Breaking
+- **`CardDetails.parallel` removed.** Card identification and detail responses no longer include a single `parallel` field (`ParallelSummary`). It is replaced by `parallel_suggestions`, a ranked list of `ParallelSuggestion` (best match first). Each entry carries `id`, `name`, `description`, `is_partial`, `numbered_to`, `cards`, and an optional `confidence` (`ParallelSuggestionConfidence`: `HIGH` | `MEDIUM` | `LOW`) — a missing `confidence` means the parallel was not assessed, not that it is low-confidence. **Migration:** replace `card.parallel` with `card.parallel_suggestions[0]` (guarding for an empty/unset list), and read `.confidence` per entry instead of assuming a single value.
+
+### Added
+- **Pricing timeseries** endpoint: `client.pricing.get_card_pricing_timeseries(card_id=..., interval=...)` (`GET /v1/pricing/{card_id}/timeseries`) — candlestick-style price rollups bucketed by `interval` (`daily` | `weekly` | `monthly`), with optional `periods`, `as_of_date`, `listing_type`, `parallel_id`, and `grade_id` filters. New response models: `TimeseriesResponse`, `TimeseriesQueryEcho`, `TimeseriesTypeTotals`, `TimeseriesGradeGroup`, `TimeseriesCompanyGroup`, `CandlePeriod`, `CandleStats`, `RawTimeseriesSection`.
+- `CardSuggestion` entries now include full card fields (`segment_id`, `release_id`, `set_id`, `year`, `manufacturer`, `release_name`, `set_name`, `name`, `number`, `description`, `numbered_to`, `attributes`, `variation_of`, `fields`) — populated only when detection confidence is Medium or Low.
+- `SearchResult` gained optional `segment_name`, `card_number`, and `match_kind` (`SearchResultMatchKind`: `exact` | `fuzzy`).
+- `FeedbackResponse.status` (`FeedbackResponseStatus`) gained new values: `new`, `confirmed_bug`, `enhancement_backlog`, `enhancement_planned`, `released`, `not_an_issue`, `closed`. Older values (`duplicate`, `fixed`, `need_info`, `not_reviewed`, `under_review`, `wont_fix`) are deprecated but still present.
+- Detections may include a `CARD_LANGUAGE` entry (ISO 639-1 code) in `card.fields`.
+
+### Changed
+- Title/catalog search `q` minimum length relaxed from 3 to 2 characters.
+- `SearchResult.relevance` is now documented as an opaque, order-only value (not a comparable score).
+- Parallel catalog endpoints (`get_parallel`, `get_parallels`) are no longer labelled "(free)" in their descriptions.
+- Regenerated the client from the latest OpenAPI spec.
+
 ## [1.4.0] - 2026-07-15
 
 ### Added

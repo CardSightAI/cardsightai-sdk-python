@@ -95,7 +95,9 @@ def sync_detailed(
      Identify a card from an image for a specific segment (sport). The segment can be specified by UUID,
     name, or shortname (case-insensitive, e.g., \"football\", \"basketball\", \"magic\"). Supports both
     multipart/form-data and direct binary upload (image/jpeg, image/png, image/webp). Maximum file size:
-    20MB. Supported formats: JPEG, PNG, WebP, HEIF, HEIC.
+    20MB. Supported formats: JPEG, PNG, WebP, HEIF, HEIC. Where a parallel variant is recognised it is
+    returned in `card.parallelSuggestions` (beta): best match first, with a confidence tier on each
+    entry where available.
 
     Args:
         segment (str):
@@ -132,7 +134,9 @@ def sync(
      Identify a card from an image for a specific segment (sport). The segment can be specified by UUID,
     name, or shortname (case-insensitive, e.g., \"football\", \"basketball\", \"magic\"). Supports both
     multipart/form-data and direct binary upload (image/jpeg, image/png, image/webp). Maximum file size:
-    20MB. Supported formats: JPEG, PNG, WebP, HEIF, HEIC.
+    20MB. Supported formats: JPEG, PNG, WebP, HEIF, HEIC. Where a parallel variant is recognised it is
+    returned in `card.parallelSuggestions` (beta): best match first, with a confidence tier on each
+    entry where available.
 
     Args:
         segment (str):
@@ -164,7 +168,9 @@ async def asyncio_detailed(
      Identify a card from an image for a specific segment (sport). The segment can be specified by UUID,
     name, or shortname (case-insensitive, e.g., \"football\", \"basketball\", \"magic\"). Supports both
     multipart/form-data and direct binary upload (image/jpeg, image/png, image/webp). Maximum file size:
-    20MB. Supported formats: JPEG, PNG, WebP, HEIF, HEIC.
+    20MB. Supported formats: JPEG, PNG, WebP, HEIF, HEIC. Where a parallel variant is recognised it is
+    returned in `card.parallelSuggestions` (beta): best match first, with a confidence tier on each
+    entry where available.
 
     Args:
         segment (str):
@@ -199,7 +205,9 @@ async def asyncio(
      Identify a card from an image for a specific segment (sport). The segment can be specified by UUID,
     name, or shortname (case-insensitive, e.g., \"football\", \"basketball\", \"magic\"). Supports both
     multipart/form-data and direct binary upload (image/jpeg, image/png, image/webp). Maximum file size:
-    20MB. Supported formats: JPEG, PNG, WebP, HEIF, HEIC.
+    20MB. Supported formats: JPEG, PNG, WebP, HEIF, HEIC. Where a parallel variant is recognised it is
+    returned in `card.parallelSuggestions` (beta): best match first, with a confidence tier on each
+    entry where available.
 
     Args:
         segment (str):

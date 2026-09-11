@@ -94,7 +94,9 @@ def sync_detailed(
     automatically, so a single image may contain cards from different segments (e.g., baseball and
     basketball). To force a specific segment, use POST /card/:segment instead. Supports both
     multipart/form-data and direct binary upload (image/jpeg, image/png, image/webp). Maximum file size:
-    20MB. Supported formats: JPEG, PNG, WebP, HEIF, HEIC.
+    20MB. Supported formats: JPEG, PNG, WebP, HEIF, HEIC. Where a parallel variant is recognised it is
+    returned in `card.parallelSuggestions` (beta): best match first, with a confidence tier on each
+    entry where available.
 
     Args:
         body (FileUploadInput):
@@ -129,7 +131,9 @@ def sync(
     automatically, so a single image may contain cards from different segments (e.g., baseball and
     basketball). To force a specific segment, use POST /card/:segment instead. Supports both
     multipart/form-data and direct binary upload (image/jpeg, image/png, image/webp). Maximum file size:
-    20MB. Supported formats: JPEG, PNG, WebP, HEIF, HEIC.
+    20MB. Supported formats: JPEG, PNG, WebP, HEIF, HEIC. Where a parallel variant is recognised it is
+    returned in `card.parallelSuggestions` (beta): best match first, with a confidence tier on each
+    entry where available.
 
     Args:
         body (FileUploadInput):
@@ -159,7 +163,9 @@ async def asyncio_detailed(
     automatically, so a single image may contain cards from different segments (e.g., baseball and
     basketball). To force a specific segment, use POST /card/:segment instead. Supports both
     multipart/form-data and direct binary upload (image/jpeg, image/png, image/webp). Maximum file size:
-    20MB. Supported formats: JPEG, PNG, WebP, HEIF, HEIC.
+    20MB. Supported formats: JPEG, PNG, WebP, HEIF, HEIC. Where a parallel variant is recognised it is
+    returned in `card.parallelSuggestions` (beta): best match first, with a confidence tier on each
+    entry where available.
 
     Args:
         body (FileUploadInput):
@@ -192,7 +198,9 @@ async def asyncio(
     automatically, so a single image may contain cards from different segments (e.g., baseball and
     basketball). To force a specific segment, use POST /card/:segment instead. Supports both
     multipart/form-data and direct binary upload (image/jpeg, image/png, image/webp). Maximum file size:
-    20MB. Supported formats: JPEG, PNG, WebP, HEIF, HEIC.
+    20MB. Supported formats: JPEG, PNG, WebP, HEIF, HEIC. Where a parallel variant is recognised it is
+    returned in `card.parallelSuggestions` (beta): best match first, with a confidence tier on each
+    entry where available.
 
     Args:
         body (FileUploadInput):

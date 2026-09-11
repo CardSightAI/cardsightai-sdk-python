@@ -21,7 +21,9 @@ class FeedbackResponseInput:
         entity_id (Union[None, UUID]): The unique ID of the entity, or null for general feedback
         feedback_type (Union[FeedbackResponseInputFeedbackTypeType0, None]): The category of feedback submitted
         message (str): The feedback message
-        status (FeedbackResponseInputStatus): Current review status of the feedback
+        status (FeedbackResponseInputStatus): Current review status of the feedback. Newly submitted feedback starts as
+            new; the remaining values are set by our review team. The values not_reviewed, fixed, wont_fix, duplicate, and
+            need_info are deprecated and appear only on feedback submitted before August 2026.
         created_at (str): ISO 8601 timestamp when the feedback was submitted
         updated_at (str): ISO 8601 timestamp when the feedback was last updated
     """

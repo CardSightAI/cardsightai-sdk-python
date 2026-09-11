@@ -9,7 +9,7 @@ from ..types import UNSET, Unset
 if TYPE_CHECKING:
     from ..models.card_suggestion_input import CardSuggestionInput
     from ..models.field_value_input import FieldValueInput
-    from ..models.parallel_summary_input import ParallelSummaryInput
+    from ..models.parallel_suggestion_input import ParallelSuggestionInput
 
 
 T = TypeVar("T", bound="CardDetailsInput")
@@ -19,7 +19,7 @@ T = TypeVar("T", bound="CardDetailsInput")
 class CardDetailsInput:
     """
     Attributes:
-        id (Union[Unset, str]): UUID of the identified card. Present only for exact card matches.
+        id (Union[Unset, str]): UUID of the card. Present only for exact card matches.
         segment_id (Union[Unset, str]): UUID of the segment. Present for both exact card and set-level matches.
         release_id (Union[Unset, str]): UUID of the release. Present for both exact card and set-level matches.
         set_id (Union[Unset, str]): UUID of the set. Present for both exact card and set-level matches.
@@ -36,10 +36,16 @@ class CardDetailsInput:
             the card has no attributes.
         variation_of (Union[Unset, str]): UUID of the parent card when this card is a variation. Omitted if the card is
             not a variation.
-        parallel (Union[Unset, ParallelSummaryInput]):
         fields (Union[Unset, list['FieldValueInput']]):
-        suggestions (Union[Unset, list['CardSuggestionInput']]): Alternative card matches when multiple reprints score
-            similarly. Omitted when there are no suggestions.
+        parallel_suggestions (Union[Unset, list['ParallelSuggestionInput']]): (beta) Possible parallels for this card,
+            each carrying a `confidence` tier when available. Order is the identification engine's ranking, best match
+            first; `confidence` is the strength of evidence behind that individual entry and does not re-order the list. The
+            two are independent, so a later entry may carry a higher confidence than an earlier one. Present whenever there
+            is any parallel evidence: a single High-confidence entry when one parallel was identified, or several entries
+            when more than one remains possible. Omitted when there is nothing to suggest.
+        suggestions (Union[Unset, list['CardSuggestionInput']]): Possible alternative card matches, best match first.
+            Each entry is a full card record with the same fields as `card`. Included only when `confidence` is Medium or
+            Low; omitted for High-confidence identifications and when there are no alternatives.
     """
 
     id: Union[Unset, str] = UNSET
@@ -56,8 +62,8 @@ class CardDetailsInput:
     numbered_to: Union[Unset, int] = UNSET
     attributes: Union[Unset, list[str]] = UNSET
     variation_of: Union[Unset, str] = UNSET
-    parallel: Union[Unset, "ParallelSummaryInput"] = UNSET
     fields: Union[Unset, list["FieldValueInput"]] = UNSET
+    parallel_suggestions: Union[Unset, list["ParallelSuggestionInput"]] = UNSET
     suggestions: Union[Unset, list["CardSuggestionInput"]] = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
@@ -92,16 +98,19 @@ class CardDetailsInput:
 
         variation_of = self.variation_of
 
-        parallel: Union[Unset, dict[str, Any]] = UNSET
-        if not isinstance(self.parallel, Unset):
-            parallel = self.parallel.to_dict()
-
         fields: Union[Unset, list[dict[str, Any]]] = UNSET
         if not isinstance(self.fields, Unset):
             fields = []
             for componentsschemas_field_values_input_item_data in self.fields:
                 componentsschemas_field_values_input_item = componentsschemas_field_values_input_item_data.to_dict()
                 fields.append(componentsschemas_field_values_input_item)
+
+        parallel_suggestions: Union[Unset, list[dict[str, Any]]] = UNSET
+        if not isinstance(self.parallel_suggestions, Unset):
+            parallel_suggestions = []
+            for parallel_suggestions_item_data in self.parallel_suggestions:
+                parallel_suggestions_item = parallel_suggestions_item_data.to_dict()
+                parallel_suggestions.append(parallel_suggestions_item)
 
         suggestions: Union[Unset, list[dict[str, Any]]] = UNSET
         if not isinstance(self.suggestions, Unset):
@@ -141,10 +150,10 @@ class CardDetailsInput:
             field_dict["attributes"] = attributes
         if variation_of is not UNSET:
             field_dict["variationOf"] = variation_of
-        if parallel is not UNSET:
-            field_dict["parallel"] = parallel
         if fields is not UNSET:
             field_dict["fields"] = fields
+        if parallel_suggestions is not UNSET:
+            field_dict["parallelSuggestions"] = parallel_suggestions
         if suggestions is not UNSET:
             field_dict["suggestions"] = suggestions
 
@@ -154,7 +163,7 @@ class CardDetailsInput:
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.card_suggestion_input import CardSuggestionInput
         from ..models.field_value_input import FieldValueInput
-        from ..models.parallel_summary_input import ParallelSummaryInput
+        from ..models.parallel_suggestion_input import ParallelSuggestionInput
 
         d = dict(src_dict)
         id = d.pop("id", UNSET)
@@ -185,13 +194,6 @@ class CardDetailsInput:
 
         variation_of = d.pop("variationOf", UNSET)
 
-        _parallel = d.pop("parallel", UNSET)
-        parallel: Union[Unset, ParallelSummaryInput]
-        if isinstance(_parallel, Unset):
-            parallel = UNSET
-        else:
-            parallel = ParallelSummaryInput.from_dict(_parallel)
-
         fields = []
         _fields = d.pop("fields", UNSET)
         for componentsschemas_field_values_input_item_data in _fields or []:
@@ -200,6 +202,13 @@ class CardDetailsInput:
             )
 
             fields.append(componentsschemas_field_values_input_item)
+
+        parallel_suggestions = []
+        _parallel_suggestions = d.pop("parallelSuggestions", UNSET)
+        for parallel_suggestions_item_data in _parallel_suggestions or []:
+            parallel_suggestions_item = ParallelSuggestionInput.from_dict(parallel_suggestions_item_data)
+
+            parallel_suggestions.append(parallel_suggestions_item)
 
         suggestions = []
         _suggestions = d.pop("suggestions", UNSET)
@@ -223,8 +232,8 @@ class CardDetailsInput:
             numbered_to=numbered_to,
             attributes=attributes,
             variation_of=variation_of,
-            parallel=parallel,
             fields=fields,
+            parallel_suggestions=parallel_suggestions,
             suggestions=suggestions,
         )
 
